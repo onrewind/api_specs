@@ -1,0 +1,10 @@
+description: UserNotAuthorized
+content:
+  application/json:
+    schema:
+      $ref: '#/components/schemas/Error'
+#    examples:
+#      tokenExpired:
+#        summary: A token has expired
+#        value:
+#          name: UserNotAuthorized

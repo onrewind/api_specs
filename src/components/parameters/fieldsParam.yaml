@@ -1,0 +1,6 @@
+name: fields
+in: query
+description: Comma separated string to filter desired fields
+required: false
+schema:
+  type: string

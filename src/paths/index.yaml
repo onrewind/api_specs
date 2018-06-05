@@ -1,0 +1,83 @@
+$ref: ./users/index.yaml
+#/auth/login:
+#  $ref: ./modules/auth/auth.spec.yaml#/paths/~1auth~1login
+#/clip-skins:
+#  $ref: ./modules/clip-skin/clip-skin.spec.yaml#/paths/~1clip-skins
+#/clip-skins/{id}:
+#  $ref: ./modules/clip-skin/clip-skin.spec.yaml#/paths/~1clip-skins~1{id}
+#/sports:
+#  $ref: ./modules/sport/sport.spec.yaml#/paths/~1sports
+#/sports/{id}:
+#  $ref: ./modules/sport/sport.spec.yaml#/paths/~1sports~1{id}
+#/themes:
+#  $ref: ./modules/theme/theme.spec.yaml#/paths/~1themes
+#/themes/{id}:
+#  $ref: ./modules/theme/theme.spec.yaml#/paths/~1themes~1{id}
+#/challengers:
+#  $ref: ./modules/event/challenger.spec.yaml#/paths/~1challengers
+#/challengers/{id}:
+#  $ref: ./modules/event/challenger.spec.yaml#/paths/~1challengers~1{id}
+#/events:
+#  $ref: ./modules/event/event.spec.yaml#/paths/~1events
+#/events/showEventInSpotlight:
+#  $ref: ./modules/event/event.spec.yaml#/paths/~1events~1showEventInSpotlight
+#/events/search-by-name:
+#  $ref: ./modules/event/event.spec.yaml#/paths/~1events~1search-by-name
+#/events/{id}/player:
+#  $ref: ./modules/event/event.spec.yaml#/paths/~1events~1{id}~1player
+#/events/{id}:
+#  $ref: ./modules/event/event.spec.yaml#/paths/~1events~1{id}
+#/markers:
+#  $ref: ./modules/event/marker.spec.yaml#/paths/~1markers
+#/markers/{id}:
+#  $ref: ./modules/event/marker.spec.yaml#/paths/~1markers~1{id}
+#/markers/{id}/clips:
+#  $ref: ./modules/event/marker.spec.yaml#/paths/~1markers~1{id}~1clips
+#/simulcasts:
+#  $ref: ./modules/simulcast/simulcast.spec.yaml#/paths/~1simulcasts
+#/simulcasts/search:
+#  $ref: ./modules/simulcast/simulcast.spec.yaml#/paths/~1simulcasts~1search
+#/simulcasts/{id}:
+#  $ref: ./modules/simulcast/simulcast.spec.yaml#/paths/~1simulcasts~1{id}
+#/simulcasts/{id}/targets:
+#  $ref: ./modules/simulcast/simulcast.spec.yaml#/paths/~1simulcasts~1{id}~1targets
+#/simulcasts/{id}/targets/{targetId}:
+#  $ref: ./modules/simulcast/simulcast.spec.yaml#/paths/~1simulcasts~1{id}~1targets~1{targetId}
+#/videos:
+#  $ref: ./modules/video/video.spec.yaml#/paths/~1videos
+#/videos/import-url:
+#  $ref: ./modules/video/video.spec.yaml#/paths/~1videos~1import-url
+#/videos/{id}:
+#  $ref: ./modules/video/video.spec.yaml#/paths/~1videos~1{id}
+#/speakers:
+#  $ref: ./modules/speaker/speaker.spec.yaml#/paths/~1speakers
+#/speakers/{id}:
+#  $ref: ./modules/speaker/speaker.spec.yaml#/paths/~1speakers~1{id}
+#/marker-types:
+#  $ref: ./modules/marker-type/marker-type.spec.yaml#/paths/~1marker-types
+#/marker-types/{id}:
+#  $ref: ./modules/marker-type/marker-type.spec.yaml#/paths/~1marker-types~1{id}
+#/marker-types/search:
+#  $ref: ./modules/marker-type/marker-type.spec.yaml#/paths/~1marker-types~1search
+#/utils/parseFile:
+#  $ref: ./modules/utils/utils.spec.yaml#/paths/~1utils~1parseFile
+#/utils/sign-s3-request:
+#  $ref: ./modules/utils/utils.spec.yaml#/paths/~1utils~1sign-s3-request
+#/utils/query-builder:
+#  $ref: ./modules/utils/utils.spec.yaml#/paths/~1utils~1query-builder
+#/shorturls:
+#  $ref: ./modules/shorturl/shorturl.spec.yaml#/paths/~1shorturls
+#/shorturls/{shortId}:
+#  $ref: ./modules/shorturl/shorturl.spec.yaml#/paths/~1shorturls~1{shortId}
+#/streaming-engine/streams/publish:
+#  $ref: ./modules/streaming-engine/streaming-engine.spec.yaml#/paths/~1streaming-engine~1streams~1publish
+#/streaming-engine/streams/unpublish:
+#  $ref: ./modules/streaming-engine/streaming-engine.spec.yaml#/paths/~1streaming-engine~1streams~1unpublish
+#/jobs:
+#  $ref: ./modules/job/job.spec.yaml#/paths/~1jobs
+#/jobs/{id}:
+#  $ref: ./modules/job/job.spec.yaml#/paths/~1jobs~1{id}
+#/data-provider-mapping:
+#  $ref: ./modules/data-provider-mapping/data-provider-mapping.spec.yaml#/paths/~1data-provider-mapping
+#/data-provider-mappings/:
+#  $ref: ./modules/data-provider-mapping/data-provider-mapping.spec.yaml#/paths/~1data-provider-mapping~1{id}

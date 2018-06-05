@@ -1,0 +1,29 @@
+title: "Account"
+required:
+  - code
+properties:
+  id:
+    type: string
+    format: uuid
+    readOnly: true
+  key:
+    type: string
+    description: code name to identify an account in friendler manner
+  name:
+    type: string
+    description: Account's name
+  description:
+    type: string
+    description: Account's description
+  meta:
+    type: object
+    description: Attribute storing extra data about the user, like a google analytics account id
+    properties:
+      hashtag:
+        type: string
+      google_analytics_id:
+        type: string
+  SportId:
+    type: string
+    format: uuid
+    description: Reference to a sport instance

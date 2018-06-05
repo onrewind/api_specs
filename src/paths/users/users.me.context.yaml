@@ -1,0 +1,37 @@
+get:
+  tags:
+    - Users
+  summary: Fetch resources making up the context of a user
+  description: >
+    Based on current access token, it will fetch the user's Groups, Roles, AccountId, Modules
+  parameters:
+    - $ref: '#/components/parameters/authorization'
+  responses:
+    '200':
+      description: User's "context"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              Groups:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Group'
+              Roles:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Role'
+              AccountId:
+                type: string
+                format: uuid
+              Modules:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Module'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'
+
+#put:

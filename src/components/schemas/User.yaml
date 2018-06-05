@@ -1,0 +1,61 @@
+title: "User"
+required:
+  - username
+properties:
+  id:
+    type: string
+    format: uuid
+    readOnly: true
+  username:
+    type: string
+    description: Username of the user
+  email:
+    type: string
+    description: Email of the user
+  lastName:
+    type: string
+    description: last name of the user
+  firstName:
+    type: string
+    description: first name of the user
+  phone:
+    type: string
+    format: phone
+  type:
+    type: string
+    enum:
+      - active
+      - inactive
+      - system
+    default: inactive
+  password:
+    type: string
+    format: password
+  meta:
+    type: object
+    description: Attribute storing extra data about the user, like a google analytics account id
+    properties:
+      hashtag:
+        type: string
+      google_analytics_id:
+        type: string
+  oauth:
+    type: object
+    description: Attribute storing third party oauth data specific to the user (oauth token, account id, etc...)
+    properties:
+      youtube:
+        type: object
+      dailymotion:
+        type: object
+      facebook:
+        type: object
+      cleeng:
+        type: object
+      twitter:
+        type: object
+      twitch:
+        type: object
+      opta:
+        type: object
+
+

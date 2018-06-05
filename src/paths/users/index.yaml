@@ -1,0 +1,11 @@
+/users:
+  $ref: ./users.yaml
+/users/me:
+  $ref: ./users.me.yaml
+/users/me/context:
+  $ref: ./users.me.context.yaml
+
+#userRouter.get('/me/context', userController.fetchContext);
+#userRouter.get('/me/oauth', userController.fetchAndCheckMyOauthTokens);
+#userRouter.get('/me/oauth/facebook/pages', userController.fetchMyFacebookPages);
+#userRouter.post('/me/oauth/facebook/pages/:pageId/video-lists', userController.addVideoListToMyFacebookPage);

@@ -1,0 +1,6 @@
+UserNotAuthorized:
+  $ref: ./UserNotAuthorized.yaml
+InvalidModel:
+  $ref: ./InvalidModel.yaml
+NotFound:
+  $ref: ./NotFound.yaml

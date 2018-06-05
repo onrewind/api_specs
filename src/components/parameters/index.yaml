@@ -1,0 +1,4 @@
+fieldsParam:
+  $ref: ./fieldsParam.yaml
+authorization:
+  $ref: ./authorization.yaml

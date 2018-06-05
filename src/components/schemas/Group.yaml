@@ -1,0 +1,19 @@
+title: "Group"
+required:
+  - name
+properties:
+  id:
+    type: string
+    format: uuid
+    readOnly: true
+  name:
+    type: string
+    description: Group's name
+  description:
+    type: string
+    description: Group's description
+  accessLevel:
+    type: integer
+    description: define group access level that allows to add higher permissions
+    default: 0
+

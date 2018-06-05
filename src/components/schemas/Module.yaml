@@ -1,0 +1,36 @@
+title: "Module"
+required:
+  - code
+properties:
+  id:
+    type: string
+    format: uuid
+    readOnly: true
+  code:
+    type: integer
+    description: |
+      Integer associated to a module, current values are as follow
+      ```
+      {
+        'RESTRAINED_ACCESS': 1,
+        'BLOCKMARK': 2,
+        'ESHOP_LINKS': 3,
+        'WHITE_LABEL': 4,
+        'GEO_BLOCKING': 5,
+        'ADVERTISING': 6,
+        'REMOTE_CONTROL': 7,
+        'NOTIFICATION': 8,
+        'SIMULCAST': 9,
+        'DVR': 10,
+        'CHAT': 11,
+        'STREAM_CLIPPING': 12,
+        'OPTA_PARSING': 13,
+        'CLEENG_RESTRICTION': 14
+      }
+      ```
+  name:
+    type: string
+    description: Module's name
+  description:
+    type: string
+    description: Module's description

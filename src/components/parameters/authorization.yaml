@@ -1,0 +1,6 @@
+name: authorization
+in: header
+required: true
+schema:
+  type: string
+  format: hash

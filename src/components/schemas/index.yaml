@@ -1,0 +1,12 @@
+Error:
+  $ref: ./Error.yaml
+User:
+  $ref: ./User.yaml
+Group:
+  $ref: ./Group.yaml
+Module:
+  $ref: ./Module.yaml
+Account:
+  $ref: ./Account.yaml
+Role:
+  $ref: ./Role.yaml

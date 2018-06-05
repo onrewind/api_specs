@@ -1,0 +1,53 @@
+get:
+  tags:
+    - Users
+  summary: Index of users
+  description: Get a list of all users
+  operationId: getUserById
+  parameters:
+    - $ref: '#/components/parameters/authorization'
+    - $ref: '#/components/parameters/fieldsParam'
+  responses:
+    '200':
+      description: A list of Users
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/User'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+post:
+  tags:
+    - Users
+  summary: Create a new user
+  description: Create a new user
+  parameters:
+    - $ref: '#/components/parameters/authorization'
+  requestBody:
+    description: user data to be sent
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/User'
+  responses:
+    '201':
+      description: The user is created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/User'
+      links:
+        GetUserById:
+          operationId: getUser
+          parameters:
+            userId: '$response.body#/id'
+          description: >
+            The `id` value returned in the response can be used as
+            the `userId` parameter in `GET /users/{userId}`.
+    '400':
+      $ref: '#/components/responses/InvalidModel'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'

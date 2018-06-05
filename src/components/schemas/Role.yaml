@@ -1,0 +1,19 @@
+title: "Role"
+required:
+  - name
+properties:
+  id:
+    type: string
+    format: uuid
+    readOnly: true
+  name:
+    type: string
+    description: Role's name
+  description:
+    type: string
+    description: Role's description
+  accessLevel:
+    type: integer
+    description: define role access level that allows to add higher permissions
+    default: 0
+
