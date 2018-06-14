@@ -16,5 +16,28 @@ get:
       $ref: '#/components/responses/UserNotAuthorized'
     '404':
       $ref: '#/components/responses/NotFound'
-
-#put:
+put:
+  tags:
+    - Users
+  summary: Update my own data
+  description: 'Based on current access token, it will update the user data'
+  parameters:
+    - $ref: '#/components/parameters/authorization'
+  requestBody:
+    description: user data to be sent
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/User'
+  responses:
+    '200':
+      description: Update information of logged user based on access token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/User'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'

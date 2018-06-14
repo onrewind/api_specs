@@ -1,0 +1,44 @@
+get:
+  tags:
+    - Modules
+  summary: Index of modules
+  description: Get a list of all modules
+  parameters:
+    - $ref: '#/components/parameters/authorization'
+    - $ref: '#/components/parameters/fieldsParam'
+  responses:
+    '200':
+      description: A list of Modules
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Module'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+post:
+  tags:
+    - Modules
+  summary: Create a new module
+  description: Create a new module
+  parameters:
+    - $ref: '#/components/parameters/authorization'
+  requestBody:
+    description: module data to be sent
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Module'
+  responses:
+    '201':
+      description: The module is created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Module'
+    '400':
+      $ref: '#/components/responses/InvalidModel'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'

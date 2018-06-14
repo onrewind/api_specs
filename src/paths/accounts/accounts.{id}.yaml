@@ -1,59 +1,59 @@
 delete:
   tags:
-    - Users
-  summary: Delete an user
-  description: Delete an user
+    - Accounts
+  summary: Delete an account
+  description: Delete an account
   parameters:
     - $ref: '#/components/parameters/authorization'
     - $ref: '#/components/parameters/id'
   responses:
     '204':
-      description: the user has been deleted successfully
+      description: the account has been deleted successfully
     '403':
       $ref: '#/components/responses/UserNotAuthorized'
     '404':
       $ref: '#/components/responses/NotFound'
 put:
   tags:
-    - Users
-  summary: Update the user data
-  description: 'it will update the user data matching given id'
+    - Accounts
+  summary: Update the account data
+  description: 'it will update the account data matching given id'
   parameters:
     - $ref: '#/components/parameters/authorization'
     - $ref: '#/components/parameters/id'
   requestBody:
-    description: user data to be sent
+    description: account data to be sent
     required: true
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/User'
+          $ref: '#/components/schemas/Account'
   responses:
     '200':
-      description: Updated information of logged user based on access token
+      description: Updated information of logged account based on access token
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/User'
+            $ref: '#/components/schemas/Account'
     '403':
       $ref: '#/components/responses/UserNotAuthorized'
     '404':
       $ref: '#/components/responses/NotFound'
 get:
   tags:
-    - Users
-  summary: Fetch an user
-  description: Fetch an user matching the given id
+    - Accounts
+  summary: Fetch an account
+  description: Fetch an account matching the given id
   parameters:
     - $ref: '#/components/parameters/authorization'
     - $ref: '#/components/parameters/id'
   responses:
     '200':
-      description: Fetched information of logged user based on access token
+      description: Fetched information of logged account based on access token
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/User'
+            $ref: '#/components/schemas/Account'
     '403':
       $ref: '#/components/responses/UserNotAuthorized'
     '404':

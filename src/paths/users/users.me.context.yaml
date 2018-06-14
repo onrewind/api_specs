@@ -33,5 +33,3 @@ get:
       $ref: '#/components/responses/UserNotAuthorized'
     '404':
       $ref: '#/components/responses/NotFound'
-
-#put:
