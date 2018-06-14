@@ -1,0 +1,44 @@
+get:
+  tags:
+    - Groups
+  summary: Index of groups
+  description: Get a list of all groups
+  parameters:
+    - $ref: '#/components/parameters/authorization'
+    - $ref: '#/components/parameters/fieldsParam'
+  responses:
+    '200':
+      description: A list of Groups
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Group'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+post:
+  tags:
+    - Groups
+  summary: Create a new group
+  description: Create a new group
+  parameters:
+    - $ref: '#/components/parameters/authorization'
+  requestBody:
+    description: group data to be sent
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Group'
+  responses:
+    '201':
+      description: The group is created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Group'
+    '400':
+      $ref: '#/components/responses/InvalidModel'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'

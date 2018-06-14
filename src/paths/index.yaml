@@ -5,11 +5,21 @@
   $ref: ./accounts/accounts.yaml
 /accounts/{id}:
   $ref: ./accounts/accounts.{id}.yaml
+# Groups
+/groups:
+  $ref: ./groups/groups.yaml
+/groups/{id}:
+  $ref: ./groups/groups.{id}.yaml
 # Modules
 /modules:
   $ref: ./modules/modules.yaml
 /modules/{id}:
   $ref: ./modules/modules.{id}.yaml
+# Roles
+/roles:
+  $ref: ./roles/roles.yaml
+/roles/{id}:
+  $ref: ./roles/roles.{id}.yaml
 # Users
 /users:
   $ref: ./users/users.yaml
