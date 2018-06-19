@@ -1,0 +1,68 @@
+delete:
+  tags:
+    - Streams
+  summary: Delete a stream
+  description: Delete the stream matching the given id
+  parameters:
+    - $ref: '#/components/parameters/authorization'
+    - $ref: '#/components/parameters/id'
+  responses:
+    '200':
+      description: The deleted stream
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Stream'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'
+put:
+  tags:
+    - Streams
+  summary: Update the stream data
+  description: Update the stream data matching given id
+  parameters:
+    - $ref: '#/components/parameters/authorization'
+    - $ref: '#/components/parameters/id'
+  requestBody:
+    description: stream data to be sent
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Stream'
+  responses:
+    '200':
+      description: Updated stream
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Stream'
+    '400':
+      $ref: '#/components/responses/InvalidModel'
+    '409':
+      $ref: '#/components/responses/ConflictInModel'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'
+get:
+  tags:
+    - Streams
+  summary: Fetch a stream
+  description: Fetch the stream matching the given id
+  parameters:
+    - $ref: '#/components/parameters/authorization'
+    - $ref: '#/components/parameters/id'
+  responses:
+    '200':
+      description: Fetched stream
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Stream'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'

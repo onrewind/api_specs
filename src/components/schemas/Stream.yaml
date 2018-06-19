@@ -1,0 +1,66 @@
+title: "Stream"
+required:
+  - streamType
+  - key
+  - token
+  - streamable
+  - streamableId
+properties:
+  id:
+    type: string
+    format: uuid
+    readOnly: true
+  streamType:
+    type: string
+    description: Stream's type
+    enum:
+      - main
+      - backup
+      - additionnal
+    default: 'main'
+  key:
+    type: string
+    description: Stream's key. Automatically generated during the stream's creation.
+  token:
+    type: string
+    description: Stream's token. Automatically generated during the stream's creation.
+  recordName:
+    type: string
+    description: Stream's record name
+  offset:
+    type: integer
+    description: Stream's offset in seconds related to the main stream of the event
+    default: 0
+  mapCoordinates:
+    type: object
+    description: Stream's camera position in the related sport field.
+    properties:
+      x:
+        type: integer
+        description: horizontal position in the minimap
+        minimum: 0
+      y:
+        type: integer
+        description: vertical position in the minimap
+        minimum: 0
+      r:
+        type: integer
+        description: angle of the camera
+        minimum: 0
+        maximum: 360
+        default: 0
+    required:
+      - x
+      - y
+  options:
+    type: object
+    description: Stream's options used to store particular values
+  streamable:
+    type: string
+    description: Stream's polymorphic association to a streamable model. Current available values are 'event', 'businessPlayer', 'simulcast' and are related to the corresponding models which must have at least one stream.
+  streamableId:
+    type: string
+    format: uuid
+    description: Stream's polymorphic association to a streamable model. It references the id of the associated Event, BusinessPlayer or Simulcast.
+  
+

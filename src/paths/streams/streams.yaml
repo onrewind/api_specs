@@ -1,0 +1,46 @@
+get:
+  tags:
+    - Streams
+  summary: Index of streams
+  description: Get a list of all streams
+  parameters:
+    - $ref: '#/components/parameters/authorization'
+    - $ref: '#/components/parameters/fieldsParam'
+  responses:
+    '200':
+      description: A list of streams
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Stream'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+post:
+  tags:
+    - Streams
+  summary: Create a new stream
+  description: Create a new stream
+  parameters:
+    - $ref: '#/components/parameters/authorization'
+  requestBody:
+    description: stream data to be sent
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Stream'
+  responses:
+    '201':
+      description: The stream is created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Stream'
+    '400':
+      $ref: '#/components/responses/InvalidModel'
+    '409':
+      $ref: '#/components/responses/ConflictInModel'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'

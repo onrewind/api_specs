@@ -4,3 +4,5 @@ InvalidModel:
   $ref: ./InvalidModel.yaml
 NotFound:
   $ref: ./NotFound.yaml
+ConflictInModel:
+  $ref: ./ConflictInModel.yaml

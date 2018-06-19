@@ -10,3 +10,5 @@ Account:
   $ref: ./Account.yaml
 Role:
   $ref: ./Role.yaml
+Stream:
+  $ref: ./Stream.yaml
