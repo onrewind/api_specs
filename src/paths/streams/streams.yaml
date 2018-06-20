@@ -5,6 +5,7 @@ get:
   description: Get a list of all streams
   parameters:
     - $ref: '#/components/parameters/authorization'
+    - $ref: '#/components/parameters/streamableId'
     - $ref: '#/components/parameters/fieldsParam'
   responses:
     '200':
@@ -24,6 +25,7 @@ post:
   description: Create a new stream
   parameters:
     - $ref: '#/components/parameters/authorization'
+    - $ref: '#/components/parameters/streamableId'
   requestBody:
     description: stream data to be sent
     required: true

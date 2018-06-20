@@ -5,6 +5,7 @@ delete:
   description: Delete the stream matching the given id
   parameters:
     - $ref: '#/components/parameters/authorization'
+    - $ref: '#/components/parameters/streamableId'
     - $ref: '#/components/parameters/id'
   responses:
     '200':
@@ -24,6 +25,7 @@ put:
   description: Update the stream data matching given id
   parameters:
     - $ref: '#/components/parameters/authorization'
+    - $ref: '#/components/parameters/streamableId'
     - $ref: '#/components/parameters/id'
   requestBody:
     description: stream data to be sent
@@ -54,6 +56,7 @@ get:
   description: Fetch the stream matching the given id
   parameters:
     - $ref: '#/components/parameters/authorization'
+    - $ref: '#/components/parameters/streamableId'
     - $ref: '#/components/parameters/id'
   responses:
     '200':

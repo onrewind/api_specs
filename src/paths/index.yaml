@@ -28,7 +28,7 @@
 /users/me/context:
   $ref: ./users/users.me.context.yaml
 # Streams
-/streams:
+/streamable/{streamableId}/streams:
   $ref: ./streams/streams.yaml
-/streams/{id}:
+/streamable/{streamableId}/streams/{id}:
   $ref: ./streams/streams.{id}.yaml

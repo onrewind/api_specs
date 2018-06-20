@@ -4,3 +4,5 @@ authorization:
   $ref: ./authorization.yaml
 id:
   $ref: ./id.yaml
+streamableId:
+  $ref: ./streamableId.yaml

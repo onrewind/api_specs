@@ -1,0 +1,10 @@
+name: streamableId
+in: path
+description: the uuid of the streamable
+required: true
+schema:
+  type: string
+  format: uuid
+
+
+
