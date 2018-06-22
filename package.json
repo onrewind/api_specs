@@ -19,7 +19,7 @@
   "scripts": {
     "openapi:compile": "node compile.js",
     "openapi:watch": "node_modules/.bin/swagger-ui-watcher ./openapi/index.yaml",
-    "slate:init": "cp -r slate/* .tmp && node_modules/.bin/widdershins .tmp/openapi.yaml -o .tmp/index.html.md",
+    "slate:init": "cp -r slate/* .tmp && cp CNAME .tmp && node_modules/.bin/widdershins .tmp/openapi.yaml -o .tmp/index.html.md",
     "slate:preview": "docker run -p 4567:4567 -v $(pwd)/.tmp:/slate/override_source -v $(pwd)/dist:/slate/build onrewind/slate:latest",
     "slate:compile": "docker run -v $(pwd)/.tmp:/slate/override_source -v $(pwd)/dist:/slate/build onrewind/slate:latest sh -c 'cd /slate && cp -r override_source/* source && exec bundle exec middleman build'",
     "docker:init": "docker build -t onrewind/slate:latest .",
