@@ -2,17 +2,17 @@
 On Rewind API specifications (in OpenAPI/Swagger) used in [doc-api.onrewind.tv](http://doc-api.onrewind.tv)
 Every updates converts the open api specs into slate markdown and then publish the static website in gh-pages branch.
 
-##Prerequisites
+## Prerequisites
 
 - docker
 - node.js >= 8
 
-##Installation
+## Installation
 
 -  clone this project
 - `npm install`
 
-##Usage
+## Usage
 
 The following commands are available using `npm run`:
 
@@ -37,7 +37,3 @@ Thanks to the following projects/organization that helps us to write better docu
 * [docker](https://www.docker.com/)
 * [slate](https://github.com/lord/slate)
 * and other libraries we are using in this project, defined in `package.json`
-
-
-// This operation does not require authentication
-// custom domain
