@@ -423,6 +423,14 @@
 <li><p><a href="https://dev-api-gateway.onrewind.tv">https://dev-api-gateway.onrewind.tv</a></p></li>
 </ul>
 <h1 id='authentication'>Authentication</h1>
+<ul>
+<li>API Key (accessToken)
+
+<ul>
+<li>Parameter Name: <strong>Authorization</strong>, in: header. </li>
+</ul></li>
+</ul>
+
 <h1 id="On-Rewind-API-Accounts">Accounts</h1>
 <h2 id='get__accounts'>get__accounts</h2>
 <blockquote>
@@ -430,7 +438,8 @@
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X GET https://api-gateway.onrewind.tv/accounts <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">https://api-gateway.onrewind.tv/accounts</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -438,7 +447,8 @@ curl -X GET https://api-gateway.onrewind.tv/accounts <span class="se">\</span>
 Accept: application/json
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -455,7 +465,8 @@ Accept: application/json
 </code></pre><pre class="highlight javascript tab-javascript--nodejs"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-fetch'</span><span class="p">);</span>
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -475,7 +486,8 @@ Accept: application/json
 <span class="nb">require</span> <span class="s1">'json'</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api-gateway.onrewind.tv/accounts'</span><span class="p">,</span>
@@ -486,7 +498,8 @@ Accept: application/json
 
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/accounts'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -520,6 +533,7 @@ Accept: application/json
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -706,7 +720,8 @@ accessToken
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X POST https://api-gateway.onrewind.tv/accounts <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">https://api-gateway.onrewind.tv/accounts</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -715,7 +730,8 @@ curl -X POST https://api-gateway.onrewind.tv/accounts <span class="se">\</span>
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -742,7 +758,8 @@ curl -X POST https://api-gateway.onrewind.tv/accounts <span class="se">\</span>
 }'</span><span class="p">;</span>
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -763,7 +780,8 @@ curl -X POST https://api-gateway.onrewind.tv/accounts <span class="se">\</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api-gateway.onrewind.tv/accounts'</span><span class="p">,</span>
@@ -775,7 +793,8 @@ curl -X POST https://api-gateway.onrewind.tv/accounts <span class="se">\</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/accounts'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -810,6 +829,7 @@ curl -X POST https://api-gateway.onrewind.tv/accounts <span class="se">\</span>
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Content-Type"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -936,7 +956,8 @@ accessToken
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X DELETE https://api-gateway.onrewind.tv/accounts/<span class="o">{</span>id<span class="o">}</span> <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">https://api-gateway.onrewind.tv/accounts/{id}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -944,7 +965,8 @@ curl -X DELETE https://api-gateway.onrewind.tv/accounts/<span class="o">{</span>
 Accept: application/json
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -961,7 +983,8 @@ Accept: application/json
 </code></pre><pre class="highlight javascript tab-javascript--nodejs"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-fetch'</span><span class="p">);</span>
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -981,7 +1004,8 @@ Accept: application/json
 <span class="nb">require</span> <span class="s1">'json'</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">delete</span> <span class="s1">'https://api-gateway.onrewind.tv/accounts/{id}'</span><span class="p">,</span>
@@ -992,7 +1016,8 @@ Accept: application/json
 
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/accounts/{id}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -1026,6 +1051,7 @@ Accept: application/json
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -1124,7 +1150,8 @@ accessToken
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X PUT https://api-gateway.onrewind.tv/accounts/<span class="o">{</span>id<span class="o">}</span> <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">https://api-gateway.onrewind.tv/accounts/{id}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -1133,7 +1160,8 @@ curl -X PUT https://api-gateway.onrewind.tv/accounts/<span class="o">{</span>id<
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -1160,7 +1188,8 @@ curl -X PUT https://api-gateway.onrewind.tv/accounts/<span class="o">{</span>id<
 }'</span><span class="p">;</span>
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -1181,7 +1210,8 @@ curl -X PUT https://api-gateway.onrewind.tv/accounts/<span class="o">{</span>id<
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">put</span> <span class="s1">'https://api-gateway.onrewind.tv/accounts/{id}'</span><span class="p">,</span>
@@ -1193,7 +1223,8 @@ curl -X PUT https://api-gateway.onrewind.tv/accounts/<span class="o">{</span>id<
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/accounts/{id}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -1228,6 +1259,7 @@ curl -X PUT https://api-gateway.onrewind.tv/accounts/<span class="o">{</span>id<
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Content-Type"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -1361,7 +1393,8 @@ accessToken
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X GET https://api-gateway.onrewind.tv/accounts/<span class="o">{</span>id<span class="o">}</span> <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">https://api-gateway.onrewind.tv/accounts/{id}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -1369,7 +1402,8 @@ curl -X GET https://api-gateway.onrewind.tv/accounts/<span class="o">{</span>id<
 Accept: application/json
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -1386,7 +1420,8 @@ Accept: application/json
 </code></pre><pre class="highlight javascript tab-javascript--nodejs"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-fetch'</span><span class="p">);</span>
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -1406,7 +1441,8 @@ Accept: application/json
 <span class="nb">require</span> <span class="s1">'json'</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api-gateway.onrewind.tv/accounts/{id}'</span><span class="p">,</span>
@@ -1417,7 +1453,8 @@ Accept: application/json
 
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/accounts/{id}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -1451,6 +1488,7 @@ Accept: application/json
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -1565,7 +1603,8 @@ accessToken
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X GET https://api-gateway.onrewind.tv/groups <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">https://api-gateway.onrewind.tv/groups</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -1573,7 +1612,8 @@ curl -X GET https://api-gateway.onrewind.tv/groups <span class="se">\</span>
 Accept: application/json
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -1590,7 +1630,8 @@ Accept: application/json
 </code></pre><pre class="highlight javascript tab-javascript--nodejs"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-fetch'</span><span class="p">);</span>
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -1610,7 +1651,8 @@ Accept: application/json
 <span class="nb">require</span> <span class="s1">'json'</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api-gateway.onrewind.tv/groups'</span><span class="p">,</span>
@@ -1621,7 +1663,8 @@ Accept: application/json
 
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/groups'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -1655,6 +1698,7 @@ Accept: application/json
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -1808,7 +1852,8 @@ accessToken
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X POST https://api-gateway.onrewind.tv/groups <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">https://api-gateway.onrewind.tv/groups</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -1817,7 +1862,8 @@ curl -X POST https://api-gateway.onrewind.tv/groups <span class="se">\</span>
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -1839,7 +1885,8 @@ curl -X POST https://api-gateway.onrewind.tv/groups <span class="se">\</span>
 }'</span><span class="p">;</span>
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -1860,7 +1907,8 @@ curl -X POST https://api-gateway.onrewind.tv/groups <span class="se">\</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api-gateway.onrewind.tv/groups'</span><span class="p">,</span>
@@ -1872,7 +1920,8 @@ curl -X POST https://api-gateway.onrewind.tv/groups <span class="se">\</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/groups'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -1907,6 +1956,7 @@ curl -X POST https://api-gateway.onrewind.tv/groups <span class="se">\</span>
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Content-Type"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -2023,7 +2073,8 @@ accessToken
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X DELETE https://api-gateway.onrewind.tv/groups/<span class="o">{</span>id<span class="o">}</span> <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">https://api-gateway.onrewind.tv/groups/{id}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -2031,7 +2082,8 @@ curl -X DELETE https://api-gateway.onrewind.tv/groups/<span class="o">{</span>id
 Accept: application/json
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -2048,7 +2100,8 @@ Accept: application/json
 </code></pre><pre class="highlight javascript tab-javascript--nodejs"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-fetch'</span><span class="p">);</span>
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -2068,7 +2121,8 @@ Accept: application/json
 <span class="nb">require</span> <span class="s1">'json'</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">delete</span> <span class="s1">'https://api-gateway.onrewind.tv/groups/{id}'</span><span class="p">,</span>
@@ -2079,7 +2133,8 @@ Accept: application/json
 
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/groups/{id}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -2113,6 +2168,7 @@ Accept: application/json
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -2211,7 +2267,8 @@ accessToken
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X PUT https://api-gateway.onrewind.tv/groups/<span class="o">{</span>id<span class="o">}</span> <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">https://api-gateway.onrewind.tv/groups/{id}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -2220,7 +2277,8 @@ curl -X PUT https://api-gateway.onrewind.tv/groups/<span class="o">{</span>id<sp
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -2242,7 +2300,8 @@ curl -X PUT https://api-gateway.onrewind.tv/groups/<span class="o">{</span>id<sp
 }'</span><span class="p">;</span>
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -2263,7 +2322,8 @@ curl -X PUT https://api-gateway.onrewind.tv/groups/<span class="o">{</span>id<sp
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">put</span> <span class="s1">'https://api-gateway.onrewind.tv/groups/{id}'</span><span class="p">,</span>
@@ -2275,7 +2335,8 @@ curl -X PUT https://api-gateway.onrewind.tv/groups/<span class="o">{</span>id<sp
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/groups/{id}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -2310,6 +2371,7 @@ curl -X PUT https://api-gateway.onrewind.tv/groups/<span class="o">{</span>id<sp
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Content-Type"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -2433,7 +2495,8 @@ accessToken
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X GET https://api-gateway.onrewind.tv/groups/<span class="o">{</span>id<span class="o">}</span> <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">https://api-gateway.onrewind.tv/groups/{id}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -2441,7 +2504,8 @@ curl -X GET https://api-gateway.onrewind.tv/groups/<span class="o">{</span>id<sp
 Accept: application/json
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -2458,7 +2522,8 @@ Accept: application/json
 </code></pre><pre class="highlight javascript tab-javascript--nodejs"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-fetch'</span><span class="p">);</span>
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -2478,7 +2543,8 @@ Accept: application/json
 <span class="nb">require</span> <span class="s1">'json'</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api-gateway.onrewind.tv/groups/{id}'</span><span class="p">,</span>
@@ -2489,7 +2555,8 @@ Accept: application/json
 
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/groups/{id}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -2523,6 +2590,7 @@ Accept: application/json
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -2632,7 +2700,8 @@ accessToken
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X GET https://api-gateway.onrewind.tv/modules <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">https://api-gateway.onrewind.tv/modules</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -2640,7 +2709,8 @@ curl -X GET https://api-gateway.onrewind.tv/modules <span class="se">\</span>
 Accept: application/json
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -2657,7 +2727,8 @@ Accept: application/json
 </code></pre><pre class="highlight javascript tab-javascript--nodejs"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-fetch'</span><span class="p">);</span>
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -2677,7 +2748,8 @@ Accept: application/json
 <span class="nb">require</span> <span class="s1">'json'</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api-gateway.onrewind.tv/modules'</span><span class="p">,</span>
@@ -2688,7 +2760,8 @@ Accept: application/json
 
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/modules'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -2722,6 +2795,7 @@ Accept: application/json
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -2875,7 +2949,8 @@ accessToken
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X POST https://api-gateway.onrewind.tv/modules <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">https://api-gateway.onrewind.tv/modules</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -2884,7 +2959,8 @@ curl -X POST https://api-gateway.onrewind.tv/modules <span class="se">\</span>
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -2906,7 +2982,8 @@ curl -X POST https://api-gateway.onrewind.tv/modules <span class="se">\</span>
 }'</span><span class="p">;</span>
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -2927,7 +3004,8 @@ curl -X POST https://api-gateway.onrewind.tv/modules <span class="se">\</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api-gateway.onrewind.tv/modules'</span><span class="p">,</span>
@@ -2939,7 +3017,8 @@ curl -X POST https://api-gateway.onrewind.tv/modules <span class="se">\</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/modules'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -2974,6 +3053,7 @@ curl -X POST https://api-gateway.onrewind.tv/modules <span class="se">\</span>
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Content-Type"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -3090,7 +3170,8 @@ accessToken
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X DELETE https://api-gateway.onrewind.tv/modules/<span class="o">{</span>id<span class="o">}</span> <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">https://api-gateway.onrewind.tv/modules/{id}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -3098,7 +3179,8 @@ curl -X DELETE https://api-gateway.onrewind.tv/modules/<span class="o">{</span>i
 Accept: application/json
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -3115,7 +3197,8 @@ Accept: application/json
 </code></pre><pre class="highlight javascript tab-javascript--nodejs"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-fetch'</span><span class="p">);</span>
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -3135,7 +3218,8 @@ Accept: application/json
 <span class="nb">require</span> <span class="s1">'json'</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">delete</span> <span class="s1">'https://api-gateway.onrewind.tv/modules/{id}'</span><span class="p">,</span>
@@ -3146,7 +3230,8 @@ Accept: application/json
 
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/modules/{id}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -3180,6 +3265,7 @@ Accept: application/json
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -3278,7 +3364,8 @@ accessToken
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X PUT https://api-gateway.onrewind.tv/modules/<span class="o">{</span>id<span class="o">}</span> <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">https://api-gateway.onrewind.tv/modules/{id}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -3287,7 +3374,8 @@ curl -X PUT https://api-gateway.onrewind.tv/modules/<span class="o">{</span>id<s
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -3309,7 +3397,8 @@ curl -X PUT https://api-gateway.onrewind.tv/modules/<span class="o">{</span>id<s
 }'</span><span class="p">;</span>
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -3330,7 +3419,8 @@ curl -X PUT https://api-gateway.onrewind.tv/modules/<span class="o">{</span>id<s
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">put</span> <span class="s1">'https://api-gateway.onrewind.tv/modules/{id}'</span><span class="p">,</span>
@@ -3342,7 +3432,8 @@ curl -X PUT https://api-gateway.onrewind.tv/modules/<span class="o">{</span>id<s
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/modules/{id}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -3377,6 +3468,7 @@ curl -X PUT https://api-gateway.onrewind.tv/modules/<span class="o">{</span>id<s
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Content-Type"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -3500,7 +3592,8 @@ accessToken
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X GET https://api-gateway.onrewind.tv/modules/<span class="o">{</span>id<span class="o">}</span> <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">https://api-gateway.onrewind.tv/modules/{id}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -3508,7 +3601,8 @@ curl -X GET https://api-gateway.onrewind.tv/modules/<span class="o">{</span>id<s
 Accept: application/json
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -3525,7 +3619,8 @@ Accept: application/json
 </code></pre><pre class="highlight javascript tab-javascript--nodejs"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-fetch'</span><span class="p">);</span>
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -3545,7 +3640,8 @@ Accept: application/json
 <span class="nb">require</span> <span class="s1">'json'</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api-gateway.onrewind.tv/modules/{id}'</span><span class="p">,</span>
@@ -3556,7 +3652,8 @@ Accept: application/json
 
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/modules/{id}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -3590,6 +3687,7 @@ Accept: application/json
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -3699,7 +3797,8 @@ accessToken
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X GET https://api-gateway.onrewind.tv/roles <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">https://api-gateway.onrewind.tv/roles</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -3707,7 +3806,8 @@ curl -X GET https://api-gateway.onrewind.tv/roles <span class="se">\</span>
 Accept: application/json
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -3724,7 +3824,8 @@ Accept: application/json
 </code></pre><pre class="highlight javascript tab-javascript--nodejs"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-fetch'</span><span class="p">);</span>
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -3744,7 +3845,8 @@ Accept: application/json
 <span class="nb">require</span> <span class="s1">'json'</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api-gateway.onrewind.tv/roles'</span><span class="p">,</span>
@@ -3755,7 +3857,8 @@ Accept: application/json
 
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/roles'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -3789,6 +3892,7 @@ Accept: application/json
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -3942,7 +4046,8 @@ accessToken
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X POST https://api-gateway.onrewind.tv/roles <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">https://api-gateway.onrewind.tv/roles</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -3951,7 +4056,8 @@ curl -X POST https://api-gateway.onrewind.tv/roles <span class="se">\</span>
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -3973,7 +4079,8 @@ curl -X POST https://api-gateway.onrewind.tv/roles <span class="se">\</span>
 }'</span><span class="p">;</span>
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -3994,7 +4101,8 @@ curl -X POST https://api-gateway.onrewind.tv/roles <span class="se">\</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api-gateway.onrewind.tv/roles'</span><span class="p">,</span>
@@ -4006,7 +4114,8 @@ curl -X POST https://api-gateway.onrewind.tv/roles <span class="se">\</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/roles'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -4041,6 +4150,7 @@ curl -X POST https://api-gateway.onrewind.tv/roles <span class="se">\</span>
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Content-Type"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -4157,7 +4267,8 @@ accessToken
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X DELETE https://api-gateway.onrewind.tv/roles/<span class="o">{</span>id<span class="o">}</span> <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">https://api-gateway.onrewind.tv/roles/{id}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -4165,7 +4276,8 @@ curl -X DELETE https://api-gateway.onrewind.tv/roles/<span class="o">{</span>id<
 Accept: application/json
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -4182,7 +4294,8 @@ Accept: application/json
 </code></pre><pre class="highlight javascript tab-javascript--nodejs"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-fetch'</span><span class="p">);</span>
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -4202,7 +4315,8 @@ Accept: application/json
 <span class="nb">require</span> <span class="s1">'json'</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">delete</span> <span class="s1">'https://api-gateway.onrewind.tv/roles/{id}'</span><span class="p">,</span>
@@ -4213,7 +4327,8 @@ Accept: application/json
 
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/roles/{id}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -4247,6 +4362,7 @@ Accept: application/json
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -4345,7 +4461,8 @@ accessToken
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X PUT https://api-gateway.onrewind.tv/roles/<span class="o">{</span>id<span class="o">}</span> <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">https://api-gateway.onrewind.tv/roles/{id}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -4354,7 +4471,8 @@ curl -X PUT https://api-gateway.onrewind.tv/roles/<span class="o">{</span>id<spa
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -4376,7 +4494,8 @@ curl -X PUT https://api-gateway.onrewind.tv/roles/<span class="o">{</span>id<spa
 }'</span><span class="p">;</span>
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -4397,7 +4516,8 @@ curl -X PUT https://api-gateway.onrewind.tv/roles/<span class="o">{</span>id<spa
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">put</span> <span class="s1">'https://api-gateway.onrewind.tv/roles/{id}'</span><span class="p">,</span>
@@ -4409,7 +4529,8 @@ curl -X PUT https://api-gateway.onrewind.tv/roles/<span class="o">{</span>id<spa
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/roles/{id}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -4444,6 +4565,7 @@ curl -X PUT https://api-gateway.onrewind.tv/roles/<span class="o">{</span>id<spa
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Content-Type"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -4567,7 +4689,8 @@ accessToken
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X GET https://api-gateway.onrewind.tv/roles/<span class="o">{</span>id<span class="o">}</span> <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">https://api-gateway.onrewind.tv/roles/{id}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -4575,7 +4698,8 @@ curl -X GET https://api-gateway.onrewind.tv/roles/<span class="o">{</span>id<spa
 Accept: application/json
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -4592,7 +4716,8 @@ Accept: application/json
 </code></pre><pre class="highlight javascript tab-javascript--nodejs"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-fetch'</span><span class="p">);</span>
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -4612,7 +4737,8 @@ Accept: application/json
 <span class="nb">require</span> <span class="s1">'json'</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api-gateway.onrewind.tv/roles/{id}'</span><span class="p">,</span>
@@ -4623,7 +4749,8 @@ Accept: application/json
 
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/roles/{id}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -4657,6 +4784,7 @@ Accept: application/json
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -4766,7 +4894,8 @@ accessToken
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X GET https://api-gateway.onrewind.tv/users <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">https://api-gateway.onrewind.tv/users</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -4774,7 +4903,8 @@ curl -X GET https://api-gateway.onrewind.tv/users <span class="se">\</span>
 Accept: application/json
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -4791,7 +4921,8 @@ Accept: application/json
 </code></pre><pre class="highlight javascript tab-javascript--nodejs"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-fetch'</span><span class="p">);</span>
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -4811,7 +4942,8 @@ Accept: application/json
 <span class="nb">require</span> <span class="s1">'json'</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api-gateway.onrewind.tv/users'</span><span class="p">,</span>
@@ -4822,7 +4954,8 @@ Accept: application/json
 
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/users'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -4856,6 +4989,7 @@ Accept: application/json
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -5151,7 +5285,8 @@ accessToken
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X POST https://api-gateway.onrewind.tv/users <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">https://api-gateway.onrewind.tv/users</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -5160,7 +5295,8 @@ curl -X POST https://api-gateway.onrewind.tv/users <span class="se">\</span>
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -5199,7 +5335,8 @@ curl -X POST https://api-gateway.onrewind.tv/users <span class="se">\</span>
 }'</span><span class="p">;</span>
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -5220,7 +5357,8 @@ curl -X POST https://api-gateway.onrewind.tv/users <span class="se">\</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api-gateway.onrewind.tv/users'</span><span class="p">,</span>
@@ -5232,7 +5370,8 @@ curl -X POST https://api-gateway.onrewind.tv/users <span class="se">\</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/users'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -5267,6 +5406,7 @@ curl -X POST https://api-gateway.onrewind.tv/users <span class="se">\</span>
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Content-Type"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -5417,7 +5557,8 @@ accessToken
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X GET https://api-gateway.onrewind.tv/users/me <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">https://api-gateway.onrewind.tv/users/me</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -5425,7 +5566,8 @@ curl -X GET https://api-gateway.onrewind.tv/users/me <span class="se">\</span>
 Accept: application/json
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -5442,7 +5584,8 @@ Accept: application/json
 </code></pre><pre class="highlight javascript tab-javascript--nodejs"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-fetch'</span><span class="p">);</span>
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -5462,7 +5605,8 @@ Accept: application/json
 <span class="nb">require</span> <span class="s1">'json'</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api-gateway.onrewind.tv/users/me'</span><span class="p">,</span>
@@ -5473,7 +5617,8 @@ Accept: application/json
 
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/users/me'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -5507,6 +5652,7 @@ Accept: application/json
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -5612,7 +5758,8 @@ accessToken
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X PUT https://api-gateway.onrewind.tv/users/me <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">https://api-gateway.onrewind.tv/users/me</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -5621,7 +5768,8 @@ curl -X PUT https://api-gateway.onrewind.tv/users/me <span class="se">\</span>
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -5660,7 +5808,8 @@ curl -X PUT https://api-gateway.onrewind.tv/users/me <span class="se">\</span>
 }'</span><span class="p">;</span>
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -5681,7 +5830,8 @@ curl -X PUT https://api-gateway.onrewind.tv/users/me <span class="se">\</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">put</span> <span class="s1">'https://api-gateway.onrewind.tv/users/me'</span><span class="p">,</span>
@@ -5693,7 +5843,8 @@ curl -X PUT https://api-gateway.onrewind.tv/users/me <span class="se">\</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/users/me'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -5728,6 +5879,7 @@ curl -X PUT https://api-gateway.onrewind.tv/users/me <span class="se">\</span>
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Content-Type"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -5878,7 +6030,8 @@ accessToken
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X GET https://api-gateway.onrewind.tv/users/me/context <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">https://api-gateway.onrewind.tv/users/me/context</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -5886,7 +6039,8 @@ curl -X GET https://api-gateway.onrewind.tv/users/me/context <span class="se">\<
 Accept: application/json
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -5903,7 +6057,8 @@ Accept: application/json
 </code></pre><pre class="highlight javascript tab-javascript--nodejs"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-fetch'</span><span class="p">);</span>
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -5923,7 +6078,8 @@ Accept: application/json
 <span class="nb">require</span> <span class="s1">'json'</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api-gateway.onrewind.tv/users/me/context'</span><span class="p">,</span>
@@ -5934,7 +6090,8 @@ Accept: application/json
 
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/users/me/context'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -5968,6 +6125,7 @@ Accept: application/json
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -6227,7 +6385,8 @@ accessToken
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X POST https://api-gateway.onrewind.tv/sports <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">https://api-gateway.onrewind.tv/sports</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -6236,7 +6395,8 @@ curl -X POST https://api-gateway.onrewind.tv/sports <span class="se">\</span>
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -6260,7 +6420,8 @@ curl -X POST https://api-gateway.onrewind.tv/sports <span class="se">\</span>
 }'</span><span class="p">;</span>
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -6281,7 +6442,8 @@ curl -X POST https://api-gateway.onrewind.tv/sports <span class="se">\</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api-gateway.onrewind.tv/sports'</span><span class="p">,</span>
@@ -6293,7 +6455,8 @@ curl -X POST https://api-gateway.onrewind.tv/sports <span class="se">\</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/sports'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -6328,6 +6491,7 @@ curl -X POST https://api-gateway.onrewind.tv/sports <span class="se">\</span>
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Content-Type"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -6448,7 +6612,8 @@ accessToken
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X GET https://api-gateway.onrewind.tv/sports <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">https://api-gateway.onrewind.tv/sports</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -6456,7 +6621,8 @@ curl -X GET https://api-gateway.onrewind.tv/sports <span class="se">\</span>
 Accept: application/json
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -6473,7 +6639,8 @@ Accept: application/json
 </code></pre><pre class="highlight javascript tab-javascript--nodejs"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-fetch'</span><span class="p">);</span>
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -6493,7 +6660,8 @@ Accept: application/json
 <span class="nb">require</span> <span class="s1">'json'</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api-gateway.onrewind.tv/sports'</span><span class="p">,</span>
@@ -6504,7 +6672,8 @@ Accept: application/json
 
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/sports'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -6538,6 +6707,7 @@ Accept: application/json
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -6702,7 +6872,8 @@ accessToken
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X GET https://api-gateway.onrewind.tv/sports/<span class="o">{</span>id<span class="o">}</span> <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">https://api-gateway.onrewind.tv/sports/{id}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -6710,7 +6881,8 @@ curl -X GET https://api-gateway.onrewind.tv/sports/<span class="o">{</span>id<sp
 Accept: application/json
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -6727,7 +6899,8 @@ Accept: application/json
 </code></pre><pre class="highlight javascript tab-javascript--nodejs"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-fetch'</span><span class="p">);</span>
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -6747,7 +6920,8 @@ Accept: application/json
 <span class="nb">require</span> <span class="s1">'json'</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api-gateway.onrewind.tv/sports/{id}'</span><span class="p">,</span>
@@ -6758,7 +6932,8 @@ Accept: application/json
 
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/sports/{id}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -6792,6 +6967,7 @@ Accept: application/json
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -6902,7 +7078,8 @@ accessToken
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X PUT https://api-gateway.onrewind.tv/sports/<span class="o">{</span>id<span class="o">}</span> <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">https://api-gateway.onrewind.tv/sports/{id}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -6911,7 +7088,8 @@ curl -X PUT https://api-gateway.onrewind.tv/sports/<span class="o">{</span>id<sp
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -6935,7 +7113,8 @@ curl -X PUT https://api-gateway.onrewind.tv/sports/<span class="o">{</span>id<sp
 }'</span><span class="p">;</span>
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -6956,7 +7135,8 @@ curl -X PUT https://api-gateway.onrewind.tv/sports/<span class="o">{</span>id<sp
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">put</span> <span class="s1">'https://api-gateway.onrewind.tv/sports/{id}'</span><span class="p">,</span>
@@ -6968,7 +7148,8 @@ curl -X PUT https://api-gateway.onrewind.tv/sports/<span class="o">{</span>id<sp
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/sports/{id}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -7003,6 +7184,7 @@ curl -X PUT https://api-gateway.onrewind.tv/sports/<span class="o">{</span>id<sp
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Content-Type"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -7128,7 +7310,8 @@ accessToken
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X DELETE https://api-gateway.onrewind.tv/sports/<span class="o">{</span>id<span class="o">}</span> <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">https://api-gateway.onrewind.tv/sports/{id}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -7136,7 +7319,8 @@ curl -X DELETE https://api-gateway.onrewind.tv/sports/<span class="o">{</span>id
 Accept: application/json
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -7153,7 +7337,8 @@ Accept: application/json
 </code></pre><pre class="highlight javascript tab-javascript--nodejs"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-fetch'</span><span class="p">);</span>
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -7173,7 +7358,8 @@ Accept: application/json
 <span class="nb">require</span> <span class="s1">'json'</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">delete</span> <span class="s1">'https://api-gateway.onrewind.tv/sports/{id}'</span><span class="p">,</span>
@@ -7184,7 +7370,8 @@ Accept: application/json
 
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/sports/{id}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -7218,6 +7405,7 @@ Accept: application/json
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -7317,7 +7505,8 @@ accessToken
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X GET https://api-gateway.onrewind.tv/streamable/<span class="o">{</span>streamableId<span class="o">}</span>/streams <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">https://api-gateway.onrewind.tv/streamable/{streamableId}/streams</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -7325,7 +7514,8 @@ curl -X GET https://api-gateway.onrewind.tv/streamable/<span class="o">{</span>s
 Accept: application/json
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -7342,7 +7532,8 @@ Accept: application/json
 </code></pre><pre class="highlight javascript tab-javascript--nodejs"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-fetch'</span><span class="p">);</span>
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -7362,7 +7553,8 @@ Accept: application/json
 <span class="nb">require</span> <span class="s1">'json'</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api-gateway.onrewind.tv/streamable/{streamableId}/streams'</span><span class="p">,</span>
@@ -7373,7 +7565,8 @@ Accept: application/json
 
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/streamable/{streamableId}/streams'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -7407,6 +7600,7 @@ Accept: application/json
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -7660,7 +7854,8 @@ accessToken
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X POST https://api-gateway.onrewind.tv/streamable/<span class="o">{</span>streamableId<span class="o">}</span>/streams <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">https://api-gateway.onrewind.tv/streamable/{streamableId}/streams</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -7669,7 +7864,8 @@ curl -X POST https://api-gateway.onrewind.tv/streamable/<span class="o">{</span>
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -7701,7 +7897,8 @@ curl -X POST https://api-gateway.onrewind.tv/streamable/<span class="o">{</span>
 }'</span><span class="p">;</span>
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -7722,7 +7919,8 @@ curl -X POST https://api-gateway.onrewind.tv/streamable/<span class="o">{</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api-gateway.onrewind.tv/streamable/{streamableId}/streams'</span><span class="p">,</span>
@@ -7734,7 +7932,8 @@ curl -X POST https://api-gateway.onrewind.tv/streamable/<span class="o">{</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/streamable/{streamableId}/streams'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -7769,6 +7968,7 @@ curl -X POST https://api-gateway.onrewind.tv/streamable/<span class="o">{</span>
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Content-Type"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -7926,7 +8126,8 @@ accessToken
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X DELETE https://api-gateway.onrewind.tv/streamable/<span class="o">{</span>streamableId<span class="o">}</span>/streams/<span class="o">{</span>id<span class="o">}</span> <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">https://api-gateway.onrewind.tv/streamable/{streamableId}/streams/{id}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -7934,7 +8135,8 @@ curl -X DELETE https://api-gateway.onrewind.tv/streamable/<span class="o">{</spa
 Accept: application/json
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -7951,7 +8153,8 @@ Accept: application/json
 </code></pre><pre class="highlight javascript tab-javascript--nodejs"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-fetch'</span><span class="p">);</span>
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -7971,7 +8174,8 @@ Accept: application/json
 <span class="nb">require</span> <span class="s1">'json'</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">delete</span> <span class="s1">'https://api-gateway.onrewind.tv/streamable/{streamableId}/streams/{id}'</span><span class="p">,</span>
@@ -7982,7 +8186,8 @@ Accept: application/json
 
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/streamable/{streamableId}/streams/{id}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -8016,6 +8221,7 @@ Accept: application/json
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -8141,7 +8347,8 @@ accessToken
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X PUT https://api-gateway.onrewind.tv/streamable/<span class="o">{</span>streamableId<span class="o">}</span>/streams/<span class="o">{</span>id<span class="o">}</span> <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">https://api-gateway.onrewind.tv/streamable/{streamableId}/streams/{id}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -8150,7 +8357,8 @@ curl -X PUT https://api-gateway.onrewind.tv/streamable/<span class="o">{</span>s
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -8182,7 +8390,8 @@ curl -X PUT https://api-gateway.onrewind.tv/streamable/<span class="o">{</span>s
 }'</span><span class="p">;</span>
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -8203,7 +8412,8 @@ curl -X PUT https://api-gateway.onrewind.tv/streamable/<span class="o">{</span>s
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">put</span> <span class="s1">'https://api-gateway.onrewind.tv/streamable/{streamableId}/streams/{id}'</span><span class="p">,</span>
@@ -8215,7 +8425,8 @@ curl -X PUT https://api-gateway.onrewind.tv/streamable/<span class="o">{</span>s
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/streamable/{streamableId}/streams/{id}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -8250,6 +8461,7 @@ curl -X PUT https://api-gateway.onrewind.tv/streamable/<span class="o">{</span>s
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Content-Type"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 
@@ -8428,7 +8640,8 @@ accessToken
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl -X GET https://api-gateway.onrewind.tv/streamable/<span class="o">{</span>streamableId<span class="o">}</span>/streams/<span class="o">{</span>id<span class="o">}</span> <span class="se">\</span>
-  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: API_KEY'</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">https://api-gateway.onrewind.tv/streamable/{streamableId}/streams/{id}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-gateway.onrewind.tv</span>
@@ -8436,7 +8649,8 @@ curl -X GET https://api-gateway.onrewind.tv/streamable/<span class="o">{</span>s
 Accept: application/json
 
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -8453,7 +8667,8 @@ Accept: application/json
 </code></pre><pre class="highlight javascript tab-javascript--nodejs"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-fetch'</span><span class="p">);</span>
 
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'API_KEY'</span>
 
 <span class="p">};</span>
 
@@ -8473,7 +8688,8 @@ Accept: application/json
 <span class="nb">require</span> <span class="s1">'json'</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api-gateway.onrewind.tv/streamable/{streamableId}/streams/{id}'</span><span class="p">,</span>
@@ -8484,7 +8700,8 @@ Accept: application/json
 
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'API_KEY'</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api-gateway.onrewind.tv/streamable/{streamableId}/streams/{id}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -8518,6 +8735,7 @@ Accept: application/json
 
     </span><span class="n">headers</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span><span class="x">
         </span><span class="s">"Accept"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span><span class="x">
+        </span><span class="s">"Authorization"</span><span class="o">:</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"API_KEY"</span><span class="p">},</span><span class="x">
 
     </span><span class="p">}</span><span class="x">
 

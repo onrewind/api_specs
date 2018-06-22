@@ -1075,7 +1075,7 @@ components:
               type: object
   securitySchemes:
     accessToken:
-      type: accessToken
+      type: apiKey
       in: header
       name: Authorization
 security:
