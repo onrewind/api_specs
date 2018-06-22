@@ -16,7 +16,7 @@ Every updates converts the open api specs into slate markdown and then publish t
 
 The following commands are available using `npm run`:
 
- - `openapi:compile` : compile splited openapi spec files into one
+ - `openapi:compile` : compile split openapi spec files into one
  - `openapi:watch` : open a swagger ui preview in your browser, hot reload enabled if you modify any specs
  - `slate:init` : transpile openapi spec into slate spec and copy slate resources into tmp folder, should be run for any changes
  - `slate:preview`: open a slate preview in your browser, based on content in tmp folder
@@ -30,10 +30,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-Thanks to the following projects/organization that helps us to write better documentation :)
+Thanks to the following projects/organization that helps us writing better documentation :)
 
 * [swagger](https://swagger.io/)
 * [widdershins](https://github.com/Mermade/widdershins)
 * [docker](https://www.docker.com/)
 * [slate](https://github.com/lord/slate)
-* and other libraries we are using in this project, defined in `package.json`
+* and other libraries defined in `package.json`
