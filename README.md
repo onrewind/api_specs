@@ -1,4 +1,9 @@
-# api_specs - [![Build Status](https://travis-ci.org/OnRewind/api_specs.svg?branch=master)](https://travis-ci.org/OnRewind/api_specs)  [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+# On Rewind Api Specifications
+[![Build Status](https://travis-ci.org/OnRewind/api_specs.svg?branch=master)](https://travis-ci.org/OnRewind/api_specs)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+
+
 On Rewind API specifications (in OpenAPI/Swagger) used in [doc-api.onrewind.tv](http://doc-api.onrewind.tv)
 Every updates converts the open api specs into slate markdown and then publish the static website in gh-pages branch.
 
