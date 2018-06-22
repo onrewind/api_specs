@@ -30,7 +30,7 @@ put:
           $ref: '#/components/schemas/User'
   responses:
     '200':
-      description: Updated information of logged user based on access token
+      description: Updated user
       content:
         application/json:
           schema:

@@ -1,0 +1,12 @@
+sudo: required
+
+language: node_js
+
+services:
+  - docker
+
+before_install:
+- npm run docker:init
+
+script:
+- npm run dist

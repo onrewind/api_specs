@@ -1,0 +1,59 @@
+get:
+  tags:
+    - Sport
+  summary: Fetch a sport
+  description: Fetch a sport matching the given id
+  parameters:
+    - $ref: '#/components/parameters/authorization'
+    - $ref: '#/components/parameters/id'
+  responses:
+    '200':
+      description: Sport data matching the id
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Sport'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'
+put:
+  tags:
+    - Sport
+  summary: Update a sport matching the given id
+  parameters:
+    - $ref: '#/components/parameters/authorization'
+    - $ref: '#/components/parameters/id'
+  requestBody:
+    description: sport data to be sent
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Sport'
+  responses:
+    '200':
+      description: Updated sport
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Sport'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'
+delete:
+  tags:
+    - Sport
+  summary: Delete a sport
+  description: Delete a sport
+  parameters:
+    - $ref: '#/components/parameters/authorization'
+    - $ref: '#/components/parameters/id'
+  responses:
+    '204':
+      description: the sport has been deleted successfully
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'

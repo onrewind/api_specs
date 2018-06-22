@@ -4,8 +4,9 @@ const fs = require('fs');
 const linebyline = require('linebyline');
 const pkg = require('./package.json');
 
-const APP_SPEC_SRC_PATH = './src/index.yaml';
-const GEN_SPEC_DEST_PATH = './dist/spec.yaml';
+const APP_SPEC_SRC_PATH = './openapi/index.yaml';
+const GEN_SPEC_DIR = '.tmp';
+const GEN_SPEC_DEST_PATH = `${GEN_SPEC_DIR}/openapi.yaml`;
 
 function templatize(str, ctx) {
   with (ctx) {
@@ -26,6 +27,9 @@ async function run() {
   const results = await JsonRefs.resolveRefsAt(APP_SPEC_SRC_PATH, options);
   let result = results.resolved;
   result.info.version = pkg.version;
+  if (!fs.existsSync(GEN_SPEC_DIR)) {
+    fs.mkdirSync(GEN_SPEC_DIR);
+  }
   fs.writeFileSync(GEN_SPEC_DEST_PATH, YAML.safeDump(result, {noCompatMode: true}));
   const rl = linebyline(APP_SPEC_SRC_PATH);
   let currentLine = 0;

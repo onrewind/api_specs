@@ -7,12 +7,18 @@
     "js-yaml": "3.12.0",
     "json-refs": "3.0.4",
     "linebyline": "1.3.0",
-    "swagger-ui-watcher": "2.1.0"
+    "swagger-ui-watcher": "2.1.0",
+    "widdershins": "3.4.2"
   },
   "devDependencies": {},
   "scripts": {
-    "build": "node build.js",
-    "watch": "node_modules/.bin/swagger-ui-watcher ./src/index.yaml"
+    "openapi:compile": "node compile.js",
+    "openapi:watch": "node_modules/.bin/swagger-ui-watcher ./src/index.yaml",
+    "slate:init": "cp -r slate/* .tmp && node_modules/.bin/widdershins .tmp/openapi.yaml -o .tmp/index.html.md",
+    "slate:preview": "docker run -p 4567:4567 -v $(pwd)/.tmp:/slate/override_source -v $(pwd)/dist:/slate/build onrewind/slate:latest",
+    "slate:compile": "docker run -v $(pwd)/.tmp:/slate/override_source -v $(pwd)/dist:/slate/build onrewind/slate:latest sh -c 'cd /slate && cp -r override_source/* source && exec bundle exec middleman build'",
+    "docker:init" : "docker build -t onrewind/slate:latest .",
+    "dist": "npm run openapi:compile && npm run slate:init && npm run slate:compile"
   },
   "repository": {
     "type": "git",

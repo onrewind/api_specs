@@ -1,14 +1,16 @@
+Account:
+  $ref: ./Account.yaml
 Error:
   $ref: ./Error.yaml
-User:
-  $ref: ./User.yaml
 Group:
   $ref: ./Group.yaml
 Module:
   $ref: ./Module.yaml
-Account:
-  $ref: ./Account.yaml
 Role:
   $ref: ./Role.yaml
+Sport:
+  $ref: ./Sport.yaml
 Stream:
   $ref: ./Stream.yaml
+User:
+  $ref: ./User.yaml

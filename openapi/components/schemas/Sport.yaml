@@ -1,0 +1,29 @@
+title: "Sport"
+required:
+  - name
+properties:
+  id:
+    type: string
+    format: uuid
+    readOnly: true
+  name:
+    type: string
+    description: Sport's name
+  description:
+    type: string
+    description: Sport's description
+  timelineType:
+    type: string
+    description: define timeline type
+    enum:
+      - single
+      - double
+    default: single
+  svgSpriteFilename:
+    type: string
+    description: name of svg sprite holding all svg icons used in this sport
+  sportsFieldFilename:
+    type: string
+    description: name of sports field file that is used to represent the field of the sport, used for multicam
+
+

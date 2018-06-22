@@ -10,7 +10,6 @@ properties:
     type: integer
     description: |
       Integer associated to a module, current values are as follow
-      ```
       {
         'RESTRAINED_ACCESS': 1,
         'BLOCKMARK': 2,
@@ -27,7 +26,6 @@ properties:
         'OPTA_PARSING': 13,
         'CLEENG_RESTRICTION': 14
       }
-      ```
   name:
     type: string
     description: Module's name

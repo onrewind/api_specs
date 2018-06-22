@@ -27,6 +27,11 @@
   $ref: ./users/users.me.yaml
 /users/me/context:
   $ref: ./users/users.me.context.yaml
+#Sports
+/sports:
+  $ref: ./sports/sports.yaml
+/sports/{id}:
+  $ref: ./sports/sports.{id}.yaml
 # Streams
 /streamable/{streamableId}/streams:
   $ref: ./streams/streams.yaml
