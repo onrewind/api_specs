@@ -1,4 +1,4 @@
-# api_specs
+# api_specs [![Build Status](https://travis-ci.org/OnRewind/api_specs.svg?branch=master)](https://travis-ci.org/OnRewind/api_specs)
 On Rewind API specifications (in OpenAPI/Swagger) used in http://doc-api.onrewind.tv
 Generate Slate static site from these specifications
 
