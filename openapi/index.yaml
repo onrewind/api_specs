@@ -7,3 +7,5 @@ paths:
   $ref: ./paths/index.yaml
 components:
   $ref: ./components/index.yaml
+security:
+  - accessToken: []

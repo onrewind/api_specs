@@ -4,7 +4,6 @@ delete:
   summary: Delete an module
   description: Delete an module
   parameters:
-    - $ref: '#/components/parameters/authorization'
     - $ref: '#/components/parameters/id'
   responses:
     '204':
@@ -19,7 +18,6 @@ put:
   summary: Update the module data
   description: 'it will update the module data matching given id'
   parameters:
-    - $ref: '#/components/parameters/authorization'
     - $ref: '#/components/parameters/id'
   requestBody:
     description: module data to be sent
@@ -45,7 +43,6 @@ get:
   summary: Fetch an module
   description: Fetch an module matching the given id
   parameters:
-    - $ref: '#/components/parameters/authorization'
     - $ref: '#/components/parameters/id'
   responses:
     '200':

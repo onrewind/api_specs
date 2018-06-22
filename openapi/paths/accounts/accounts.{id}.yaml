@@ -4,7 +4,6 @@ delete:
   summary: Delete an account
   description: Delete an account
   parameters:
-    - $ref: '#/components/parameters/authorization'
     - $ref: '#/components/parameters/id'
   responses:
     '204':
@@ -19,7 +18,6 @@ put:
   summary: Update the account data
   description: 'it will update the account data matching given id'
   parameters:
-    - $ref: '#/components/parameters/authorization'
     - $ref: '#/components/parameters/id'
   requestBody:
     description: account data to be sent
@@ -45,7 +43,6 @@ get:
   summary: Fetch an account
   description: Fetch an account matching the given id
   parameters:
-    - $ref: '#/components/parameters/authorization'
     - $ref: '#/components/parameters/id'
   responses:
     '200':

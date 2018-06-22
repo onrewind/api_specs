@@ -4,7 +4,6 @@ get:
   summary: Index of modules
   description: Get a list of all modules
   parameters:
-    - $ref: '#/components/parameters/authorization'
     - $ref: '#/components/parameters/fieldsParam'
   responses:
     '200':
@@ -22,8 +21,6 @@ post:
     - Modules
   summary: Create a new module
   description: Create a new module
-  parameters:
-    - $ref: '#/components/parameters/authorization'
   requestBody:
     description: module data to be sent
     required: true

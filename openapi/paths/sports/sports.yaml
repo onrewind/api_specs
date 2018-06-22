@@ -3,8 +3,6 @@ post:
     - Sport
   summary: Create a new sport
   description: Create a new sport
-  parameters:
-    - $ref: '#/components/parameters/authorization'
   requestBody:
     description: sport data to be sent
     required: true
@@ -28,8 +26,6 @@ get:
     - Sport
   summary: Index of sports
   description: Get the list of all sports.
-  parameters:
-    - $ref: '#/components/parameters/authorization'
   responses:
     '200':
       description: A list of Sports

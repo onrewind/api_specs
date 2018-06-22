@@ -1,8 +1,13 @@
 {
   "name": "api_specs",
   "version": "1.0.1",
-  "description": "OnRewind api specs",
-  "main": "main.js",
+  "description": "On Rewind api specs",
+  "keywords": [
+    "onrewind",
+    "onrewind api",
+    "swagger to slate",
+    "openapi example"
+  ],
   "dependencies": {
     "js-yaml": "3.12.0",
     "json-refs": "3.0.4",
@@ -17,17 +22,17 @@
     "slate:init": "cp -r slate/* .tmp && node_modules/.bin/widdershins .tmp/openapi.yaml -o .tmp/index.html.md",
     "slate:preview": "docker run -p 4567:4567 -v $(pwd)/.tmp:/slate/override_source -v $(pwd)/dist:/slate/build onrewind/slate:latest",
     "slate:compile": "docker run -v $(pwd)/.tmp:/slate/override_source -v $(pwd)/dist:/slate/build onrewind/slate:latest sh -c 'cd /slate && cp -r override_source/* source && exec bundle exec middleman build'",
-    "docker:init" : "docker build -t onrewind/slate:latest .",
+    "docker:init": "docker build -t onrewind/slate:latest .",
     "dist": "npm run openapi:compile && npm run slate:init && npm run slate:compile"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OnRewind/api_specs.git"
+    "url": "git+https://github.com/onrewind/api_specs.git"
   },
   "author": "dev@onrewind.com",
   "license": "Apache 2.0",
   "bugs": {
-    "url": "https://github.com/OnRewind/api_specs/issues"
+    "url": "https://github.com/onrewind/api_specs/issues"
   },
-  "homepage": "https://github.com/OnRewind/api_specs#readme"
+  "homepage": "https://github.com/onrewind/api_specs#readme"
 }

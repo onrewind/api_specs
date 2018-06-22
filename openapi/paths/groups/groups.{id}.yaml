@@ -4,7 +4,6 @@ delete:
   summary: Delete an group
   description: Delete an group
   parameters:
-    - $ref: '#/components/parameters/authorization'
     - $ref: '#/components/parameters/id'
   responses:
     '204':
@@ -19,7 +18,6 @@ put:
   summary: Update the group data
   description: 'it will update the group data matching given id'
   parameters:
-    - $ref: '#/components/parameters/authorization'
     - $ref: '#/components/parameters/id'
   requestBody:
     description: group data to be sent
@@ -45,7 +43,6 @@ get:
   summary: Fetch an group
   description: Fetch an group matching the given id
   parameters:
-    - $ref: '#/components/parameters/authorization'
     - $ref: '#/components/parameters/id'
   responses:
     '200':

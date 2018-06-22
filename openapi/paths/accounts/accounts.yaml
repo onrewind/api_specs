@@ -4,7 +4,6 @@ get:
   summary: Index of accounts
   description: Get a list of all accounts
   parameters:
-    - $ref: '#/components/parameters/authorization'
     - $ref: '#/components/parameters/fieldsParam'
   responses:
     '200':
@@ -22,8 +21,6 @@ post:
     - Accounts
   summary: Create a new account
   description: Create a new account
-  parameters:
-    - $ref: '#/components/parameters/authorization'
   requestBody:
     description: account data to be sent
     required: true

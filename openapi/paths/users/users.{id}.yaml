@@ -4,7 +4,6 @@ delete:
   summary: Delete an user
   description: Delete an user
   parameters:
-    - $ref: '#/components/parameters/authorization'
     - $ref: '#/components/parameters/id'
   responses:
     '204':
@@ -19,7 +18,6 @@ put:
   summary: Update the user data
   description: 'it will update the user data matching given id'
   parameters:
-    - $ref: '#/components/parameters/authorization'
     - $ref: '#/components/parameters/id'
   requestBody:
     description: user data to be sent
@@ -45,7 +43,6 @@ get:
   summary: Fetch an user
   description: Fetch an user matching the given id
   parameters:
-    - $ref: '#/components/parameters/authorization'
     - $ref: '#/components/parameters/id'
   responses:
     '200':

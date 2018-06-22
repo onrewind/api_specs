@@ -4,7 +4,6 @@ get:
   summary: Fetch a sport
   description: Fetch a sport matching the given id
   parameters:
-    - $ref: '#/components/parameters/authorization'
     - $ref: '#/components/parameters/id'
   responses:
     '200':
@@ -22,7 +21,6 @@ put:
     - Sport
   summary: Update a sport matching the given id
   parameters:
-    - $ref: '#/components/parameters/authorization'
     - $ref: '#/components/parameters/id'
   requestBody:
     description: sport data to be sent
@@ -48,7 +46,6 @@ delete:
   summary: Delete a sport
   description: Delete a sport
   parameters:
-    - $ref: '#/components/parameters/authorization'
     - $ref: '#/components/parameters/id'
   responses:
     '204':

@@ -4,7 +4,6 @@ get:
   summary: Index of groups
   description: Get a list of all groups
   parameters:
-    - $ref: '#/components/parameters/authorization'
     - $ref: '#/components/parameters/fieldsParam'
   responses:
     '200':
@@ -22,8 +21,6 @@ post:
     - Groups
   summary: Create a new group
   description: Create a new group
-  parameters:
-    - $ref: '#/components/parameters/authorization'
   requestBody:
     description: group data to be sent
     required: true

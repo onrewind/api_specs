@@ -4,7 +4,6 @@ get:
   summary: Index of users
   description: Get a list of all users
   parameters:
-    - $ref: '#/components/parameters/authorization'
     - $ref: '#/components/parameters/fieldsParam'
   responses:
     '200':
@@ -22,8 +21,6 @@ post:
     - Users
   summary: Create a new user
   description: Create a new user
-  parameters:
-    - $ref: '#/components/parameters/authorization'
   requestBody:
     description: user data to be sent
     required: true

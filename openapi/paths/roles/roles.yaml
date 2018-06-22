@@ -4,7 +4,6 @@ get:
   summary: Index of roles
   description: Get a list of all roles
   parameters:
-    - $ref: '#/components/parameters/authorization'
     - $ref: '#/components/parameters/fieldsParam'
   responses:
     '200':
@@ -22,8 +21,6 @@ post:
     - Roles
   summary: Create a new role
   description: Create a new role
-  parameters:
-    - $ref: '#/components/parameters/authorization'
   requestBody:
     description: role data to be sent
     required: true
