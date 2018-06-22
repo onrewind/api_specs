@@ -15,7 +15,6 @@ paths:
       summary: Index of accounts
       description: Get a list of all accounts
       parameters:
-        - $ref: '#/components/parameters/authorization'
         - $ref: '#/components/parameters/fieldsParam'
       responses:
         '200':
@@ -33,8 +32,6 @@ paths:
         - Accounts
       summary: Create a new account
       description: Create a new account
-      parameters:
-        - $ref: '#/components/parameters/authorization'
       requestBody:
         description: account data to be sent
         required: true
@@ -60,7 +57,6 @@ paths:
       summary: Delete an account
       description: Delete an account
       parameters:
-        - $ref: '#/components/parameters/authorization'
         - $ref: '#/components/parameters/id'
       responses:
         '204':
@@ -75,7 +71,6 @@ paths:
       summary: Update the account data
       description: it will update the account data matching given id
       parameters:
-        - $ref: '#/components/parameters/authorization'
         - $ref: '#/components/parameters/id'
       requestBody:
         description: account data to be sent
@@ -101,7 +96,6 @@ paths:
       summary: Fetch an account
       description: Fetch an account matching the given id
       parameters:
-        - $ref: '#/components/parameters/authorization'
         - $ref: '#/components/parameters/id'
       responses:
         '200':
@@ -121,7 +115,6 @@ paths:
       summary: Index of groups
       description: Get a list of all groups
       parameters:
-        - $ref: '#/components/parameters/authorization'
         - $ref: '#/components/parameters/fieldsParam'
       responses:
         '200':
@@ -139,8 +132,6 @@ paths:
         - Groups
       summary: Create a new group
       description: Create a new group
-      parameters:
-        - $ref: '#/components/parameters/authorization'
       requestBody:
         description: group data to be sent
         required: true
@@ -166,7 +157,6 @@ paths:
       summary: Delete an group
       description: Delete an group
       parameters:
-        - $ref: '#/components/parameters/authorization'
         - $ref: '#/components/parameters/id'
       responses:
         '204':
@@ -181,7 +171,6 @@ paths:
       summary: Update the group data
       description: it will update the group data matching given id
       parameters:
-        - $ref: '#/components/parameters/authorization'
         - $ref: '#/components/parameters/id'
       requestBody:
         description: group data to be sent
@@ -207,7 +196,6 @@ paths:
       summary: Fetch an group
       description: Fetch an group matching the given id
       parameters:
-        - $ref: '#/components/parameters/authorization'
         - $ref: '#/components/parameters/id'
       responses:
         '200':
@@ -227,7 +215,6 @@ paths:
       summary: Index of modules
       description: Get a list of all modules
       parameters:
-        - $ref: '#/components/parameters/authorization'
         - $ref: '#/components/parameters/fieldsParam'
       responses:
         '200':
@@ -245,8 +232,6 @@ paths:
         - Modules
       summary: Create a new module
       description: Create a new module
-      parameters:
-        - $ref: '#/components/parameters/authorization'
       requestBody:
         description: module data to be sent
         required: true
@@ -272,7 +257,6 @@ paths:
       summary: Delete an module
       description: Delete an module
       parameters:
-        - $ref: '#/components/parameters/authorization'
         - $ref: '#/components/parameters/id'
       responses:
         '204':
@@ -287,7 +271,6 @@ paths:
       summary: Update the module data
       description: it will update the module data matching given id
       parameters:
-        - $ref: '#/components/parameters/authorization'
         - $ref: '#/components/parameters/id'
       requestBody:
         description: module data to be sent
@@ -313,7 +296,6 @@ paths:
       summary: Fetch an module
       description: Fetch an module matching the given id
       parameters:
-        - $ref: '#/components/parameters/authorization'
         - $ref: '#/components/parameters/id'
       responses:
         '200':
@@ -333,7 +315,6 @@ paths:
       summary: Index of roles
       description: Get a list of all roles
       parameters:
-        - $ref: '#/components/parameters/authorization'
         - $ref: '#/components/parameters/fieldsParam'
       responses:
         '200':
@@ -351,8 +332,6 @@ paths:
         - Roles
       summary: Create a new role
       description: Create a new role
-      parameters:
-        - $ref: '#/components/parameters/authorization'
       requestBody:
         description: role data to be sent
         required: true
@@ -378,7 +357,6 @@ paths:
       summary: Delete an role
       description: Delete an role
       parameters:
-        - $ref: '#/components/parameters/authorization'
         - $ref: '#/components/parameters/id'
       responses:
         '204':
@@ -393,7 +371,6 @@ paths:
       summary: Update the role data
       description: it will update the role data matching given id
       parameters:
-        - $ref: '#/components/parameters/authorization'
         - $ref: '#/components/parameters/id'
       requestBody:
         description: role data to be sent
@@ -419,7 +396,6 @@ paths:
       summary: Fetch an role
       description: Fetch an role matching the given id
       parameters:
-        - $ref: '#/components/parameters/authorization'
         - $ref: '#/components/parameters/id'
       responses:
         '200':
@@ -439,7 +415,6 @@ paths:
       summary: Index of users
       description: Get a list of all users
       parameters:
-        - $ref: '#/components/parameters/authorization'
         - $ref: '#/components/parameters/fieldsParam'
       responses:
         '200':
@@ -457,8 +432,6 @@ paths:
         - Users
       summary: Create a new user
       description: Create a new user
-      parameters:
-        - $ref: '#/components/parameters/authorization'
       requestBody:
         description: user data to be sent
         required: true
@@ -483,8 +456,6 @@ paths:
         - Users
       summary: Fetch my own data
       description: 'Based on current access token, it will fetch the user data'
-      parameters:
-        - $ref: '#/components/parameters/authorization'
       responses:
         '200':
           description: Retrieve information of logged user based on access token
@@ -501,8 +472,6 @@ paths:
         - Users
       summary: Update my own data
       description: 'Based on current access token, it will update the user data'
-      parameters:
-        - $ref: '#/components/parameters/authorization'
       requestBody:
         description: user data to be sent
         required: true
@@ -529,8 +498,6 @@ paths:
       description: >
         Based on current access token, it will fetch the user's Groups, Roles,
         AccountId, Modules
-      parameters:
-        - $ref: '#/components/parameters/authorization'
       responses:
         '200':
           description: User's "context"
@@ -564,8 +531,6 @@ paths:
         - Sport
       summary: Create a new sport
       description: Create a new sport
-      parameters:
-        - $ref: '#/components/parameters/authorization'
       requestBody:
         description: sport data to be sent
         required: true
@@ -589,8 +554,6 @@ paths:
         - Sport
       summary: Index of sports
       description: Get the list of all sports.
-      parameters:
-        - $ref: '#/components/parameters/authorization'
       responses:
         '200':
           description: A list of Sports
@@ -609,7 +572,6 @@ paths:
       summary: Fetch a sport
       description: Fetch a sport matching the given id
       parameters:
-        - $ref: '#/components/parameters/authorization'
         - $ref: '#/components/parameters/id'
       responses:
         '200':
@@ -627,7 +589,6 @@ paths:
         - Sport
       summary: Update a sport matching the given id
       parameters:
-        - $ref: '#/components/parameters/authorization'
         - $ref: '#/components/parameters/id'
       requestBody:
         description: sport data to be sent
@@ -653,7 +614,6 @@ paths:
       summary: Delete a sport
       description: Delete a sport
       parameters:
-        - $ref: '#/components/parameters/authorization'
         - $ref: '#/components/parameters/id'
       responses:
         '204':
@@ -669,7 +629,6 @@ paths:
       summary: Index of streams
       description: Get a list of all streams
       parameters:
-        - $ref: '#/components/parameters/authorization'
         - $ref: '#/components/parameters/streamableId'
         - $ref: '#/components/parameters/fieldsParam'
       responses:
@@ -689,7 +648,6 @@ paths:
       summary: Create a new stream
       description: Create a new stream
       parameters:
-        - $ref: '#/components/parameters/authorization'
         - $ref: '#/components/parameters/streamableId'
       requestBody:
         description: stream data to be sent
@@ -718,7 +676,6 @@ paths:
       summary: Delete a stream
       description: Delete the stream matching the given id
       parameters:
-        - $ref: '#/components/parameters/authorization'
         - $ref: '#/components/parameters/streamableId'
         - $ref: '#/components/parameters/id'
       responses:
@@ -738,7 +695,6 @@ paths:
       summary: Update the stream data
       description: Update the stream data matching given id
       parameters:
-        - $ref: '#/components/parameters/authorization'
         - $ref: '#/components/parameters/streamableId'
         - $ref: '#/components/parameters/id'
       requestBody:
@@ -769,7 +725,6 @@ paths:
       summary: Fetch a stream
       description: Fetch the stream matching the given id
       parameters:
-        - $ref: '#/components/parameters/authorization'
         - $ref: '#/components/parameters/streamableId'
         - $ref: '#/components/parameters/id'
       responses:
@@ -792,13 +747,6 @@ components:
       required: false
       schema:
         type: string
-    authorization:
-      name: authorization
-      in: header
-      required: true
-      schema:
-        type: string
-        format: hash
     id:
       name: id
       in: path
@@ -1125,3 +1073,10 @@ components:
               type: object
             opta:
               type: object
+  securitySchemes:
+    accessToken:
+      type: accessToken
+      in: header
+      name: Authorization
+security:
+  - accessToken: []
