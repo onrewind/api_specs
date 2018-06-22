@@ -1,0 +1,1127 @@
+openapi: 3.0.0
+info:
+  version: 1.0.1
+  title: On Rewind API
+  description: On Rewind Api documentation based on OpenAPI 3.0
+servers:
+  - url: 'https://api-gateway.onrewind.tv'
+  - url: 'https://staging-api-gateway.onrewind.tv'
+  - url: 'https://dev-api-gateway.onrewind.tv'
+paths:
+  /accounts:
+    get:
+      tags:
+        - Accounts
+      summary: Index of accounts
+      description: Get a list of all accounts
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/fieldsParam'
+      responses:
+        '200':
+          description: A list of Accounts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Account'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    post:
+      tags:
+        - Accounts
+      summary: Create a new account
+      description: Create a new account
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+      requestBody:
+        description: account data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Account'
+      responses:
+        '201':
+          description: The account is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/accounts/{id}':
+    delete:
+      tags:
+        - Accounts
+      summary: Delete an account
+      description: Delete an account
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: the account has been deleted successfully
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Accounts
+      summary: Update the account data
+      description: it will update the account data matching given id
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        description: account data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Account'
+      responses:
+        '200':
+          description: Updated information of logged account based on access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    get:
+      tags:
+        - Accounts
+      summary: Fetch an account
+      description: Fetch an account matching the given id
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Fetched information of logged account based on access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /groups:
+    get:
+      tags:
+        - Groups
+      summary: Index of groups
+      description: Get a list of all groups
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/fieldsParam'
+      responses:
+        '200':
+          description: A list of Groups
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Group'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    post:
+      tags:
+        - Groups
+      summary: Create a new group
+      description: Create a new group
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+      requestBody:
+        description: group data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Group'
+      responses:
+        '201':
+          description: The group is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/groups/{id}':
+    delete:
+      tags:
+        - Groups
+      summary: Delete an group
+      description: Delete an group
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: the group has been deleted successfully
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Groups
+      summary: Update the group data
+      description: it will update the group data matching given id
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        description: group data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Group'
+      responses:
+        '200':
+          description: Updated information of logged group based on access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    get:
+      tags:
+        - Groups
+      summary: Fetch an group
+      description: Fetch an group matching the given id
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Fetched information of logged group based on access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /modules:
+    get:
+      tags:
+        - Modules
+      summary: Index of modules
+      description: Get a list of all modules
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/fieldsParam'
+      responses:
+        '200':
+          description: A list of Modules
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Module'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    post:
+      tags:
+        - Modules
+      summary: Create a new module
+      description: Create a new module
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+      requestBody:
+        description: module data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Module'
+      responses:
+        '201':
+          description: The module is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Module'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/modules/{id}':
+    delete:
+      tags:
+        - Modules
+      summary: Delete an module
+      description: Delete an module
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: the module has been deleted successfully
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Modules
+      summary: Update the module data
+      description: it will update the module data matching given id
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        description: module data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Module'
+      responses:
+        '200':
+          description: Updated information of logged module based on access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Module'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    get:
+      tags:
+        - Modules
+      summary: Fetch an module
+      description: Fetch an module matching the given id
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Fetched information of logged module based on access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Module'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /roles:
+    get:
+      tags:
+        - Roles
+      summary: Index of roles
+      description: Get a list of all roles
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/fieldsParam'
+      responses:
+        '200':
+          description: A list of Roles
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Role'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    post:
+      tags:
+        - Roles
+      summary: Create a new role
+      description: Create a new role
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+      requestBody:
+        description: role data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Role'
+      responses:
+        '201':
+          description: The role is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/roles/{id}':
+    delete:
+      tags:
+        - Roles
+      summary: Delete an role
+      description: Delete an role
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: the role has been deleted successfully
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Roles
+      summary: Update the role data
+      description: it will update the role data matching given id
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        description: role data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Role'
+      responses:
+        '200':
+          description: Updated information of logged role based on access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    get:
+      tags:
+        - Roles
+      summary: Fetch an role
+      description: Fetch an role matching the given id
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Fetched information of logged role based on access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /users:
+    get:
+      tags:
+        - Users
+      summary: Index of users
+      description: Get a list of all users
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/fieldsParam'
+      responses:
+        '200':
+          description: A list of Users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    post:
+      tags:
+        - Users
+      summary: Create a new user
+      description: Create a new user
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+      requestBody:
+        description: user data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: The user is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  /users/me:
+    get:
+      tags:
+        - Users
+      summary: Fetch my own data
+      description: 'Based on current access token, it will fetch the user data'
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+      responses:
+        '200':
+          description: Retrieve information of logged user based on access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Users
+      summary: Update my own data
+      description: 'Based on current access token, it will update the user data'
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+      requestBody:
+        description: user data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Update information of logged user based on access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /users/me/context:
+    get:
+      tags:
+        - Users
+      summary: Fetch resources making up the context of a user
+      description: >
+        Based on current access token, it will fetch the user's Groups, Roles,
+        AccountId, Modules
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+      responses:
+        '200':
+          description: User's "context"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Groups:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Group'
+                  Roles:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Role'
+                  AccountId:
+                    type: string
+                    format: uuid
+                  Modules:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Module'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /sports:
+    post:
+      tags:
+        - Sport
+      summary: Create a new sport
+      description: Create a new sport
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+      requestBody:
+        description: sport data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Sport'
+      responses:
+        '201':
+          description: The user is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sport'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    get:
+      tags:
+        - Sport
+      summary: Index of sports
+      description: Get the list of all sports.
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+      responses:
+        '200':
+          description: A list of Sports
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Sport'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/sports/{id}':
+    get:
+      tags:
+        - Sport
+      summary: Fetch a sport
+      description: Fetch a sport matching the given id
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Sport data matching the id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sport'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Sport
+      summary: Update a sport matching the given id
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        description: sport data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Sport'
+      responses:
+        '200':
+          description: Updated sport
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sport'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags:
+        - Sport
+      summary: Delete a sport
+      description: Delete a sport
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: the sport has been deleted successfully
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  '/streamable/{streamableId}/streams':
+    get:
+      tags:
+        - Streams
+      summary: Index of streams
+      description: Get a list of all streams
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/streamableId'
+        - $ref: '#/components/parameters/fieldsParam'
+      responses:
+        '200':
+          description: A list of streams
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Stream'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    post:
+      tags:
+        - Streams
+      summary: Create a new stream
+      description: Create a new stream
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/streamableId'
+      requestBody:
+        description: stream data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Stream'
+      responses:
+        '201':
+          description: The stream is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stream'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '409':
+          $ref: '#/components/responses/ConflictInModel'
+  '/streamable/{streamableId}/streams/{id}':
+    delete:
+      tags:
+        - Streams
+      summary: Delete a stream
+      description: Delete the stream matching the given id
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/streamableId'
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: The deleted stream
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stream'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Streams
+      summary: Update the stream data
+      description: Update the stream data matching given id
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/streamableId'
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        description: stream data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Stream'
+      responses:
+        '200':
+          description: Updated stream
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stream'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/ConflictInModel'
+    get:
+      tags:
+        - Streams
+      summary: Fetch a stream
+      description: Fetch the stream matching the given id
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/streamableId'
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Fetched stream
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stream'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    fieldsParam:
+      name: fields
+      in: query
+      description: Comma separated string to filter desired fields
+      required: false
+      schema:
+        type: string
+    authorization:
+      name: authorization
+      in: header
+      required: true
+      schema:
+        type: string
+        format: hash
+    id:
+      name: id
+      in: path
+      description: the uuid of the user to delete
+      required: true
+      schema:
+        type: string
+        format: uuid
+    streamableId:
+      name: streamableId
+      in: path
+      description: the uuid of the streamable
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    UserNotAuthorized:
+      description: UserNotAuthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InvalidModel:
+      description: InvalidModel
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: NotFound
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ConflictInModel:
+      description: ConflictInModel
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Account:
+      title: Account
+      required:
+        - code
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        key:
+          type: string
+          description: code name to identify an account in friendler manner
+        name:
+          type: string
+          description: Account's name
+        description:
+          type: string
+          description: Account's description
+        meta:
+          type: object
+          description: >-
+            Attribute storing extra data about the user, like a google analytics
+            account id
+          properties:
+            hashtag:
+              type: string
+            google_analytics_id:
+              type: string
+        SportId:
+          type: string
+          format: uuid
+          description: Reference to a sport instance
+    Error:
+      title: Error
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+      required:
+        - code
+        - message
+    Group:
+      title: Group
+      required:
+        - name
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          description: Group's name
+        description:
+          type: string
+          description: Group's description
+        accessLevel:
+          type: integer
+          description: define group access level that allows to add higher permissions
+          default: 0
+    Module:
+      title: Module
+      required:
+        - code
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        code:
+          type: integer
+          description: |
+            Integer associated to a module, current values are as follow
+            {
+              'RESTRAINED_ACCESS': 1,
+              'BLOCKMARK': 2,
+              'ESHOP_LINKS': 3,
+              'WHITE_LABEL': 4,
+              'GEO_BLOCKING': 5,
+              'ADVERTISING': 6,
+              'REMOTE_CONTROL': 7,
+              'NOTIFICATION': 8,
+              'SIMULCAST': 9,
+              'DVR': 10,
+              'CHAT': 11,
+              'STREAM_CLIPPING': 12,
+              'OPTA_PARSING': 13,
+              'CLEENG_RESTRICTION': 14
+            }
+        name:
+          type: string
+          description: Module's name
+        description:
+          type: string
+          description: Module's description
+    Role:
+      title: Role
+      required:
+        - name
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          description: Role's name
+        description:
+          type: string
+          description: Role's description
+        accessLevel:
+          type: integer
+          description: define role access level that allows to add higher permissions
+          default: 0
+    Sport:
+      title: Sport
+      required:
+        - name
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          description: Sport's name
+        description:
+          type: string
+          description: Sport's description
+        timelineType:
+          type: string
+          description: define timeline type
+          enum:
+            - single
+            - double
+          default: single
+        svgSpriteFilename:
+          type: string
+          description: name of svg sprite holding all svg icons used in this sport
+        sportsFieldFilename:
+          type: string
+          description: >-
+            name of sports field file that is used to represent the field of the
+            sport, used for multicam
+    Stream:
+      title: Stream
+      required:
+        - streamType
+        - key
+        - token
+        - streamable
+        - streamableId
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        streamType:
+          type: string
+          description: Stream's type
+          enum:
+            - main
+            - backup
+            - additionnal
+          default: main
+        key:
+          type: string
+          description: Stream's key. Automatically generated during the stream's creation.
+        token:
+          type: string
+          description: >-
+            Stream's token. Automatically generated during the stream's
+            creation.
+        recordName:
+          type: string
+          description: Stream's record name
+        offset:
+          type: integer
+          description: Stream's offset in seconds related to the main stream of the event
+          default: 0
+        mapCoordinates:
+          type: object
+          description: Stream's camera position in the related sport field.
+          properties:
+            x:
+              type: integer
+              description: horizontal position in the minimap
+              minimum: 0
+            y:
+              type: integer
+              description: vertical position in the minimap
+              minimum: 0
+            r:
+              type: integer
+              description: angle of the camera
+              minimum: 0
+              maximum: 360
+              default: 0
+          required:
+            - x
+            - y
+        options:
+          type: object
+          description: Stream's options used to store particular values
+        streamable:
+          type: string
+          description: >-
+            Stream's polymorphic association to a streamable model. Current
+            available values are 'event', 'businessPlayer', 'simulcast' and are
+            related to the corresponding models which must have at least one
+            stream.
+        streamableId:
+          type: string
+          format: uuid
+          description: >-
+            Stream's polymorphic association to a streamable model. It
+            references the id of the associated Event, BusinessPlayer or
+            Simulcast.
+    User:
+      title: User
+      required:
+        - username
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        username:
+          type: string
+          description: Username of the user
+        email:
+          type: string
+          description: Email of the user
+        lastName:
+          type: string
+          description: last name of the user
+        firstName:
+          type: string
+          description: first name of the user
+        phone:
+          type: string
+          format: phone
+        type:
+          type: string
+          enum:
+            - active
+            - inactive
+            - system
+          default: inactive
+        password:
+          type: string
+          format: password
+        meta:
+          type: object
+          description: >-
+            Attribute storing extra data about the user, like a google analytics
+            account id
+          properties:
+            hashtag:
+              type: string
+            google_analytics_id:
+              type: string
+        oauth:
+          type: object
+          description: >-
+            Attribute storing third party oauth data specific to the user (oauth
+            token, account id, etc...)
+          properties:
+            youtube:
+              type: object
+            dailymotion:
+              type: object
+            facebook:
+              type: object
+            cleeng:
+              type: object
+            twitter:
+              type: object
+            twitch:
+              type: object
+            opta:
+              type: object
