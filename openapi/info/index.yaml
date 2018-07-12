@@ -1,4 +1,9 @@
 # version: set by using version number from package.json
 version: x.x.x
 title: On Rewind API
-description: On Rewind Api documentation based on OpenAPI 3.0
+description: |
+  On Rewind API documentation based on OpenAPI 3.0.
+  This document provides info on all publicly accessible routes if identified with a bearer token.
+contact:
+  name: API Support
+  email: developers@onrewind.com

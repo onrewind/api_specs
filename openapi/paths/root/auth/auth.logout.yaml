@@ -1,0 +1,20 @@
+post:
+  tags:
+    - Auth Service
+  summary: Log out an user
+  description: Logout an user by invalidating his accessToken
+  responses:
+    '200':
+      description: The user is logged out and his token is now invalid
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: message describing if the token is already expired or if it's been successfully logged out
+    '400':
+      $ref: '#/components/responses/InvalidModel'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'

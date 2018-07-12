@@ -1,6 +1,6 @@
 get:
   tags:
-    - Sport
+    - Main API - Sport
   summary: Fetch a sport
   description: Fetch a sport matching the given id
   parameters:
@@ -18,7 +18,7 @@ get:
       $ref: '#/components/responses/NotFound'
 put:
   tags:
-    - Sport
+    - Main API - Sport
   summary: Update a sport matching the given id
   parameters:
     - $ref: '#/components/parameters/id'
@@ -42,7 +42,7 @@ put:
       $ref: '#/components/responses/NotFound'
 delete:
   tags:
-    - Sport
+    - Main API - Sport
   summary: Delete a sport
   description: Delete a sport
   parameters:

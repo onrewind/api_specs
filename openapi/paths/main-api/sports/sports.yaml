@@ -1,6 +1,6 @@
 post:
   tags:
-    - Sport
+    - Main API - Sport
   summary: Create a new sport
   description: Create a new sport
   requestBody:
@@ -23,7 +23,7 @@ post:
       $ref: '#/components/responses/UserNotAuthorized'
 get:
   tags:
-    - Sport
+    - Main API - Sport
   summary: Index of sports
   description: Get the list of all sports.
   responses:

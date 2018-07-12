@@ -1,0 +1,7 @@
+in: header
+name: Accept-Version
+schema:
+  type: string
+  enum:
+    - v5
+    - v6

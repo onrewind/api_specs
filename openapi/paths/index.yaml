@@ -1,39 +1,60 @@
 # Please keep the specifications in alphabetical order
 
-# Accounts
-/accounts:
-  $ref: ./accounts/accounts.yaml
-/accounts/{id}:
-  $ref: ./accounts/accounts.{id}.yaml
-# Groups
-/groups:
-  $ref: ./groups/groups.yaml
-/groups/{id}:
-  $ref: ./groups/groups.{id}.yaml
-# Modules
-/modules:
-  $ref: ./modules/modules.yaml
-/modules/{id}:
-  $ref: ./modules/modules.{id}.yaml
-# Roles
-/roles:
-  $ref: ./roles/roles.yaml
-/roles/{id}:
-  $ref: ./roles/roles.{id}.yaml
-# Users
-/users:
-  $ref: ./users/users.yaml
-/users/me:
-  $ref: ./users/users.me.yaml
-/users/me/context:
-  $ref: ./users/users.me.context.yaml
+
+##########################
+### ROOT (API GATEWAY) ###
+##########################
+
+#Auth
+/auth/login:
+  $ref: ./root/auth/auth.login.yaml
+/auth/logout:
+  $ref: ./root/auth/auth.logout.yaml
+
+
+##########################
+####### MAIN API #########
+##########################
+
 #Sports
-/sports:
-  $ref: ./sports/sports.yaml
-/sports/{id}:
-  $ref: ./sports/sports.{id}.yaml
+/main-api/sports:
+  $ref: ./main-api/sports/sports.yaml
+/main-api/sports/{id}:
+  $ref: ./main-api/sports/sports.{id}.yaml
 # Streams
-/streamable/{streamableId}/streams:
-  $ref: ./streams/streams.yaml
-/streamable/{streamableId}/streams/{id}:
-  $ref: ./streams/streams.{id}.yaml
+/main-api/streamable/{streamableId}/streams:
+  $ref: ./main-api/streams/streams.yaml
+/main-api/streamable/{streamableId}/streams/{id}:
+  $ref: ./main-api/streams/streams.{id}.yaml
+
+##########################
+##### USERS SERVICE ######
+##########################
+
+# Accounts
+/users-service/accounts:
+  $ref: ./users-service/accounts/accounts.yaml
+/users-service/accounts/{id}:
+  $ref: ./users-service/accounts/accounts.{id}.yaml
+# Groups
+/users-service/groups:
+  $ref: ./users-service/groups/groups.yaml
+/users-service/groups/{id}:
+  $ref: ./users-service/groups/groups.{id}.yaml
+# Modules
+/users-service/modules:
+  $ref: ./users-service/modules/modules.yaml
+/users-service/modules/{id}:
+  $ref: ./users-service/modules/modules.{id}.yaml
+# Roles
+/users-service/roles:
+  $ref: ./users-service/roles/roles.yaml
+/users-service/roles/{id}:
+  $ref: ./users-service/roles/roles.{id}.yaml
+# Users
+/users-service/users:
+  $ref: ./users-service/users/users.yaml
+/users-service/users/me:
+  $ref: ./users-service/users/users.me.yaml
+/users-service/users/me/context:
+  $ref: ./users-service/users/users.me.context.yaml

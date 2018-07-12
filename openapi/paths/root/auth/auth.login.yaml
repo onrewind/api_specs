@@ -1,0 +1,53 @@
+post:
+  security: [] #disable security
+  tags:
+    - Auth Service
+  summary: Log in an user
+  description: >
+    Send credentials to retrieve an accessToken.
+    If the 'Accept-Version' header is specified to value "v5", user data will be returned,
+    but this version is deprecated and not recommended as data might not be in sync.
+  parameters:
+    - $ref: '#/components/parameters/acceptVersion'
+  requestBody:
+    description: credentials data
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            username:
+              type: string
+              description: username of the user
+            password:
+              type: string
+              description: password of the user
+  responses:
+    '200':
+      description: The user is logged in
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+                description: user id
+              accessToken:
+                type: string
+                format: JWT
+                description: accessToken to be used in every subsequent requests
+              tokenType:
+                type: string
+                default: 'Bearer'
+                description: type of the token being returned, at the moment only bearer token can be returned
+              expiresIn:
+                type: integer
+                default: 86400
+                description: expiry time of the token, defaults to 24h
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFoundError'

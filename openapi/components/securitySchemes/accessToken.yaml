@@ -1,3 +1,8 @@
-type: apiKey
-in: header
+type: http
+scheme: bearer
+bearerFormat: JWT
 name: Authorization
+description: >
+  A bearer token called "accessToken" is needed to access resources.
+  By default the token will expire after 24h. The bearer token must be provided on every subsequent requests to the API.
+  More info provided on the route 'POST /auth/login'

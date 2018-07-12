@@ -1,56 +1,56 @@
 delete:
   tags:
-    - Modules
-  summary: Delete an module
-  description: Delete an module
+    - Users Service - Roles
+  summary: Delete an role
+  description: Delete an role
   parameters:
     - $ref: '#/components/parameters/id'
   responses:
     '204':
-      description: the module has been deleted successfully
+      description: the role has been deleted successfully
     '403':
       $ref: '#/components/responses/UserNotAuthorized'
     '404':
       $ref: '#/components/responses/NotFound'
 put:
   tags:
-    - Modules
-  summary: Update the module data
-  description: 'it will update the module data matching given id'
+    - Users Service - Roles
+  summary: Update the role data
+  description: 'it will update the role data matching given id'
   parameters:
     - $ref: '#/components/parameters/id'
   requestBody:
-    description: module data to be sent
+    description: role data to be sent
     required: true
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/Module'
+          $ref: '#/components/schemas/Role'
   responses:
     '200':
-      description: Updated information of logged module based on access token
+      description: Updated information of logged role based on access token
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Module'
+            $ref: '#/components/schemas/Role'
     '403':
       $ref: '#/components/responses/UserNotAuthorized'
     '404':
       $ref: '#/components/responses/NotFound'
 get:
   tags:
-    - Modules
-  summary: Fetch an module
-  description: Fetch an module matching the given id
+    - Users Service - Roles
+  summary: Fetch an role
+  description: Fetch an role matching the given id
   parameters:
     - $ref: '#/components/parameters/id'
   responses:
     '200':
-      description: Fetched information of logged module based on access token
+      description: Fetched information of logged role based on access token
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Module'
+            $ref: '#/components/schemas/Role'
     '403':
       $ref: '#/components/responses/UserNotAuthorized'
     '404':

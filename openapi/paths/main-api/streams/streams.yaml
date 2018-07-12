@@ -1,6 +1,6 @@
 get:
   tags:
-    - Streams
+    - Main API - Streams
   summary: Index of streams
   description: Get a list of all streams
   parameters:
@@ -19,7 +19,7 @@ get:
       $ref: '#/components/responses/UserNotAuthorized'
 post:
   tags:
-    - Streams
+    - Main API - Streams
   summary: Create a new stream
   description: Create a new stream
   parameters:

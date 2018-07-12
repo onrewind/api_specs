@@ -1,40 +1,40 @@
 get:
   tags:
-    - Accounts
-  summary: Index of accounts
-  description: Get a list of all accounts
+    - Users Service - Users
+  summary: Index of users
+  description: Get a list of all users
   parameters:
     - $ref: '#/components/parameters/fieldsParam'
   responses:
     '200':
-      description: A list of Accounts
+      description: A list of Users
       content:
         application/json:
           schema:
             type: array
             items:
-              $ref: '#/components/schemas/Account'
+              $ref: '#/components/schemas/User'
     '403':
       $ref: '#/components/responses/UserNotAuthorized'
 post:
   tags:
-    - Accounts
-  summary: Create a new account
-  description: Create a new account
+    - Users Service - Users
+  summary: Create a new user
+  description: Create a new user
   requestBody:
-    description: account data to be sent
+    description: user data to be sent
     required: true
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/Account'
+          $ref: '#/components/schemas/User'
   responses:
     '201':
-      description: The account is created
+      description: The user is created
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Account'
+            $ref: '#/components/schemas/User'
     '400':
       $ref: '#/components/responses/InvalidModel'
     '403':

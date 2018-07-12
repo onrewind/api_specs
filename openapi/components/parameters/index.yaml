@@ -1,3 +1,5 @@
+acceptVersion:
+  $ref: ./acceptVersion.yaml
 fieldsParam:
   $ref: ./fieldsParam.yaml
 id:

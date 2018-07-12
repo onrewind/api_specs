@@ -1,56 +1,56 @@
 delete:
   tags:
-    - Roles
-  summary: Delete an role
-  description: Delete an role
+    - Users Service - Groups
+  summary: Delete an group
+  description: Delete an group
   parameters:
     - $ref: '#/components/parameters/id'
   responses:
     '204':
-      description: the role has been deleted successfully
+      description: the group has been deleted successfully
     '403':
       $ref: '#/components/responses/UserNotAuthorized'
     '404':
       $ref: '#/components/responses/NotFound'
 put:
   tags:
-    - Roles
-  summary: Update the role data
-  description: 'it will update the role data matching given id'
+    - Users Service - Groups
+  summary: Update the group data
+  description: 'it will update the group data matching given id'
   parameters:
     - $ref: '#/components/parameters/id'
   requestBody:
-    description: role data to be sent
+    description: group data to be sent
     required: true
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/Role'
+          $ref: '#/components/schemas/Group'
   responses:
     '200':
-      description: Updated information of logged role based on access token
+      description: Updated information of logged group based on access token
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Role'
+            $ref: '#/components/schemas/Group'
     '403':
       $ref: '#/components/responses/UserNotAuthorized'
     '404':
       $ref: '#/components/responses/NotFound'
 get:
   tags:
-    - Roles
-  summary: Fetch an role
-  description: Fetch an role matching the given id
+    - Users Service - Groups
+  summary: Fetch an group
+  description: Fetch an group matching the given id
   parameters:
     - $ref: '#/components/parameters/id'
   responses:
     '200':
-      description: Fetched information of logged role based on access token
+      description: Fetched information of logged group based on access token
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Role'
+            $ref: '#/components/schemas/Group'
     '403':
       $ref: '#/components/responses/UserNotAuthorized'
     '404':

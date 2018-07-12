@@ -1,56 +1,56 @@
 delete:
   tags:
-    - Accounts
-  summary: Delete an account
-  description: Delete an account
+    - Users Service - Modules
+  summary: Delete an module
+  description: Delete an module
   parameters:
     - $ref: '#/components/parameters/id'
   responses:
     '204':
-      description: the account has been deleted successfully
+      description: the module has been deleted successfully
     '403':
       $ref: '#/components/responses/UserNotAuthorized'
     '404':
       $ref: '#/components/responses/NotFound'
 put:
   tags:
-    - Accounts
-  summary: Update the account data
-  description: 'it will update the account data matching given id'
+    - Users Service - Modules
+  summary: Update the module data
+  description: 'it will update the module data matching given id'
   parameters:
     - $ref: '#/components/parameters/id'
   requestBody:
-    description: account data to be sent
+    description: module data to be sent
     required: true
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/Account'
+          $ref: '#/components/schemas/Module'
   responses:
     '200':
-      description: Updated information of logged account based on access token
+      description: Updated information of logged module based on access token
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Account'
+            $ref: '#/components/schemas/Module'
     '403':
       $ref: '#/components/responses/UserNotAuthorized'
     '404':
       $ref: '#/components/responses/NotFound'
 get:
   tags:
-    - Accounts
-  summary: Fetch an account
-  description: Fetch an account matching the given id
+    - Users Service - Modules
+  summary: Fetch an module
+  description: Fetch an module matching the given id
   parameters:
     - $ref: '#/components/parameters/id'
   responses:
     '200':
-      description: Fetched information of logged account based on access token
+      description: Fetched information of logged module based on access token
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Account'
+            $ref: '#/components/schemas/Module'
     '403':
       $ref: '#/components/responses/UserNotAuthorized'
     '404':

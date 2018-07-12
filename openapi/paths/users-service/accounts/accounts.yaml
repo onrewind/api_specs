@@ -1,40 +1,40 @@
 get:
   tags:
-    - Groups
-  summary: Index of groups
-  description: Get a list of all groups
+    - Users Service - Accounts
+  summary: Index of accounts
+  description: Get a list of all accounts
   parameters:
     - $ref: '#/components/parameters/fieldsParam'
   responses:
     '200':
-      description: A list of Groups
+      description: A list of Accounts
       content:
         application/json:
           schema:
             type: array
             items:
-              $ref: '#/components/schemas/Group'
+              $ref: '#/components/schemas/Account'
     '403':
       $ref: '#/components/responses/UserNotAuthorized'
 post:
   tags:
-    - Groups
-  summary: Create a new group
-  description: Create a new group
+    - Users Service - Accounts
+  summary: Create a new account
+  description: Create a new account
   requestBody:
-    description: group data to be sent
+    description: account data to be sent
     required: true
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/Group'
+          $ref: '#/components/schemas/Account'
   responses:
     '201':
-      description: The group is created
+      description: The account is created
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Group'
+            $ref: '#/components/schemas/Account'
     '400':
       $ref: '#/components/responses/InvalidModel'
     '403':
