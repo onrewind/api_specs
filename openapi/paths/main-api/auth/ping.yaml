@@ -1,0 +1,11 @@
+get:
+  tags:
+    - Main API - Auth
+  summary: Test API is up and running
+  description: Test API is up and running
+  responses:
+    '200':
+      description: The API returns 'ok'
+      content:
+        application/json:
+          type: string
