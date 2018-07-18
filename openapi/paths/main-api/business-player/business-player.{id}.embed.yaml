@@ -1,0 +1,18 @@
+get:
+  tags:
+    - Main API - Conference player
+  summary: Fetch a conference player's embed code
+  description: Fetch a conference player's embed code
+  parameters:
+    - $ref: '#/components/parameters/id'
+  responses:
+    '200':
+      description: HTML embed code for the business player
+      content:
+        application/json:
+          schema:
+            type: string
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'

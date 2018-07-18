@@ -1,5 +1,9 @@
 Account:
   $ref: ./Account.yaml
+BusinessPlayer:
+  $ref: ./BusinessPlayer.yaml
+Clip:
+  $ref: ./Clip.yaml
 Error:
   $ref: ./Error.yaml
 Group:
@@ -14,3 +18,5 @@ Stream:
   $ref: ./Stream.yaml
 User:
   $ref: ./User.yaml
+Video:
+  $ref: ./Video.yaml

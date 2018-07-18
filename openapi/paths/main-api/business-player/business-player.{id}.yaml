@@ -1,0 +1,56 @@
+get:
+  tags:
+    - Main API - Conference player
+  summary: Fetch a conference player
+  description: Fetch a conference player matching the given id
+  parameters:
+    - $ref: '#/components/parameters/id'
+  responses:
+    '200':
+      description: Conference player data matching the id
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BusinessPlayer'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'
+put:
+  tags:
+    - Main API - Conference player
+  summary: Update a conference player matching the given id
+  parameters:
+    - $ref: '#/components/parameters/id'
+  requestBody:
+    description: conference player data to be sent
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/BusinessPlayer'
+  responses:
+    '200':
+      description: Updated conference player
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BusinessPlayer'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'
+delete:
+  tags:
+    - Main API - Conference player
+  summary: Delete a conference player
+  description: Delete a conference player
+  parameters:
+    - $ref: '#/components/parameters/id'
+  responses:
+    '204':
+      description: the conference player has been deleted successfully
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'

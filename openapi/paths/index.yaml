@@ -6,14 +6,32 @@
 ##########################
 
 #Auth
-/auth/ping:
-  $ref: ./root/auth/auth.PING.yaml
+/auth/login:
+  $ref: ./root/auth/auth.login.yaml
+/auth/logout:
+  $ref: ./root/auth/auth.logout.yaml
 
 
 ##########################
 ####### MAIN API #########
 ##########################
 
+#Auth
+/main-api/auth/ping:
+  $ref: ./main-api/auth/auth.ping.yaml
+#Business Player
+/main-api/business/main-api/business-player:
+  $ref: ./main-api/business-player/business-player.yaml
+/main-api/business-player/{id}:
+  $ref: ./main-api/business-player/business-player.{id}.yaml
+/main-api/business-player/{id}/clips:
+  $ref: ./main-api/business-player/business-player.{id}.clips.yaml
+/main-api/business-player/{id}/embed:
+  $ref: ./main-api/business-player/business-player.{id}.embed.yaml
+/main-api/business-player/{id}/poster:
+  $ref: ./main-api/business-player/business-player.{id}.poster.yaml
+/main-api/business-player/{id}/process-end-live:
+  $ref: ./main-api/business-player/business-player.{id}.process-end-live.yaml
 #Sports
 /main-api/sports:
   $ref: ./main-api/sports/sports.yaml

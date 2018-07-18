@@ -1,0 +1,39 @@
+post:
+  tags:
+    - Main API - Conference player
+  summary: Create a new conference player
+  description: Create a new conference player
+  requestBody:
+    description: conference player data to be sent
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/BusinessPlayer'
+  responses:
+    '201':
+      description: The user conference player created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BusinessPlayer'
+    '400':
+      $ref: '#/components/responses/InvalidModel'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+get:
+  tags:
+    - Main API - Conference player
+  summary: Index of conference players
+  description: Index of conference players
+  responses:
+    '200':
+      description: A list of conference players
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/BusinessPlayer'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'

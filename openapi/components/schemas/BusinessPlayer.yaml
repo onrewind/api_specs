@@ -1,0 +1,66 @@
+title: "BusinessPlayer"
+required:
+  - name
+  - organiserName
+properties:
+  id:
+    type: string
+    format: uuid
+    readOnly: true
+  AccountId:
+    type: string
+    format: uuid
+  name:
+    type: string
+    description: Conference player's name
+  description:
+    type: string
+    description: Conference player's description
+  organiserName:
+    type: string
+    description: The name of the conference organiser
+  state:
+    type: string
+    description: The state of the player
+    enum:
+      - liveOn
+      - liveOff
+      - replay
+    default: replay
+  placeholder:
+    type: object
+    description: Attribute storing extra data about the conference player placeholder
+    properties:
+      poster:
+        type: string
+        description: The URL of the placeholder image
+      text:
+        type: string
+        description: The text associated to the placeholder
+  options:
+    type: object
+    description: Attribute storing extra data about the conference player
+    properties:
+      autostart:
+        type: boolean
+      chapterOnLoad:
+        type: boolean
+      chaptersTitle:
+        type: string
+      initialStartingTime:
+        type: integer
+      showControls:
+        type: boolean
+  startDate:
+    type: string
+    description: The date when the conference starts
+    format: date-time
+  endDate:
+    type: string
+    description: The date when the conference ends
+    format: date-time
+  activatedModules:
+    type: array
+    description: The list of active modules for this conference player
+    items:
+      type: integer

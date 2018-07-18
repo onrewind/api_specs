@@ -1,0 +1,34 @@
+title: "Clip"
+required:
+  - name
+  - meta
+properties:
+  id:
+    type: string
+    format: uuid
+    readOnly: true
+  name:
+    type: string
+    description: The name of the clip
+  state:
+    type: string
+    description: The state of the clip
+    enum:
+      - none
+      - error
+      - ready
+      - in_progress
+    default: none
+  meta:
+    type: object
+    description: Attribute storing extra data about the clip
+    properties:
+      required:
+        - format
+        - duration
+      format:
+        type: string
+        description: The file format (ex: MP4)
+      duration:
+        type: integer
+        description: The duration of the clip in seconds

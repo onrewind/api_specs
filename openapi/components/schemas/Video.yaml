@@ -1,0 +1,72 @@
+title: "Video"
+required:
+  - name
+properties:
+  id:
+    type: string
+    format: uuid
+    readOnly: true
+  name:
+    type: string
+    description: The name of the video
+  description:
+    type: string
+    description: The description of the video
+  duration:
+    type: number
+    description: The duration of the video in seconds
+  poster:
+    type: string
+    format: uri
+    description: The URL of the video poster
+  visibility:
+    type: string
+    description: The visibility of the video
+    enum:
+      - public
+      - private
+    default: public
+  status:
+    type: string
+    description: The status of the video
+    enum:
+      - none
+      - original
+      - in_progress
+      - encoded
+      - archived
+      - vendor
+    default: none
+  archiveData:
+    type: object
+    description: Archive the video data in this object instead of removing it
+  vendorName:
+    type: string
+    description: The name of the vendor
+    enum:
+      - jwplayer
+      - dailymotion
+    default: jwplayer
+  vendorVideoId:
+    type: string
+    description: Video id on the third party service when the video is hosted externally
+  vendorApiKey:
+    type: string
+    description: Api key of the third party
+  AccountId:
+    type: string
+    format: uuid
+  tags:
+    type: object
+    description: Attribute storing extra data to be used for classification or search purposes
+    properties:
+      public:
+        type: array
+        items:
+          type: string
+          pattern: '/^[^:]+$/'
+      private:
+        type: array
+        items:
+          type: string
+          pattern: '/^[\wÀ-ú0-9 ]+(?::[\wÀ-ú0-9 ]+)?$/'

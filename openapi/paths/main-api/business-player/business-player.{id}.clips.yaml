@@ -1,0 +1,20 @@
+get:
+  tags:
+    - Main API - Conference player
+  summary: Fetch the list of a conference player's clips
+  description: Fetch the list of a conference player's clips
+  parameters:
+    - $ref: '#/components/parameters/id'
+  responses:
+    '200':
+      description: List of clips
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Clip'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'

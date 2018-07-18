@@ -50,4 +50,4 @@ post:
     '403':
       $ref: '#/components/responses/UserNotAuthorized'
     '404':
-      $ref: '#/components/responses/NotFoundError'
+      $ref: '#/components/responses/NotFound'
