@@ -16,6 +16,7 @@ Every updates converts the open api specs into slate markdown and then publish t
 
 -  clone this project
 - `npm install`
+- `npm run docker:init`
 
 ## Usage
 

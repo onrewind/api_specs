@@ -1,6 +1,6 @@
 name: id
 in: path
-description: the uuid of the user to delete
+description: the uuid of the object
 required: true
 schema:
   type: string
