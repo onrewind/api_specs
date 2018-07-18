@@ -70,7 +70,7 @@ paths:
         '403':
           $ref: '#/components/responses/UserNotAuthorized'
         '404':
-          $ref: '#/components/responses/NotFoundError'
+          $ref: '#/components/responses/NotFound'
   /auth/logout:
     post:
       tags:
@@ -90,6 +90,217 @@ paths:
                     description: >-
                       message describing if the token is already expired or if
                       it's been successfully logged out
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  /main-api/auth/ping:
+    get:
+      security: []
+      tags:
+        - Main API - Auth
+      summary: Test API is up and running
+      description: Test API is up and running
+      responses:
+        '200':
+          description: The API returns 'ok'
+          content:
+            text/plain:
+              schema:
+                type: string
+                default: ok
+  /main-api/business/main-api/business-player:
+    post:
+      tags:
+        - Main API - Conference player
+      summary: Create a new conference player
+      description: Create a new conference player
+      requestBody:
+        description: conference player data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BusinessPlayer'
+      responses:
+        '201':
+          description: The user conference player created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessPlayer'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    get:
+      tags:
+        - Main API - Conference player
+      summary: Index of conference players
+      description: Index of conference players
+      responses:
+        '200':
+          description: A list of conference players
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BusinessPlayer'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/main-api/business-player/{id}':
+    get:
+      tags:
+        - Main API - Conference player
+      summary: Fetch a conference player
+      description: Fetch a conference player matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Conference player data matching the id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessPlayer'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Main API - Conference player
+      summary: Update a conference player matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        description: conference player data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BusinessPlayer'
+      responses:
+        '200':
+          description: Updated conference player
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessPlayer'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags:
+        - Main API - Conference player
+      summary: Delete a conference player
+      description: Delete a conference player
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: the conference player has been deleted successfully
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  '/main-api/business-player/{id}/clips':
+    get:
+      tags:
+        - Main API - Conference player
+      summary: Fetch the list of a conference player's clips
+      description: Fetch the list of a conference player's clips
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: List of clips
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Clip'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  '/main-api/business-player/{id}/embed':
+    get:
+      tags:
+        - Main API - Conference player
+      summary: Fetch a conference player's embed code
+      description: Fetch a conference player's embed code
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: HTML embed code for the business player
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  '/main-api/business-player/{id}/poster':
+    put:
+      tags:
+        - Main API - Conference player
+      summary: Update a conference player poster
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        required: true
+        description: conference player data to be sent
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                poster:
+                  type: string
+                text:
+                  type: string
+              required:
+                - poster
+                - email
+      responses:
+        '200':
+          description: Updated conference player
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessPlayer'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  '/main-api/business-player/{id}/process-end-live':
+    post:
+      tags:
+        - Main API - Conference player
+      summary: Process a live conference's switch to 'replay' state
+      description: Process a live conference's switch to 'replay' state
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        description: id of the conference player
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BusinessPlayer'
+      responses:
+        '200':
+          description: The user conference player created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Video'
         '400':
           $ref: '#/components/responses/InvalidModel'
         '403':
@@ -844,7 +1055,7 @@ components:
     id:
       name: id
       in: path
-      description: the uuid of the user to delete
+      description: the uuid of the object
       required: true
       schema:
         type: string
@@ -915,6 +1126,75 @@ components:
           type: string
           format: uuid
           description: Reference to a sport instance
+    BusinessPlayer:
+      title: BusinessPlayer
+      required:
+        - name
+        - organiserName
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        AccountId:
+          type: string
+          format: uuid
+        name:
+          type: string
+          description: Conference player's name
+        description:
+          type: string
+          description: Conference player's description
+        organiserName:
+          type: string
+          description: The name of the conference organiser
+        state:
+          type: string
+          description: The state of the player
+          enum:
+            - liveOn
+            - liveOff
+            - replay
+          default: replay
+        placeholder:
+          type: object
+          description: Attribute storing extra data about the conference player placeholder
+          properties:
+            poster:
+              type: string
+              description: The URL of the placeholder image
+            text:
+              type: string
+              description: The text associated to the placeholder
+        options:
+          type: object
+          description: Attribute storing extra data about the conference player
+          properties:
+            autostart:
+              type: boolean
+            chapterOnLoad:
+              type: boolean
+            chaptersTitle:
+              type: string
+            initialStartingTime:
+              type: integer
+            showControls:
+              type: boolean
+        startDate:
+          type: string
+          description: The date when the conference starts
+          format: date-time
+        endDate:
+          type: string
+          description: The date when the conference ends
+          format: date-time
+        activatedModules:
+          type: array
+          description: The list of active modules for this conference player
+          items:
+            type: integer
+    Clip:
+      $ref: ./Clip.yaml
     Error:
       title: Error
       type: object
@@ -1167,6 +1447,83 @@ components:
               type: object
             opta:
               type: object
+    Video:
+      title: Video
+      required:
+        - name
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          description: The name of the video
+        description:
+          type: string
+          description: The description of the video
+        duration:
+          type: number
+          description: The duration of the video in seconds
+        poster:
+          type: string
+          format: uri
+          description: The URL of the video poster
+        visibility:
+          type: string
+          description: The visibility of the video
+          enum:
+            - public
+            - private
+          default: public
+        status:
+          type: string
+          description: The status of the video
+          enum:
+            - none
+            - original
+            - in_progress
+            - encoded
+            - archived
+            - vendor
+          default: none
+        archiveData:
+          type: object
+          description: Archive the video data in this object instead of removing it
+        vendorName:
+          type: string
+          description: The name of the vendor
+          enum:
+            - jwplayer
+            - dailymotion
+          default: jwplayer
+        vendorVideoId:
+          type: string
+          description: >-
+            Video id on the third party service when the video is hosted
+            externally
+        vendorApiKey:
+          type: string
+          description: Api key of the third party
+        AccountId:
+          type: string
+          format: uuid
+        tags:
+          type: object
+          description: >-
+            Attribute storing extra data to be used for classification or search
+            purposes
+          properties:
+            public:
+              type: array
+              items:
+                type: string
+                pattern: '/^[^:]+$/'
+            private:
+              type: array
+              items:
+                type: string
+                pattern: '/^[wÀ-ú0-9 ]+(?::[wÀ-ú0-9 ]+)?$/'
   securitySchemes:
     accessToken:
       type: http
