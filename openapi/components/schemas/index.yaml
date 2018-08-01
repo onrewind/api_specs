@@ -4,6 +4,8 @@ BusinessPlayer:
   $ref: ./BusinessPlayer.yaml
 Clip:
   $ref: ./Clip.yaml
+CMSItem:
+  $ref: ./CMSItem.yaml
 Error:
   $ref: ./Error.yaml
 Group:

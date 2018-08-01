@@ -1,0 +1,14 @@
+get:
+  tags:
+    - CMS Service - Items
+  summary: Index of items stored in the CMS
+  description: Get the list of all items.
+  responses:
+    '200':
+      description: A list of items
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/CMSItem'
