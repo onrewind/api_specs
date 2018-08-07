@@ -94,6 +94,8 @@ paths:
           $ref: '#/components/responses/InvalidModel'
         '403':
           $ref: '#/components/responses/UserNotAuthorized'
+  /cms-service/items:
+    $ref: ./cms-service/items/items.yaml
   /main-api/auth/ping:
     get:
       security: []
@@ -1195,6 +1197,41 @@ components:
             type: integer
     Clip:
       $ref: ./Clip.yaml
+    CMSItem:
+      title: CMSItem
+      required:
+        - system
+        - elements
+      properties:
+        system:
+          type: object
+          required:
+            - id
+            - name
+            - type
+            - last_modified
+          description: Metadata about the item as stored in the CMS
+          properties:
+            id:
+              type: string
+              description: The id of the item as assigned automatically by the CMS
+            name:
+              type: string
+              description: The name of the item as entered in the CMS
+            type:
+              type: string
+              description: The type of item
+            last_modified:
+              type: string
+              description: The date and time when the item was last modified in the CMS
+        elements:
+          type: object
+          description: A container object for one or several objects making up this item
+          properties:
+            event:
+              type: string
+            video:
+              $ref: '#/components/schemas/Video'
     Error:
       title: Error
       type: object
