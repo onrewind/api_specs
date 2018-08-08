@@ -95,7 +95,57 @@ paths:
         '403':
           $ref: '#/components/responses/UserNotAuthorized'
   /cms-service/items:
-    $ref: ./cms-service/items/items.yaml
+    get:
+      tags:
+        - CMS Service - Items
+      summary: Index of items stored in the CMS
+      description: Get the list of all items.
+      parameters:
+        - in: header
+          name: x-account-key
+          schema:
+            type: string
+          description: >-
+            The key assigned to the On Rewind customer account - used for
+            authentication.
+          required: true
+        - in: query
+          name: type
+          schema:
+            type: string
+          description: The type of the items that should be returned by the CMS.
+          required: true
+        - in: query
+          name: language
+          schema:
+            type: string
+          description: The language of the items that should be returned by the CMS.
+        - in: query
+          name: order
+          schema:
+            type: string
+          description: >-
+            The name of the criteria used to sort items (one of id, name, type,
+            lastModified).
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          description: Number of content items to retrieve in a single request
+        - in: query
+          name: skip
+          schema:
+            type: integer
+          description: Number of content items to skip
+      responses:
+        '200':
+          description: A list of items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CMSItem'
   /main-api/auth/ping:
     get:
       security: []
@@ -1196,7 +1246,37 @@ components:
           items:
             type: integer
     Clip:
-      $ref: ./Clip.yaml
+      title: Clip
+      required:
+        - name
+        - meta
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          description: The name of the clip
+        state:
+          type: string
+          description: The state of the clip
+          enum:
+            - none
+            - error
+            - ready
+            - in_progress
+          default: none
+        meta:
+          type: object
+          description: Attribute storing extra data about the clip
+          properties:
+            format:
+              type: string
+              description: The file format (ex MP4)
+            duration:
+              type: integer
+              description: The duration of the clip in seconds
     CMSItem:
       title: CMSItem
       required:
