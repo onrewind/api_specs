@@ -161,8 +161,8 @@ paths:
               schema:
                 type: string
                 default: ok
-  /main-api/business-player:
-    post:
+  /main-api/business-players:
+    post:
       tags:
         - Main API - Conference player
       summary: Create a new conference player
@@ -201,7 +201,7 @@ paths:
                   $ref: '#/components/schemas/BusinessPlayer'
         '403':
           $ref: '#/components/responses/UserNotAuthorized'
-  '/main-api/business-player/{id}':
+  '/main-api/business-players/{id}':
     get:
       tags:
         - Main API - Conference player
@@ -258,7 +258,7 @@ paths:
           $ref: '#/components/responses/UserNotAuthorized'
         '404':
           $ref: '#/components/responses/NotFound'
-  '/main-api/business-player/{id}/clips':
+  '/main-api/business-players/{id}/clips':
     get:
       tags:
         - Main API - Conference player
@@ -279,7 +279,7 @@ paths:
           $ref: '#/components/responses/UserNotAuthorized'
         '404':
           $ref: '#/components/responses/NotFound'
-  '/main-api/business-player/{id}/embed':
+  '/main-api/business-players/{id}/embed':
     get:
       tags:
         - Main API - Conference player
@@ -298,7 +298,7 @@ paths:
           $ref: '#/components/responses/UserNotAuthorized'
         '404':
           $ref: '#/components/responses/NotFound'
-  '/main-api/business-player/{id}/poster':
+  '/main-api/business-players/{id}/poster':
     put:
       tags:
         - Main API - Conference player
@@ -331,7 +331,7 @@ paths:
           $ref: '#/components/responses/UserNotAuthorized'
         '404':
           $ref: '#/components/responses/NotFound'
-  '/main-api/business-player/{id}/process-end-live':
+  '/main-api/business-players/{id}/process-end-live':
     post:
       tags:
         - Main API - Conference player
