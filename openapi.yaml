@@ -161,7 +161,7 @@ paths:
               schema:
                 type: string
                 default: ok
-  /main-api/business/main-api/business-player:
+  /main-api/business-player:
     post:
       tags:
         - Main API - Conference player
