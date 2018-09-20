@@ -28,18 +28,18 @@
 /main-api/auth/ping:
   $ref: ./main-api/auth/auth.ping.yaml
 #Business Player
-/main-api/business-player:
-  $ref: ./main-api/business-player/business-player.yaml
-/main-api/business-player/{id}:
-  $ref: ./main-api/business-player/business-player.{id}.yaml
-/main-api/business-player/{id}/clips:
-  $ref: ./main-api/business-player/business-player.{id}.clips.yaml
-/main-api/business-player/{id}/embed:
-  $ref: ./main-api/business-player/business-player.{id}.embed.yaml
-/main-api/business-player/{id}/poster:
-  $ref: ./main-api/business-player/business-player.{id}.poster.yaml
-/main-api/business-player/{id}/process-end-live:
-  $ref: ./main-api/business-player/business-player.{id}.process-end-live.yaml
+/main-api/business-players:
+  $ref: ./main-api/business-players/business-players.yaml
+/main-api/business-players/{id}:
+  $ref: ./main-api/business-players/business-players.{id}.yaml
+/main-api/business-players/{id}/clips:
+  $ref: ./main-api/business-players/business-players.{id}.clips.yaml
+/main-api/business-players/{id}/embed:
+  $ref: ./main-api/business-players/business-players.{id}.embed.yaml
+/main-api/business-players/{id}/poster:
+  $ref: ./main-api/business-players/business-players.{id}.poster.yaml
+/main-api/business-players/{id}/process-end-live:
+  $ref: ./main-api/business-players/business-players.{id}.process-end-live.yaml
 #Sports
 /main-api/sports:
   $ref: ./main-api/sports/sports.yaml
