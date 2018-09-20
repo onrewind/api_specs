@@ -28,7 +28,7 @@
 /main-api/auth/ping:
   $ref: ./main-api/auth/auth.ping.yaml
 #Business Player
-/main-api/business/main-api/business-player:
+/main-api/business-player:
   $ref: ./main-api/business-player/business-player.yaml
 /main-api/business-player/{id}:
   $ref: ./main-api/business-player/business-player.{id}.yaml
