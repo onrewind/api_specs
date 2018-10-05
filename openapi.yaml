@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 5.4.0
+  version: 5.12.3
   title: On Rewind API
   description: >
     On Rewind API documentation based on OpenAPI 3.0.
@@ -164,11 +164,13 @@ paths:
   /main-api/business-players:
     post:
       tags:
-        - Main API - Conference player
-      summary: Create a new conference player
-      description: Create a new conference player
+        - Main API - Business player
+      summary: Create a new business player
+      description: >-
+        Create a new business player. These data are used by our business
+        (conference) player
       requestBody:
-        description: conference player data to be sent
+        description: business player data to be sent
         required: true
         content:
           application/json:
@@ -176,7 +178,7 @@ paths:
               $ref: '#/components/schemas/BusinessPlayer'
       responses:
         '201':
-          description: The user conference player created
+          description: The business player created
           content:
             application/json:
               schema:
@@ -187,12 +189,12 @@ paths:
           $ref: '#/components/responses/UserNotAuthorized'
     get:
       tags:
-        - Main API - Conference player
-      summary: Index of conference players
-      description: Index of conference players
+        - Main API - Business player
+      summary: Index of business players
+      description: Index of business players
       responses:
         '200':
-          description: A list of conference players
+          description: A list of business players
           content:
             application/json:
               schema:
@@ -203,15 +205,18 @@ paths:
           $ref: '#/components/responses/UserNotAuthorized'
   '/main-api/business-players/{id}':
     get:
+      security: []
       tags:
-        - Main API - Conference player
-      summary: Fetch a conference player
-      description: Fetch a conference player matching the given id
+        - Main API - Business player
+      summary: Fetch a business player
+      description: >-
+        Fetch a business player matching the given id. Used by our business
+        player, therefore this route is public.
       parameters:
         - $ref: '#/components/parameters/id'
       responses:
         '200':
-          description: Conference player data matching the id
+          description: Business player data matching the id
           content:
             application/json:
               schema:
@@ -222,12 +227,12 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       tags:
-        - Main API - Conference player
-      summary: Update a conference player matching the given id
+        - Main API - Business player
+      summary: Update a business player matching the given id
       parameters:
         - $ref: '#/components/parameters/id'
       requestBody:
-        description: conference player data to be sent
+        description: business player data to be sent
         required: true
         content:
           application/json:
@@ -235,7 +240,7 @@ paths:
               $ref: '#/components/schemas/BusinessPlayer'
       responses:
         '200':
-          description: Updated conference player
+          description: Updated business player
           content:
             application/json:
               schema:
@@ -246,14 +251,14 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       tags:
-        - Main API - Conference player
-      summary: Delete a conference player
-      description: Delete a conference player
+        - Main API - Business player
+      summary: Delete a business player
+      description: Delete a business player
       parameters:
         - $ref: '#/components/parameters/id'
       responses:
         '204':
-          description: the conference player has been deleted successfully
+          description: the business player has been deleted successfully
         '403':
           $ref: '#/components/responses/UserNotAuthorized'
         '404':
@@ -261,9 +266,9 @@ paths:
   '/main-api/business-players/{id}/clips':
     get:
       tags:
-        - Main API - Conference player
-      summary: Fetch the list of a conference player's clips
-      description: Fetch the list of a conference player's clips
+        - Main API - Business player
+      summary: Fetch the list of a business player's clips
+      description: Fetch the list of a business player's clips
       parameters:
         - $ref: '#/components/parameters/id'
       responses:
@@ -282,9 +287,9 @@ paths:
   '/main-api/business-players/{id}/embed':
     get:
       tags:
-        - Main API - Conference player
-      summary: Fetch a conference player's embed code
-      description: Fetch a conference player's embed code
+        - Main API - Business player
+      summary: Fetch a business player's embed code
+      description: Fetch a business player's embed code
       parameters:
         - $ref: '#/components/parameters/id'
       responses:
@@ -298,49 +303,16 @@ paths:
           $ref: '#/components/responses/UserNotAuthorized'
         '404':
           $ref: '#/components/responses/NotFound'
-  '/main-api/business-players/{id}/poster':
-    put:
-      tags:
-        - Main API - Conference player
-      summary: Update a conference player poster
-      parameters:
-        - $ref: '#/components/parameters/id'
-      requestBody:
-        required: true
-        description: conference player data to be sent
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                poster:
-                  type: string
-                text:
-                  type: string
-              required:
-                - poster
-                - email
-      responses:
-        '200':
-          description: Updated conference player
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BusinessPlayer'
-        '403':
-          $ref: '#/components/responses/UserNotAuthorized'
-        '404':
-          $ref: '#/components/responses/NotFound'
   '/main-api/business-players/{id}/process-end-live':
     post:
       tags:
-        - Main API - Conference player
-      summary: Process a live conference's switch to 'replay' state
-      description: Process a live conference's switch to 'replay' state
+        - Main API - Business player
+      summary: Process a live business player's switch to 'replay' state
+      description: Process a live business's switch to 'replay' state
       parameters:
         - $ref: '#/components/parameters/id'
       requestBody:
-        description: id of the conference player
+        description: id of the business player
         required: true
         content:
           application/json:
@@ -348,7 +320,7 @@ paths:
               $ref: '#/components/schemas/BusinessPlayer'
       responses:
         '200':
-          description: The user conference player created
+          description: The business player created
           content:
             application/json:
               schema:
@@ -357,6 +329,226 @@ paths:
           $ref: '#/components/responses/InvalidModel'
         '403':
           $ref: '#/components/responses/UserNotAuthorized'
+  /main-api/events:
+    post:
+      tags:
+        - Main API - Event
+      summary: Create a new event
+      description: Create a new event. Events are used by our sports player.
+      requestBody:
+        description: event data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+      responses:
+        '201':
+          description: The event created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    get:
+      tags:
+        - Main API - Event
+      summary: Index of events
+      description: Index of events
+      responses:
+        '200':
+          description: A list of events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/main-api/events/{id}':
+    get:
+      security: []
+      tags:
+        - Main API - Event
+      summary: Fetch an event
+      description: Fetch an event matching the given id.
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Event data matching the id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Main API - Event
+      summary: Update an event matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        description: event data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+      responses:
+        '200':
+          description: Updated event
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags:
+        - Main API - Event
+      summary: Delete an event
+      description: Delete an event
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: the event has been deleted successfully
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  '/main-api/events/{id}/player':
+    get:
+      security: []
+      tags:
+        - Main API - Event
+      summary: Fetch an event with extra data needed for the player.
+      description: >-
+        Fetch an event matching the given id. Similar to /events/:id but with
+        extra data populated needed for the player. This route is using caching
+        and therefore is recommended to get good performance.
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Event data matching the id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /main-api/events/fixtures:
+    get:
+      security: []
+      tags:
+        - Main API - Event
+      summary: Fetch upcoming events.
+      description: >-
+        Select upcoming events, compared to the server time. You can specify a
+        limit of results as well as filtering by account id. Events must be in
+        [liveOff, LiveDailymotion, LiveOn] state.
+      parameters:
+        - in: query
+          name: accountId
+          schema:
+            type: string
+          description: The customer account id
+        - in: query
+          name: limit
+          schema:
+            type: number
+            default: 9
+          description: The number of events to return
+      responses:
+        '200':
+          description: A list of upcoming events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /main-api/events/rewinds:
+    get:
+      security: []
+      tags:
+        - Main API - Event
+      summary: Fetch past events.
+      description: >-
+        Select past events, compared to the server time. You can specify a limit
+        of results as well as filtering by account id. Events must be in
+        [replay] state and have a video associated.
+      parameters:
+        - in: query
+          name: accountId
+          schema:
+            type: string
+          description: The customer account id
+        - in: query
+          name: limit
+          schema:
+            type: number
+            default: 9
+          description: The number of events to return
+      responses:
+        '200':
+          description: A list of past events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /main-api/events/spotlight:
+    get:
+      security: []
+      tags:
+        - Main API - Event
+      summary: Fetch a random event out of latest events.
+      description: Fetch a random event belonging to given account id.
+      parameters:
+        - in: query
+          name: accountId
+          schema:
+            type: string
+          description: The customer account id
+        - in: query
+          name: limit
+          schema:
+            type: number
+          description: The number of events to choose from
+      responses:
+        '200':
+          description: Event randomly chosen
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
   /main-api/sports:
     post:
       tags:
@@ -1188,9 +1380,6 @@ components:
           type: string
           format: uuid
           readOnly: true
-        AccountId:
-          type: string
-          format: uuid
         name:
           type: string
           description: Conference player's name
@@ -1245,6 +1434,34 @@ components:
           description: The list of active modules for this conference player
           items:
             type: integer
+        visibility:
+          type: string
+          description: The visibility of the player
+          enum:
+            - public
+            - private
+          default: public
+        tags:
+          type: object
+          description: Attribute storing extra data about the conference player placeholder
+          properties:
+            private:
+              type: array
+              description: List of private tag.
+              items:
+                type: string
+                description: 'it should respect the format: "key:value"'
+                pattern: '/^[wÀ-ú0-9 ]+(?::[wÀ-ú0-9 ]+)?$/'
+            public:
+              type: array
+              description: List of private tag.
+              items:
+                type: string
+                description: 'it should respect the format: "key:value"'
+                pattern: '/^[^:]+$/'
+        AccountId:
+          type: string
+          format: uuid
     Clip:
       title: Clip
       required:
@@ -1323,6 +1540,134 @@ components:
       required:
         - code
         - message
+    Event:
+      title: Event
+      required:
+        - name
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          description: Event's name
+        organiserName:
+          type: string
+          description: name of the organiser of the event
+        description:
+          type: string
+          description: Event's description
+        startDate:
+          type: string
+          description: The date when the event starts
+          format: date-time
+        endDate:
+          type: string
+          description: The date when the event ends
+          format: date-time
+        state:
+          type: string
+          description: The state of the event
+          enum:
+            - liveOn
+            - liveOff
+            - replay
+          default: replay
+        placeholder:
+          type: object
+          description: Attribute storing extra data about the event placeholder
+          properties:
+            poster:
+              type: string
+              description: The URL of the placeholder image
+            text:
+              type: string
+              description: The text associated to the placeholder
+        activatedModules:
+          type: array
+          description: The list of active modules for this event
+          items:
+            type: integer
+        pricingPlans:
+          type: array
+          description: Attribute storing payment plan. Need payment module activated
+          items:
+            type: string
+            description: stripe plan id
+        geoBlockingMapping:
+          type: object
+          description: >-
+            contains an object with key=CountryCode and value="onrewind.com,
+            http://myplayer.onrewind.com/player.html"
+          deprecated: true
+        dailymotionLiveStreamId:
+          type: string
+          description: holding dailymotion stream id
+        youtubeLiveStreamId:
+          type: string
+          description: holding youtube stream id
+          deprecated: true
+        hashtag:
+          type: string
+          description: >-
+            twitter hashtag of the event, used to build twitter feed around an
+            event
+        options:
+          type: object
+          description: Attribute storing extra data about the event
+        score:
+          type: object
+          deprecated: true
+          description: >-
+            score of current event, this field was added quickly to solve a
+            customer problemn. We do not recommend using this field.
+          properties:
+            teamIn:
+              type: string
+              description: name of home team
+            teamOut:
+              type: string
+              description: name of away team
+            scoreIn:
+              type: string
+              description: socre of home team
+            scoreOut:
+              type: string
+              description: socre of away team
+        facebookPlaylistId:
+          type: string
+          description: >-
+            facebook playlist id, used to upload event's clips to customer
+            facebook page inside this playlist.
+        visibility:
+          type: string
+          description: The visibility of the player
+          enum:
+            - public
+            - private
+          default: public
+        tags:
+          type: object
+          description: Attribute storing extra data about the conference player placeholder
+          properties:
+            private:
+              type: array
+              description: List of private tag.
+              items:
+                type: string
+                description: 'it should respect the format: "key:value"'
+                pattern: '/^[wÀ-ú0-9 ]+(?::[wÀ-ú0-9 ]+)?$/'
+            public:
+              type: array
+              description: List of private tag.
+              items:
+                type: string
+                description: 'it should respect the format: "key:value"'
+                pattern: '/^[^:]+$/'
+        AccountId:
+          type: string
+          format: uuid
     Group:
       title: Group
       required:
@@ -1631,16 +1976,20 @@ components:
             Attribute storing extra data to be used for classification or search
             purposes
           properties:
-            public:
-              type: array
-              items:
-                type: string
-                pattern: '/^[^:]+$/'
             private:
               type: array
+              description: List of private tag.
               items:
                 type: string
+                description: 'it should respect the format: "key:value"'
                 pattern: '/^[wÀ-ú0-9 ]+(?::[wÀ-ú0-9 ]+)?$/'
+            public:
+              type: array
+              description: List of private tag.
+              items:
+                type: string
+                description: 'it should respect the format: "key:value"'
+                pattern: '/^[^:]+$/'
   securitySchemes:
     accessToken:
       type: http
