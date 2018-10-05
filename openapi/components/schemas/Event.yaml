@@ -98,7 +98,7 @@ properties:
     default: public
   tags:
     type: object
-    description: Attribute storing extra data about the conference player placeholder
+    description: Attribute storing extra data to be used for classification or search purposes
     properties:
       private:
         type: array

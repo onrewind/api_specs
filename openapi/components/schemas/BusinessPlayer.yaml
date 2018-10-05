@@ -9,13 +9,13 @@ properties:
     readOnly: true
   name:
     type: string
-    description: Conference player's name
+    description: Business player's name
   description:
     type: string
-    description: Conference player's description
+    description: Business player's description
   organiserName:
     type: string
-    description: The name of the conference organiser
+    description: The name of the business organiser
   state:
     type: string
     description: The state of the player
@@ -26,7 +26,7 @@ properties:
     default: replay
   placeholder:
     type: object
-    description: Attribute storing extra data about the conference player placeholder
+    description: Attribute storing extra data about the business player placeholder
     properties:
       poster:
         type: string
@@ -36,7 +36,7 @@ properties:
         description: The text associated to the placeholder
   options:
     type: object
-    description: Attribute storing extra data about the conference player
+    description: Attribute storing extra data about the business player
     properties:
       autostart:
         type: boolean
@@ -50,15 +50,15 @@ properties:
         type: boolean
   startDate:
     type: string
-    description: The date when the conference starts
+    description: The date when the business starts
     format: date-time
   endDate:
     type: string
-    description: The date when the conference ends
+    description: The date when the business ends
     format: date-time
   activatedModules:
     type: array
-    description: The list of active modules for this conference player
+    description: The list of active modules for this business player
     items:
       type: integer
   visibility:
@@ -70,7 +70,7 @@ properties:
     default: public
   tags:
     type: object
-    description: Attribute storing extra data about the conference player placeholder
+    description: Attribute storing extra data to be used for classification or search purposes
     properties:
       private:
         type: array
