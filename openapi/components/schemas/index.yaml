@@ -8,6 +8,8 @@ CMSItem:
   $ref: ./CMSItem.yaml
 Error:
   $ref: ./Error.yaml
+Event:
+  $ref: ./Event.yaml
 Group:
   $ref: ./Group.yaml
 Module:

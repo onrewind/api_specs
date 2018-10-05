@@ -1,12 +1,12 @@
 post:
   tags:
-    - Main API - Conference player
-  summary: Process a live conference's switch to 'replay' state
-  description: Process a live conference's switch to 'replay' state
+    - Main API - Business player
+  summary: Process a live business player's switch to 'replay' state
+  description: Process a live business's switch to 'replay' state
   parameters:
     - $ref: '#/components/parameters/id'
   requestBody:
-    description: id of the conference player
+    description: id of the business player
     required: true
     content:
       application/json:
@@ -14,7 +14,7 @@ post:
           $ref: '#/components/schemas/BusinessPlayer'
   responses:
     '200':
-      description: The user conference player created
+      description: The business player created
       content:
         application/json:
           schema:

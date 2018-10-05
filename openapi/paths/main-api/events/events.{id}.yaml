@@ -1,56 +1,56 @@
 get:
   security: [] #disable security
   tags:
-    - Main API - Business player
-  summary: Fetch a business player
-  description: Fetch a business player matching the given id. Used by our business player, therefore this route is public.
+    - Main API - Event
+  summary: Fetch an event
+  description: Fetch an event matching the given id.
   parameters:
     - $ref: '#/components/parameters/id'
   responses:
     '200':
-      description: Business player data matching the id
+      description: Event data matching the id
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/BusinessPlayer'
+            $ref: '#/components/schemas/Event'
     '403':
       $ref: '#/components/responses/UserNotAuthorized'
     '404':
       $ref: '#/components/responses/NotFound'
 put:
   tags:
-    - Main API - Business player
-  summary: Update a business player matching the given id
+    - Main API - Event
+  summary: Update an event matching the given id
   parameters:
     - $ref: '#/components/parameters/id'
   requestBody:
-    description: business player data to be sent
+    description: event data to be sent
     required: true
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/BusinessPlayer'
+          $ref: '#/components/schemas/Event'
   responses:
     '200':
-      description: Updated business player
+      description: Updated event
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/BusinessPlayer'
+            $ref: '#/components/schemas/Event'
     '403':
       $ref: '#/components/responses/UserNotAuthorized'
     '404':
       $ref: '#/components/responses/NotFound'
 delete:
   tags:
-    - Main API - Business player
-  summary: Delete a business player
-  description: Delete a business player
+    - Main API - Event
+  summary: Delete an event
+  description: Delete an event
   parameters:
     - $ref: '#/components/parameters/id'
   responses:
     '204':
-      description: the business player has been deleted successfully
+      description: the event has been deleted successfully
     '403':
       $ref: '#/components/responses/UserNotAuthorized'
     '404':

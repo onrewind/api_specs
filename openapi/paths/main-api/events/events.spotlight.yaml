@@ -1,0 +1,28 @@
+get:
+  security: [] #disable security
+  tags:
+    - Main API - Event
+  summary: Fetch a random event out of latest events.
+  description: Fetch a random event belonging to given account id.
+  parameters:
+  - in: query
+    name: accountId
+    schema:
+      type: string
+    description: The customer account id
+  - in: query
+    name: limit
+    schema:
+      type: number
+    description: The number of events to choose from
+  responses:
+    '200':
+      description: Event randomly chosen
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Event'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'

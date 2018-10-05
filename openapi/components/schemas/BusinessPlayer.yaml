@@ -7,9 +7,6 @@ properties:
     type: string
     format: uuid
     readOnly: true
-  AccountId:
-    type: string
-    format: uuid
   name:
     type: string
     description: Conference player's name
@@ -64,3 +61,32 @@ properties:
     description: The list of active modules for this conference player
     items:
       type: integer
+  visibility:
+    type: string
+    description: The visibility of the player
+    enum:
+    - public
+    - private
+    default: public
+  tags:
+    type: object
+    description: Attribute storing extra data about the conference player placeholder
+    properties:
+      private:
+        type: array
+        description: List of private tag.
+        items:
+          type: string
+          description: 'it should respect the format: "key:value"'
+          pattern: '/^[\wÀ-ú0-9 ]+(?::[\wÀ-ú0-9 ]+)?$/'
+      public:
+        type: array
+        description: List of private tag.
+        items:
+          type: string
+          description: 'it should respect the format: "key:value"'
+          pattern: '/^[^:]+$/'
+  AccountId:
+    type: string
+    format: uuid
+

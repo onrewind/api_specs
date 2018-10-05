@@ -1,8 +1,8 @@
 get:
   tags:
-    - Main API - Conference player
-  summary: Fetch a conference player's embed code
-  description: Fetch a conference player's embed code
+    - Main API - Business player
+  summary: Fetch a business player's embed code
+  description: Fetch a business player's embed code
   parameters:
     - $ref: '#/components/parameters/id'
   responses:

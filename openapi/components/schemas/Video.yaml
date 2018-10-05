@@ -60,13 +60,17 @@ properties:
     type: object
     description: Attribute storing extra data to be used for classification or search purposes
     properties:
-      public:
-        type: array
-        items:
-          type: string
-          pattern: '/^[^:]+$/'
       private:
         type: array
+        description: List of private tag.
         items:
           type: string
+          description: 'it should respect the format: "key:value"'
           pattern: '/^[\wÀ-ú0-9 ]+(?::[\wÀ-ú0-9 ]+)?$/'
+      public:
+        type: array
+        description: List of private tag.
+        items:
+          type: string
+          description: 'it should respect the format: "key:value"'
+          pattern: '/^[^:]+$/'

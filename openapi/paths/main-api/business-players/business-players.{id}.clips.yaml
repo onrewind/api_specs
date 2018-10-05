@@ -1,8 +1,8 @@
 get:
   tags:
-    - Main API - Conference player
-  summary: Fetch the list of a conference player's clips
-  description: Fetch the list of a conference player's clips
+    - Main API - Business player
+  summary: Fetch the list of a business player's clips
+  description: Fetch the list of a business player's clips
   parameters:
     - $ref: '#/components/parameters/id'
   responses:

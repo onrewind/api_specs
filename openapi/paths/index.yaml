@@ -27,7 +27,7 @@
 #Auth
 /main-api/auth/ping:
   $ref: ./main-api/auth/auth.ping.yaml
-#Business Player
+#Business Players
 /main-api/business-players:
   $ref: ./main-api/business-players/business-players.yaml
 /main-api/business-players/{id}:
@@ -36,10 +36,21 @@
   $ref: ./main-api/business-players/business-players.{id}.clips.yaml
 /main-api/business-players/{id}/embed:
   $ref: ./main-api/business-players/business-players.{id}.embed.yaml
-/main-api/business-players/{id}/poster:
-  $ref: ./main-api/business-players/business-players.{id}.poster.yaml
 /main-api/business-players/{id}/process-end-live:
   $ref: ./main-api/business-players/business-players.{id}.process-end-live.yaml
+#Events
+/main-api/events:
+  $ref: ./main-api/events/events.yaml
+/main-api/events/{id}:
+  $ref: ./main-api/events/events.{id}.yaml
+/main-api/events/{id}/player:
+  $ref: ./main-api/events/events.{id}.player.yaml
+/main-api/events/fixtures:
+  $ref: ./main-api/events/events.fixtures.yaml
+/main-api/events/rewinds:
+  $ref: ./main-api/events/events.rewinds.yaml
+/main-api/events/spotlight:
+  $ref: ./main-api/events/events.spotlight.yaml
 #Sports
 /main-api/sports:
   $ref: ./main-api/sports/sports.yaml

@@ -1,10 +1,10 @@
 post:
   tags:
-    - Main API - Conference player
-  summary: Create a new conference player
-  description: Create a new conference player
+    - Main API - Business player
+  summary: Create a new business player
+  description: Create a new business player. These data are used by our business (conference) player
   requestBody:
-    description: conference player data to be sent
+    description: business player data to be sent
     required: true
     content:
       application/json:
@@ -12,7 +12,7 @@ post:
           $ref: '#/components/schemas/BusinessPlayer'
   responses:
     '201':
-      description: The user conference player created
+      description: The business player created
       content:
         application/json:
           schema:
@@ -23,12 +23,12 @@ post:
       $ref: '#/components/responses/UserNotAuthorized'
 get:
   tags:
-    - Main API - Conference player
-  summary: Index of conference players
-  description: Index of conference players
+    - Main API - Business player
+  summary: Index of business players
+  description: Index of business players
   responses:
     '200':
-      description: A list of conference players
+      description: A list of business players
       content:
         application/json:
           schema:

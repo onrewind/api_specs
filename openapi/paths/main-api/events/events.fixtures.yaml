@@ -1,0 +1,31 @@
+get:
+  security: [] #disable security
+  tags:
+    - Main API - Event
+  summary: Fetch upcoming events.
+  description: Select upcoming events, compared to the server time. You can specify a limit of results as well as filtering by account id. Events must be in [liveOff, LiveDailymotion, LiveOn] state.
+  parameters:
+  - in: query
+    name: accountId
+    schema:
+      type: string
+    description: The customer account id
+  - in: query
+    name: limit
+    schema:
+      type: number
+      default: 9
+    description: The number of events to return
+  responses:
+    '200':
+      description: A list of upcoming events
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Event'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'

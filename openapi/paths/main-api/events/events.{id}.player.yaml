@@ -1,0 +1,19 @@
+get:
+  security: [] #disable security
+  tags:
+    - Main API - Event
+  summary: Fetch an event with extra data needed for the player.
+  description: Fetch an event matching the given id. Similar to /events/:id but with extra data populated needed for the player. This route is using caching and therefore is recommended to get good performance.
+  parameters:
+    - $ref: '#/components/parameters/id'
+  responses:
+    '200':
+      description: Event data matching the id
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Event'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'
