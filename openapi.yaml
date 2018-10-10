@@ -97,7 +97,7 @@ paths:
   /cms-service-api/items:
     get:
       tags:
-        - CMS Service - Items
+        - CMS Service - Item
       summary: Index of items stored in the CMS
       description: Get the list of all items.
       parameters:
@@ -308,7 +308,9 @@ paths:
       tags:
         - Main API - Business player
       summary: Process a live business player's switch to 'replay' state
-      description: Process a live business's switch to 'replay' state
+      description: >-
+        Process a live business's switch to 'replay' state. It will create a new
+        video and associate to the business player once it's encoded.
       parameters:
         - $ref: '#/components/parameters/id'
       requestBody:
@@ -320,11 +322,11 @@ paths:
               $ref: '#/components/schemas/BusinessPlayer'
       responses:
         '200':
-          description: The business player created
+          description: The business player created.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Video'
+                $ref: '#/components/schemas/BusinessPlayer'
         '400':
           $ref: '#/components/responses/InvalidModel'
         '403':
@@ -649,7 +651,7 @@ paths:
   '/main-api/streamable/{streamableId}/streams':
     get:
       tags:
-        - Main API - Streams
+        - Main API - Stream
       summary: Index of streams
       description: Get a list of all streams
       parameters:
@@ -668,7 +670,7 @@ paths:
           $ref: '#/components/responses/UserNotAuthorized'
     post:
       tags:
-        - Main API - Streams
+        - Main API - Stream
       summary: Create a new stream
       description: Create a new stream
       parameters:
@@ -696,7 +698,7 @@ paths:
   '/main-api/streamable/{streamableId}/streams/{id}':
     delete:
       tags:
-        - Main API - Streams
+        - Main API - Stream
       summary: Delete a stream
       description: Delete the stream matching the given id
       parameters:
@@ -715,7 +717,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       tags:
-        - Main API - Streams
+        - Main API - Stream
       summary: Update the stream data
       description: Update the stream data matching given id
       parameters:
@@ -745,7 +747,7 @@ paths:
           $ref: '#/components/responses/ConflictInModel'
     get:
       tags:
-        - Main API - Streams
+        - Main API - Stream
       summary: Fetch a stream
       description: Fetch the stream matching the given id
       parameters:
@@ -762,10 +764,114 @@ paths:
           $ref: '#/components/responses/UserNotAuthorized'
         '404':
           $ref: '#/components/responses/NotFound'
+  /main-api/videos:
+    post:
+      tags:
+        - Main API - Video
+      summary: Create a new video
+      description: Create a new video.
+      requestBody:
+        description: video data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Video'
+      responses:
+        '201':
+          description: The video created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Video'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    get:
+      tags:
+        - Main API - Video
+      summary: Index of videos
+      description: Index of videos
+      responses:
+        '200':
+          description: A list of videos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Video'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/main-api/videos/{id}':
+    delete:
+      tags:
+        - Main API - Video
+      summary: Delete a video
+      description: Delete the video matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: The deleted video
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Video'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Main API - Video
+      summary: Update the video data
+      description: Update the video data matching given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        description: video data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Video'
+      responses:
+        '200':
+          description: Updated video
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Video'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    get:
+      tags:
+        - Main API - Video
+      summary: Fetch a video
+      description: Fetch the video matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Fetched video
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Video'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
   /users-service-api/accounts:
     get:
       tags:
-        - Users Service - Accounts
+        - Users Service - Account
       summary: Index of accounts
       description: Get a list of all accounts
       parameters:
@@ -783,7 +889,7 @@ paths:
           $ref: '#/components/responses/UserNotAuthorized'
     post:
       tags:
-        - Users Service - Accounts
+        - Users Service - Account
       summary: Create a new account
       description: Create a new account
       requestBody:
@@ -807,7 +913,7 @@ paths:
   '/users-service-api/accounts/{id}':
     delete:
       tags:
-        - Users Service - Accounts
+        - Users Service - Account
       summary: Delete an account
       description: Delete an account
       parameters:
@@ -821,7 +927,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       tags:
-        - Users Service - Accounts
+        - Users Service - Account
       summary: Update the account data
       description: it will update the account data matching given id
       parameters:
@@ -846,7 +952,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     get:
       tags:
-        - Users Service - Accounts
+        - Users Service - Account
       summary: Fetch an account
       description: Fetch an account matching the given id
       parameters:
@@ -865,7 +971,7 @@ paths:
   /users-service-api/groups:
     get:
       tags:
-        - Users Service - Groups
+        - Users Service - Group
       summary: Index of groups
       description: Get a list of all groups
       parameters:
@@ -883,7 +989,7 @@ paths:
           $ref: '#/components/responses/UserNotAuthorized'
     post:
       tags:
-        - Users Service - Groups
+        - Users Service - Group
       summary: Create a new group
       description: Create a new group
       requestBody:
@@ -907,7 +1013,7 @@ paths:
   '/users-service-api/groups/{id}':
     delete:
       tags:
-        - Users Service - Groups
+        - Users Service - Group
       summary: Delete an group
       description: Delete an group
       parameters:
@@ -921,7 +1027,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       tags:
-        - Users Service - Groups
+        - Users Service - Group
       summary: Update the group data
       description: it will update the group data matching given id
       parameters:
@@ -946,7 +1052,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     get:
       tags:
-        - Users Service - Groups
+        - Users Service - Group
       summary: Fetch an group
       description: Fetch an group matching the given id
       parameters:
@@ -965,7 +1071,7 @@ paths:
   /users-service-api/modules:
     get:
       tags:
-        - Users Service - Modules
+        - Users Service - Module
       summary: Index of modules
       description: Get a list of all modules
       parameters:
@@ -983,7 +1089,7 @@ paths:
           $ref: '#/components/responses/UserNotAuthorized'
     post:
       tags:
-        - Users Service - Modules
+        - Users Service - Module
       summary: Create a new module
       description: Create a new module
       requestBody:
@@ -1007,7 +1113,7 @@ paths:
   '/users-service-api/modules/{id}':
     delete:
       tags:
-        - Users Service - Modules
+        - Users Service - Module
       summary: Delete an module
       description: Delete an module
       parameters:
@@ -1021,7 +1127,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       tags:
-        - Users Service - Modules
+        - Users Service - Module
       summary: Update the module data
       description: it will update the module data matching given id
       parameters:
@@ -1046,7 +1152,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     get:
       tags:
-        - Users Service - Modules
+        - Users Service - Module
       summary: Fetch an module
       description: Fetch an module matching the given id
       parameters:
@@ -1065,7 +1171,7 @@ paths:
   /users-service-api/roles:
     get:
       tags:
-        - Users Service - Roles
+        - Users Service - Role
       summary: Index of roles
       description: Get a list of all roles
       parameters:
@@ -1083,7 +1189,7 @@ paths:
           $ref: '#/components/responses/UserNotAuthorized'
     post:
       tags:
-        - Users Service - Roles
+        - Users Service - Role
       summary: Create a new role
       description: Create a new role
       requestBody:
@@ -1107,7 +1213,7 @@ paths:
   '/users-service-api/roles/{id}':
     delete:
       tags:
-        - Users Service - Roles
+        - Users Service - Role
       summary: Delete an role
       description: Delete an role
       parameters:
@@ -1121,7 +1227,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       tags:
-        - Users Service - Roles
+        - Users Service - Role
       summary: Update the role data
       description: it will update the role data matching given id
       parameters:
@@ -1146,7 +1252,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     get:
       tags:
-        - Users Service - Roles
+        - Users Service - Role
       summary: Fetch an role
       description: Fetch an role matching the given id
       parameters:
@@ -1165,7 +1271,7 @@ paths:
   /users-service-api/users:
     get:
       tags:
-        - Users Service - Users
+        - Users Service - User
       summary: Index of users
       description: Get a list of all users
       parameters:
@@ -1183,7 +1289,7 @@ paths:
           $ref: '#/components/responses/UserNotAuthorized'
     post:
       tags:
-        - Users Service - Users
+        - Users Service - User
       summary: Create a new user
       description: Create a new user
       requestBody:
@@ -1207,7 +1313,7 @@ paths:
   /users-service-api/users/me:
     get:
       tags:
-        - Users Service - Users
+        - Users Service - User
       summary: Fetch my own data
       description: 'Based on current access token, it will fetch the user data'
       responses:
@@ -1223,7 +1329,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       tags:
-        - Users Service - Users
+        - Users Service - User
       summary: Update my own data
       description: 'Based on current access token, it will update the user data'
       requestBody:
@@ -1247,7 +1353,7 @@ paths:
   /users-service-api/users/me/context:
     get:
       tags:
-        - Users Service - Users
+        - Users Service - User
       summary: Fetch resources making up the context of a user
       description: >
         Based on current access token, it will fetch the user's Groups, Roles,
@@ -1979,9 +2085,6 @@ components:
         vendorApiKey:
           type: string
           description: Api key of the third party
-        AccountId:
-          type: string
-          format: uuid
         tags:
           type: object
           description: >-
@@ -2002,6 +2105,9 @@ components:
                 type: string
                 description: 'it should respect the format: "key:value"'
                 pattern: '/^[^:]+$/'
+        AccountId:
+          type: string
+          format: uuid
   securitySchemes:
     accessToken:
       type: http
