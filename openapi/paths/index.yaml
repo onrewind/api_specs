@@ -16,8 +16,8 @@
 ###### CMS SERVICE #######
 ##########################
 #Items
-/cms-service/items:
-  $ref: ./cms-service/items/items.yaml
+/cms-service-api/items:
+  $ref: ./cms-service-api/items/items.yaml
 
 
 ##########################
@@ -67,29 +67,29 @@
 ##########################
 
 # Accounts
-/users-service/accounts:
-  $ref: ./users-service/accounts/accounts.yaml
-/users-service/accounts/{id}:
-  $ref: ./users-service/accounts/accounts.{id}.yaml
+/users-service-api/accounts:
+  $ref: ./users-service-api/accounts/accounts.yaml
+/users-service-api/accounts/{id}:
+  $ref: ./users-service-api/accounts/accounts.{id}.yaml
 # Groups
-/users-service/groups:
-  $ref: ./users-service/groups/groups.yaml
-/users-service/groups/{id}:
-  $ref: ./users-service/groups/groups.{id}.yaml
+/users-service-api/groups:
+  $ref: ./users-service-api/groups/groups.yaml
+/users-service-api/groups/{id}:
+  $ref: ./users-service-api/groups/groups.{id}.yaml
 # Modules
-/users-service/modules:
-  $ref: ./users-service/modules/modules.yaml
-/users-service/modules/{id}:
-  $ref: ./users-service/modules/modules.{id}.yaml
+/users-service-api/modules:
+  $ref: ./users-service-api/modules/modules.yaml
+/users-service-api/modules/{id}:
+  $ref: ./users-service-api/modules/modules.{id}.yaml
 # Roles
-/users-service/roles:
-  $ref: ./users-service/roles/roles.yaml
-/users-service/roles/{id}:
-  $ref: ./users-service/roles/roles.{id}.yaml
+/users-service-api/roles:
+  $ref: ./users-service-api/roles/roles.yaml
+/users-service-api/roles/{id}:
+  $ref: ./users-service-api/roles/roles.{id}.yaml
 # Users
-/users-service/users:
-  $ref: ./users-service/users/users.yaml
-/users-service/users/me:
-  $ref: ./users-service/users/users.me.yaml
-/users-service/users/me/context:
-  $ref: ./users-service/users/users.me.context.yaml
+/users-service-api/users:
+  $ref: ./users-service-api/users/users.yaml
+/users-service-api/users/me:
+  $ref: ./users-service-api/users/users.me.yaml
+/users-service-api/users/me/context:
+  $ref: ./users-service-api/users/users.me.context.yaml

@@ -1,6 +1,7 @@
 title: "User"
 required:
   - username
+  - Groups
 properties:
   id:
     type: string
