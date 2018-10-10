@@ -16,7 +16,7 @@ properties:
       Type of the challenger, possible values are:
       - standard: the challenger is a challenger.
       - team: the challenger is a team. It has many teammate.
-      - teammate: the challenger is a teammate. It belongs to teammate.
+      - teammate: the challenger is a teammate. It belongs to team.
     default: 'standard'
   country:
     type: string
