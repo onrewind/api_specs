@@ -1,6 +1,6 @@
 delete:
   tags:
-    - Users Service - Roles
+    - Users Service - Role
   summary: Delete an role
   description: Delete an role
   parameters:
@@ -14,7 +14,7 @@ delete:
       $ref: '#/components/responses/NotFound'
 put:
   tags:
-    - Users Service - Roles
+    - Users Service - Role
   summary: Update the role data
   description: 'it will update the role data matching given id'
   parameters:
@@ -39,7 +39,7 @@ put:
       $ref: '#/components/responses/NotFound'
 get:
   tags:
-    - Users Service - Roles
+    - Users Service - Role
   summary: Fetch an role
   description: Fetch an role matching the given id
   parameters:

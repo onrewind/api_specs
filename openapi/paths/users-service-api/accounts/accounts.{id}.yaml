@@ -1,6 +1,6 @@
 delete:
   tags:
-    - Users Service - Accounts
+    - Users Service - Account
   summary: Delete an account
   description: Delete an account
   parameters:
@@ -14,7 +14,7 @@ delete:
       $ref: '#/components/responses/NotFound'
 put:
   tags:
-    - Users Service - Accounts
+    - Users Service - Account
   summary: Update the account data
   description: 'it will update the account data matching given id'
   parameters:
@@ -39,7 +39,7 @@ put:
       $ref: '#/components/responses/NotFound'
 get:
   tags:
-    - Users Service - Accounts
+    - Users Service - Account
   summary: Fetch an account
   description: Fetch an account matching the given id
   parameters:

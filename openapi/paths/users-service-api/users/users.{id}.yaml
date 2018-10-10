@@ -1,6 +1,6 @@
 delete:
   tags:
-    - Users Service - Users
+    - Users Service - User
   summary: Delete an user
   description: Delete an user
   parameters:
@@ -14,7 +14,7 @@ delete:
       $ref: '#/components/responses/NotFound'
 put:
   tags:
-    - Users Service - Users
+    - Users Service - User
   summary: Update the user data
   description: 'it will update the user data matching given id'
   parameters:
@@ -39,7 +39,7 @@ put:
       $ref: '#/components/responses/NotFound'
 get:
   tags:
-    - Users Service - Users
+    - Users Service - User
   summary: Fetch an user
   description: Fetch an user matching the given id
   parameters:

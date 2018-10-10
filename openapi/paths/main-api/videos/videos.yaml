@@ -1,0 +1,39 @@
+post:
+  tags:
+  - Main API - Video
+  summary: Create a new video
+  description: Create a new video.
+  requestBody:
+    description: video data to be sent
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Video'
+  responses:
+    '201':
+      description: The video created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Video'
+    '400':
+      $ref: '#/components/responses/InvalidModel'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+get:
+  tags:
+  - Main API - Video
+  summary: Index of videos
+  description: Index of videos
+  responses:
+    '200':
+      description: A list of videos
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Video'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'

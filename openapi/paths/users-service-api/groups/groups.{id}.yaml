@@ -1,6 +1,6 @@
 delete:
   tags:
-    - Users Service - Groups
+    - Users Service - Group
   summary: Delete an group
   description: Delete an group
   parameters:
@@ -14,7 +14,7 @@ delete:
       $ref: '#/components/responses/NotFound'
 put:
   tags:
-    - Users Service - Groups
+    - Users Service - Group
   summary: Update the group data
   description: 'it will update the group data matching given id'
   parameters:
@@ -39,7 +39,7 @@ put:
       $ref: '#/components/responses/NotFound'
 get:
   tags:
-    - Users Service - Groups
+    - Users Service - Group
   summary: Fetch an group
   description: Fetch an group matching the given id
   parameters:

@@ -1,6 +1,6 @@
 get:
   tags:
-    - CMS Service - Items
+    - CMS Service - Item
   summary: Index of items stored in the CMS
   description: Get the list of all items.
   parameters:

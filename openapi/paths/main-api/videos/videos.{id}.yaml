@@ -1,56 +1,62 @@
 delete:
   tags:
-    - Users Service - Module
-  summary: Delete an module
-  description: Delete an module
+    - Main API - Video
+  summary: Delete a video
+  description: Delete the video matching the given id
   parameters:
     - $ref: '#/components/parameters/id'
   responses:
-    '204':
-      description: the module has been deleted successfully
+    '200':
+      description: The deleted video
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Video'
     '403':
       $ref: '#/components/responses/UserNotAuthorized'
     '404':
       $ref: '#/components/responses/NotFound'
 put:
   tags:
-    - Users Service - Module
-  summary: Update the module data
-  description: 'it will update the module data matching given id'
+    - Main API - Video
+  summary: Update the video data
+  description: Update the video data matching given id
   parameters:
     - $ref: '#/components/parameters/id'
   requestBody:
-    description: module data to be sent
+    description: video data to be sent
     required: true
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/Module'
+          $ref: '#/components/schemas/Video'
   responses:
     '200':
-      description: Updated information of logged module based on access token
+      description: Updated video
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Module'
+            $ref: '#/components/schemas/Video'
+    '400':
+      $ref: '#/components/responses/InvalidModel'
     '403':
       $ref: '#/components/responses/UserNotAuthorized'
     '404':
       $ref: '#/components/responses/NotFound'
 get:
   tags:
-    - Users Service - Module
-  summary: Fetch an module
-  description: Fetch an module matching the given id
+    - Main API - Video
+  summary: Fetch a video
+  description: Fetch the video matching the given id
   parameters:
     - $ref: '#/components/parameters/id'
   responses:
     '200':
-      description: Fetched information of logged module based on access token
+      description: Fetched video
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Module'
+            $ref: '#/components/schemas/Video'
     '403':
       $ref: '#/components/responses/UserNotAuthorized'
     '404':

@@ -1,6 +1,6 @@
 get:
   tags:
-    - Users Service - Roles
+    - Users Service - Role
   summary: Index of roles
   description: Get a list of all roles
   parameters:
@@ -18,7 +18,7 @@ get:
       $ref: '#/components/responses/UserNotAuthorized'
 post:
   tags:
-    - Users Service - Roles
+    - Users Service - Role
   summary: Create a new role
   description: Create a new role
   requestBody:

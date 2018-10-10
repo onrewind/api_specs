@@ -1,6 +1,6 @@
 get:
   tags:
-    - Users Service - Users
+    - Users Service - User
   summary: Index of users
   description: Get a list of all users
   parameters:
@@ -18,7 +18,7 @@ get:
       $ref: '#/components/responses/UserNotAuthorized'
 post:
   tags:
-    - Users Service - Users
+    - Users Service - User
   summary: Create a new user
   description: Create a new user
   requestBody:

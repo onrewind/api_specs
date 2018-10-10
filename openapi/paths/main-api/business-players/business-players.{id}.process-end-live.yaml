@@ -2,7 +2,7 @@ post:
   tags:
     - Main API - Business player
   summary: Process a live business player's switch to 'replay' state
-  description: Process a live business's switch to 'replay' state
+  description: Process a live business's switch to 'replay' state. It will create a new video and associate to the business player once it's encoded.
   parameters:
     - $ref: '#/components/parameters/id'
   requestBody:
@@ -14,11 +14,11 @@ post:
           $ref: '#/components/schemas/BusinessPlayer'
   responses:
     '200':
-      description: The business player created
+      description: The business player created.
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Video'
+            $ref: '#/components/schemas/BusinessPlayer'
     '400':
       $ref: '#/components/responses/InvalidModel'
     '403':

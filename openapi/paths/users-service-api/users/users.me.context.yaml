@@ -1,6 +1,6 @@
 get:
   tags:
-    - Users Service - Users
+    - Users Service - User
   summary: Fetch resources making up the context of a user
   description: >
     Based on current access token, it will fetch the user's Groups, Roles, AccountId, Modules

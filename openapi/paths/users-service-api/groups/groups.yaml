@@ -1,6 +1,6 @@
 get:
   tags:
-    - Users Service - Groups
+    - Users Service - Group
   summary: Index of groups
   description: Get a list of all groups
   parameters:
@@ -18,7 +18,7 @@ get:
       $ref: '#/components/responses/UserNotAuthorized'
 post:
   tags:
-    - Users Service - Groups
+    - Users Service - Group
   summary: Create a new group
   description: Create a new group
   requestBody:

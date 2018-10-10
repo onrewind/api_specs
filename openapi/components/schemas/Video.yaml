@@ -53,9 +53,6 @@ properties:
   vendorApiKey:
     type: string
     description: Api key of the third party
-  AccountId:
-    type: string
-    format: uuid
   tags:
     type: object
     description: Attribute storing extra data to be used for classification or search purposes
@@ -74,3 +71,6 @@ properties:
           type: string
           description: 'it should respect the format: "key:value"'
           pattern: '/^[^:]+$/'
+  AccountId:
+    type: string
+    format: uuid

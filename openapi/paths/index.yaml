@@ -61,7 +61,11 @@
   $ref: ./main-api/streams/streams.yaml
 /main-api/streamable/{streamableId}/streams/{id}:
   $ref: ./main-api/streams/streams.{id}.yaml
-
+#Videos
+/main-api/videos:
+  $ref: ./main-api/videos/videos.yaml
+/main-api/videos/{id}:
+  $ref: ./main-api/videos/videos.{id}.yaml
 ##########################
 ##### USERS SERVICE ######
 ##########################
