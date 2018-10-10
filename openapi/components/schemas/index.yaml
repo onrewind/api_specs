@@ -2,6 +2,8 @@ Account:
   $ref: ./Account.yaml
 BusinessPlayer:
   $ref: ./BusinessPlayer.yaml
+Challenger:
+  $ref: ./Challenger.yaml
 Clip:
   $ref: ./Clip.yaml
 CMSItem:

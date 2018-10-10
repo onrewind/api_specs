@@ -1,0 +1,56 @@
+get:
+  tags:
+    - Main API - Challenger
+  summary: Fetch a challenger
+  description: Fetch a challenger matching the given id
+  parameters:
+    - $ref: '#/components/parameters/id'
+  responses:
+    '200':
+      description: Challenger data matching the id
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Challenger'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'
+put:
+  tags:
+    - Main API - Challenger
+  summary: Update a challenger matching the given id
+  parameters:
+    - $ref: '#/components/parameters/id'
+  requestBody:
+    description: challenger data to be sent
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Challenger'
+  responses:
+    '200':
+      description: Updated challenger
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Challenger'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'
+delete:
+  tags:
+    - Main API - Challenger
+  summary: Delete a challenger
+  description: Delete a challenger
+  parameters:
+    - $ref: '#/components/parameters/id'
+  responses:
+    '204':
+      description: The challenger has been deleted successfully
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'

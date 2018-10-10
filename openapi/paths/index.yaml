@@ -38,6 +38,11 @@
   $ref: ./main-api/business-players/business-players.{id}.embed.yaml
 /main-api/business-players/{id}/process-end-live:
   $ref: ./main-api/business-players/business-players.{id}.process-end-live.yaml
+#Challengers
+/main-api/challengers:
+  $ref: ./main-api/challengers/challengers.yaml
+/main-api/challengers/{id}:
+  $ref: ./main-api/challengers/challengers.{id}.yaml
 #Events
 /main-api/events:
   $ref: ./main-api/events/events.yaml

@@ -1,0 +1,57 @@
+title: "Challenger"
+required:
+- name
+properties:
+  id:
+    type: string
+    format: uuid
+    readOnly: true
+  name:
+    type: string
+    description: name of the challenger
+  type:
+    type: string
+    enum: ['standard', 'team', 'teammate']
+    description: |
+      Type of the challenger, possible values are:
+      - standard: the challenger is a challenger.
+      - team: the challenger is a team. It has many teammate.
+      - teammate: the challenger is a teammate. It belongs to teammate.
+    default: 'standard'
+  country:
+    type: string
+    description: country code of the challenger
+  birthday:
+    type: string
+    format: date
+    description: the birthday of the challenger (standard, teammate)
+  picture:
+    type: string
+    description: the filename of the main picture of the challenger
+  profileOptions:
+    type: object
+    description: Object that contains statistics and buttons to display the challenger profile
+    format: json
+  jerseyPicture:
+    type: string
+    description: the filename of the picture of the challengers jersey (standard, team)
+  firstName:
+    type: string
+    description: the first name of the challenger (standard, teammate)
+  role:
+    type: string
+    description: the role of the challenger
+  Teammates:
+    type: array
+    description: Array of teammate belonging to a team.
+    items:
+      type: object
+      description: teammate (challenger) data
+  TeamId:
+    type: string
+    format: uuid
+    description: Reference to a team instance (challenger)
+  SportId:
+    type: string
+    format: uuid
+    description: Reference to a sport instance
