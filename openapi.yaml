@@ -331,6 +331,103 @@ paths:
           $ref: '#/components/responses/InvalidModel'
         '403':
           $ref: '#/components/responses/UserNotAuthorized'
+  /main-api/challengers:
+    post:
+      tags:
+        - Main API - Challenger
+      summary: Create a new challenger
+      description: Create a new challenger
+      requestBody:
+        description: challenger data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Challenger'
+      responses:
+        '201':
+          description: The user is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Challenger'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    get:
+      tags:
+        - Main API - Challenger
+      summary: Index of challengers
+      description: Get the list of all challengers.
+      responses:
+        '200':
+          description: A list of Challengers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Challenger'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/main-api/challengers/{id}':
+    get:
+      tags:
+        - Main API - Challenger
+      summary: Fetch a challenger
+      description: Fetch a challenger matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Challenger data matching the id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Challenger'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Main API - Challenger
+      summary: Update a challenger matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        description: challenger data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Challenger'
+      responses:
+        '200':
+          description: Updated challenger
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Challenger'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags:
+        - Main API - Challenger
+      summary: Delete a challenger
+      description: Delete a challenger
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: The challenger has been deleted successfully
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
   /main-api/events:
     post:
       tags:
@@ -1570,6 +1667,71 @@ components:
         AccountId:
           type: string
           format: uuid
+    Challenger:
+      title: Challenger
+      required:
+        - name
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          description: name of the challenger
+        type:
+          type: string
+          enum:
+            - standard
+            - team
+            - teammate
+          description: |
+            Type of the challenger, possible values are:
+            - standard: the challenger is a challenger.
+            - team: the challenger is a team. It has many teammate.
+            - teammate: the challenger is a teammate. It belongs to teammate.
+          default: standard
+        country:
+          type: string
+          description: country code of the challenger
+        birthday:
+          type: string
+          format: date
+          description: 'the birthday of the challenger (standard, teammate)'
+        picture:
+          type: string
+          description: the filename of the main picture of the challenger
+        profileOptions:
+          type: object
+          description: >-
+            Object that contains statistics and buttons to display the
+            challenger profile
+          format: json
+        jerseyPicture:
+          type: string
+          description: >-
+            the filename of the picture of the challengers jersey (standard,
+            team)
+        firstName:
+          type: string
+          description: 'the first name of the challenger (standard, teammate)'
+        role:
+          type: string
+          description: the role of the challenger
+        Teammates:
+          type: array
+          description: Array of teammate belonging to a team.
+          items:
+            type: object
+            description: teammate (challenger) data
+        TeamId:
+          type: string
+          format: uuid
+          description: Reference to a team instance (challenger)
+        SportId:
+          type: string
+          format: uuid
+          description: Reference to a sport instance
     Clip:
       title: Clip
       required:
