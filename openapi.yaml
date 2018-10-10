@@ -1913,6 +1913,13 @@ components:
               type: object
             opta:
               type: object
+        Groups:
+          type: array
+          items:
+            anyOf:
+              - $ref: '#/components/schemas/Group'
+              - type: string
+                format: uuid
     Video:
       title: Video
       required:
