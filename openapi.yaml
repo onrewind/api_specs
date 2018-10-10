@@ -94,7 +94,7 @@ paths:
           $ref: '#/components/responses/InvalidModel'
         '403':
           $ref: '#/components/responses/UserNotAuthorized'
-  /cms-service/items:
+  /cms-service-api/items:
     get:
       tags:
         - CMS Service - Items
@@ -762,7 +762,7 @@ paths:
           $ref: '#/components/responses/UserNotAuthorized'
         '404':
           $ref: '#/components/responses/NotFound'
-  /users-service/accounts:
+  /users-service-api/accounts:
     get:
       tags:
         - Users Service - Accounts
@@ -804,7 +804,7 @@ paths:
           $ref: '#/components/responses/InvalidModel'
         '403':
           $ref: '#/components/responses/UserNotAuthorized'
-  '/users-service/accounts/{id}':
+  '/users-service-api/accounts/{id}':
     delete:
       tags:
         - Users Service - Accounts
@@ -862,7 +862,7 @@ paths:
           $ref: '#/components/responses/UserNotAuthorized'
         '404':
           $ref: '#/components/responses/NotFound'
-  /users-service/groups:
+  /users-service-api/groups:
     get:
       tags:
         - Users Service - Groups
@@ -904,7 +904,7 @@ paths:
           $ref: '#/components/responses/InvalidModel'
         '403':
           $ref: '#/components/responses/UserNotAuthorized'
-  '/users-service/groups/{id}':
+  '/users-service-api/groups/{id}':
     delete:
       tags:
         - Users Service - Groups
@@ -962,7 +962,7 @@ paths:
           $ref: '#/components/responses/UserNotAuthorized'
         '404':
           $ref: '#/components/responses/NotFound'
-  /users-service/modules:
+  /users-service-api/modules:
     get:
       tags:
         - Users Service - Modules
@@ -1004,7 +1004,7 @@ paths:
           $ref: '#/components/responses/InvalidModel'
         '403':
           $ref: '#/components/responses/UserNotAuthorized'
-  '/users-service/modules/{id}':
+  '/users-service-api/modules/{id}':
     delete:
       tags:
         - Users Service - Modules
@@ -1062,7 +1062,7 @@ paths:
           $ref: '#/components/responses/UserNotAuthorized'
         '404':
           $ref: '#/components/responses/NotFound'
-  /users-service/roles:
+  /users-service-api/roles:
     get:
       tags:
         - Users Service - Roles
@@ -1104,7 +1104,7 @@ paths:
           $ref: '#/components/responses/InvalidModel'
         '403':
           $ref: '#/components/responses/UserNotAuthorized'
-  '/users-service/roles/{id}':
+  '/users-service-api/roles/{id}':
     delete:
       tags:
         - Users Service - Roles
@@ -1162,7 +1162,7 @@ paths:
           $ref: '#/components/responses/UserNotAuthorized'
         '404':
           $ref: '#/components/responses/NotFound'
-  /users-service/users:
+  /users-service-api/users:
     get:
       tags:
         - Users Service - Users
@@ -1204,7 +1204,7 @@ paths:
           $ref: '#/components/responses/InvalidModel'
         '403':
           $ref: '#/components/responses/UserNotAuthorized'
-  /users-service/users/me:
+  /users-service-api/users/me:
     get:
       tags:
         - Users Service - Users
@@ -1244,7 +1244,7 @@ paths:
           $ref: '#/components/responses/UserNotAuthorized'
         '404':
           $ref: '#/components/responses/NotFound'
-  /users-service/users/me/context:
+  /users-service-api/users/me/context:
     get:
       tags:
         - Users Service - Users
@@ -1853,6 +1853,7 @@ components:
       title: User
       required:
         - username
+        - Groups
       properties:
         id:
           type: string
