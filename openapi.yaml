@@ -94,6 +94,194 @@ paths:
           $ref: '#/components/responses/InvalidModel'
         '403':
           $ref: '#/components/responses/UserNotAuthorized'
+  /chats-service-api/chats:
+    post:
+      tags:
+        - Chats Service - Chat
+      summary: Create a new chat
+      description: Create a new chat
+      requestBody:
+        description: chat data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Chat'
+      responses:
+        '201':
+          description: The chat is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chat'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/chats-service-api/chats/{id}':
+    get:
+      tags:
+        - Chats Service - Chat
+      summary: Fetch a chat
+      description: Fetch a chat matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Chat data matching the id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chat'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags:
+        - Chats Service - Chat
+      summary: Delete a chat
+      description: Delete a chat
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: the chat has been deleted successfully
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  '/chats-service-api/chats/{chatId}/messages':
+    post:
+      tags:
+        - Chats Service - Message
+      summary: Create a new message
+      description: Create a new message
+      parameters:
+        - $ref: '#/components/parameters/chatId'
+      requestBody:
+        description: message data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Message'
+      responses:
+        '201':
+          description: The message is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    get:
+      tags:
+        - Chats Service - Message
+      summary: Index of messages
+      description: Get the list of all messages.
+      parameters:
+        - $ref: '#/components/parameters/chatId'
+      responses:
+        '200':
+          description: A list of Messages
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Message'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/chats-service-api/chats/{chatId}/messages/{id}':
+    get:
+      tags:
+        - Chats Service - Message
+      summary: Fetch a message
+      description: Fetch a message matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/chatId'
+      responses:
+        '200':
+          description: Message data matching the id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Chats Service - Message
+      summary: Update a message matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/chatId'
+      requestBody:
+        description: message data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Message'
+      responses:
+        '200':
+          description: Updated message
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags:
+        - Chats Service - Message
+      summary: Delete a message
+      description: Delete a message
+      parameters:
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/chatId'
+      responses:
+        '204':
+          description: the message has been deleted successfully
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  '/chats-service-api/chats/{chatId}/messages/{id}/flag':
+    put:
+      tags:
+        - Chats Service - Message
+      summary: >-
+        Flag a message matching the given id. Can be used by users to report
+        inappropriate content.
+      parameters:
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/chatId'
+      requestBody:
+        description: WARNING - The body of this request will be ignored.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Message'
+      responses:
+        '200':
+          description: Message updated with attribute "flagged" set to True
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
   /cms-service-api/items:
     get:
       tags:
@@ -663,7 +851,7 @@ paths:
               $ref: '#/components/schemas/Sport'
       responses:
         '201':
-          description: The user is created
+          description: The sport is created
           content:
             application/json:
               schema:
@@ -1515,6 +1703,14 @@ components:
       schema:
         type: string
         format: uuid
+    chatId:
+      name: chatId
+      in: path
+      description: the uuid of the chat
+      required: true
+      schema:
+        type: string
+        format: uuid
   responses:
     UserNotAuthorized:
       description: UserNotAuthorized
@@ -1732,6 +1928,25 @@ components:
           type: string
           format: uuid
           description: Reference to a sport instance
+    Chat:
+      title: Chat
+      required:
+        - name
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        resourceId:
+          type: string
+          format: uuid
+          description: id of the resource on which the chat is activated
+        resourceType:
+          type: string
+          description: type of the resource on which the chat is activated
+          enum:
+            - event
+            - business-player
     Clip:
       title: Clip
       required:
@@ -1828,6 +2043,9 @@ components:
         description:
           type: string
           description: Event's description
+        location:
+          type: string
+          description: Event's location
         startDate:
           type: string
           description: The date when the event starts
@@ -1886,6 +2104,12 @@ components:
         options:
           type: object
           description: Attribute storing extra data about the event
+          properties:
+            stats:
+              homeTeam: 'id:...'
+              awayTeam: 'id:...'
+              score: null
+              general: null
         score:
           type: object
           deprecated: true
@@ -1940,6 +2164,78 @@ components:
         AccountId:
           type: string
           format: uuid
+    Fan:
+      title: Fan
+      required:
+        - fanname
+        - Groups
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        username:
+          type: string
+          description: username of the fan
+        email:
+          type: string
+          description: Email of the fan
+        lastName:
+          type: string
+          description: last name of the fan
+        firstName:
+          type: string
+          description: first name of the fan
+        phone:
+          type: string
+          format: phone
+        type:
+          type: string
+          enum:
+            - active
+            - inactive
+            - system
+          default: inactive
+        password:
+          type: string
+          format: password
+        meta:
+          type: object
+          description: >-
+            Attribute storing extra data about the fan, like a google analytics
+            account id
+          properties:
+            hashtag:
+              type: string
+            google_analytics_id:
+              type: string
+        oauth:
+          type: object
+          description: >-
+            Attribute storing third party oauth data specific to the fan (oauth
+            token, account id, etc...)
+          properties:
+            youtube:
+              type: object
+            dailymotion:
+              type: object
+            facebook:
+              type: object
+            cleeng:
+              type: object
+            twitter:
+              type: object
+            twitch:
+              type: object
+            opta:
+              type: object
+        Groups:
+          type: array
+          items:
+            anyOf:
+              - $ref: '#/components/schemas/Group'
+              - type: string
+                format: uuid
     Group:
       title: Group
       required:
@@ -1959,6 +2255,40 @@ components:
           type: integer
           description: define group access level that allows to add higher permissions
           default: 0
+    Message:
+      title: Chat
+      required:
+        - id
+        - FanId
+        - flagged
+        - hidden
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        content:
+          type: object
+          format: json
+          description: 'content of the message,'
+          default:
+            text: ''
+        flagged:
+          type: boolean
+          default: false
+          description: >-
+            if true, the message has been flagged by an user as inappropriate.
+            It can be used to filter messages to make moderation easier.
+        hidden:
+          type: boolean
+          default: false
+          description: >-
+            if true, the message has been hidden by a moderator. The message can
+            then be filtered for end users but still be visible for the author.
+        FanId:
+          type: string
+          format: uuid
+          description: id of the fan that authored the message
     Module:
       title: Module
       required:
