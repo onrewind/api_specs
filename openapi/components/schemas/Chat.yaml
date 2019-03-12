@@ -1,0 +1,18 @@
+title: "Chat"
+required:
+  - name
+properties:
+  id:
+    type: string
+    format: uuid
+    readOnly: true
+  resourceId:
+    type: string
+    format: uuid
+    description: id of the resource on which the chat is activated
+  resourceType:
+    type: string
+    description: type of the resource on which the chat is activated
+    enum:
+      - event
+      - business-player

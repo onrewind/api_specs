@@ -1,0 +1,24 @@
+put:
+  tags:
+    - Chats Service - Message
+  summary: Flag a message matching the given id. Can be used by users to report inappropriate content.
+  parameters:
+    - $ref: '#/components/parameters/id'
+    - $ref: '#/components/parameters/chatId'
+  requestBody:
+    description: WARNING - The body of this request will be ignored.
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Message'
+  responses:
+    '200':
+      description: Message updated with attribute "flagged" set to True
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'

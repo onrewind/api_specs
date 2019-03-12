@@ -1,0 +1,32 @@
+get:
+  tags:
+    - Chats Service - Chat
+  summary: Fetch a chat
+  description: Fetch a chat matching the given id
+  parameters:
+    - $ref: '#/components/parameters/id'
+  responses:
+    '200':
+      description: Chat data matching the id
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Chat'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'
+delete:
+  tags:
+    - Chats Service - Chat
+  summary: Delete a chat
+  description: Delete a chat
+  parameters:
+    - $ref: '#/components/parameters/id'
+  responses:
+    '204':
+      description: the chat has been deleted successfully
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'

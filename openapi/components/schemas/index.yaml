@@ -4,6 +4,8 @@ BusinessPlayer:
   $ref: ./BusinessPlayer.yaml
 Challenger:
   $ref: ./Challenger.yaml
+Chat:
+  $ref: ./Chat.yaml
 Clip:
   $ref: ./Clip.yaml
 CMSItem:
@@ -12,8 +14,12 @@ Error:
   $ref: ./Error.yaml
 Event:
   $ref: ./Event.yaml
+Fan:
+  $ref: ./Fan.yaml
 Group:
   $ref: ./Group.yaml
+Message:
+  $ref: ./Message.yaml
 Module:
   $ref: ./Module.yaml
 Role:

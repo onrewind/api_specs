@@ -6,3 +6,6 @@ id:
   $ref: ./id.yaml
 streamableId:
   $ref: ./streamableId.yaml
+chatId:
+  $ref: ./chatId.yaml
+

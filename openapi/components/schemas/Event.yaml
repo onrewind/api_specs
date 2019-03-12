@@ -15,6 +15,9 @@ properties:
   description:
     type: string
     description: Event's description
+  location:
+    type: string
+    description: Event's location
   startDate:
     type: string
     description: The date when the event starts
@@ -69,6 +72,16 @@ properties:
   options:
     type: object
     description: Attribute storing extra data about the event
+    properties:
+      stats:
+        homeTeam:
+          id:...
+        awayTeam:
+          id:...
+        score:
+        general:
+
+
   score:
     type: object
     deprecated: true

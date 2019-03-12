@@ -1,0 +1,59 @@
+get:
+  tags:
+    - Chats Service - Message
+  summary: Fetch a message
+  description: Fetch a message matching the given id
+  parameters:
+    - $ref: '#/components/parameters/id'
+    - $ref: '#/components/parameters/chatId'
+  responses:
+    '200':
+      description: Message data matching the id
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'
+put:
+  tags:
+    - Chats Service - Message
+  summary: Update a message matching the given id
+  parameters:
+    - $ref: '#/components/parameters/id'
+    - $ref: '#/components/parameters/chatId'
+  requestBody:
+    description: message data to be sent
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Message'
+  responses:
+    '200':
+      description: Updated message
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'
+delete:
+  tags:
+    - Chats Service - Message
+  summary: Delete a message
+  description: Delete a message
+  parameters:
+    - $ref: '#/components/parameters/id'
+    - $ref: '#/components/parameters/chatId'
+  responses:
+    '204':
+      description: the message has been deleted successfully
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'

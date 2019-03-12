@@ -13,6 +13,22 @@
 
 
 ##########################
+###### CHATS SERVICE #######
+##########################
+#Items
+/chats-service-api/chats:
+  $ref: ./chats-service-api/chats/chats.yaml
+/chats-service-api/chats/{id}:
+  $ref: ./chats-service-api/chats/chats.{id}.yaml
+/chats-service-api/chats/{chatId}/messages:
+  $ref: ./chats-service-api/chats/chats.{chatId}.messages.yaml
+/chats-service-api/chats/{chatId}/messages/{id}:
+  $ref: ./chats-service-api/chats/chats.{chatId}.messages.{id}.yaml
+/chats-service-api/chats/{chatId}/messages/{id}/flag:
+  $ref: ./chats-service-api/chats/chats.{chatId}.messages.{id}.flag.yaml
+
+
+##########################
 ###### CMS SERVICE #######
 ##########################
 #Items

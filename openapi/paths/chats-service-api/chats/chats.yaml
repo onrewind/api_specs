@@ -1,0 +1,23 @@
+post:
+  tags:
+    - Chats Service - Chat
+  summary: Create a new chat
+  description: Create a new chat
+  requestBody:
+    description: chat data to be sent
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Chat'
+  responses:
+    '201':
+      description: The chat is created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Chat'
+    '400':
+      $ref: '#/components/responses/InvalidModel'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'

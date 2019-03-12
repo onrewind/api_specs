@@ -1,0 +1,28 @@
+title: "Chat"
+required:
+  - id
+  - FanId
+  - flagged
+  - hidden
+properties:
+  id:
+    type: string
+    format: uuid
+    readOnly: true
+  content:
+    type: object
+    format: json
+    description: content of the message,
+    default: { text: '' }
+  flagged:
+    type: boolean
+    default: false
+    description: if true, the message has been flagged by an user as inappropriate. It can be used to filter messages to make moderation easier.
+  hidden:
+    type: boolean
+    default: false
+    description: if true, the message has been hidden by a moderator. The message can then be filtered for end users but still be visible for the author.
+  FanId:
+    type: string
+    format: uuid
+    description: id of the fan that authored the message

@@ -12,7 +12,7 @@ post:
           $ref: '#/components/schemas/Sport'
   responses:
     '201':
-      description: The user is created
+      description: The sport is created
       content:
         application/json:
           schema:
