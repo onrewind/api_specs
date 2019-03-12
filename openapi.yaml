@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 5.12.3
+  version: 5.17.4
   title: On Rewind API
   description: >
     On Rewind API documentation based on OpenAPI 3.0.
