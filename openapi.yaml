@@ -282,6 +282,89 @@ paths:
           $ref: '#/components/responses/UserNotAuthorized'
         '404':
           $ref: '#/components/responses/NotFound'
+  /chats-service-api/extended-fans:
+    post:
+      tags:
+        - Chats Service - ExtendedFan
+      summary: Create a new extendedFan
+      description: Create a new extendedFan
+      parameters:
+        - $ref: '#/components/parameters/chatId'
+      requestBody:
+        description: extendedFan data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExtendedFan'
+      responses:
+        '201':
+          description: The extendedFan is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedFan'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/chats-service-api/extended-fans/{id}':
+    get:
+      tags:
+        - Chats Service - ExtendedFan
+      summary: Fetch an ExtendedFan
+      description: Fetch an ExtendedFan matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: ExtendedFan data matching the id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedFan'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Chats Service - ExtendedFan
+      summary: Update an ExtendedFan matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        description: ExtendedFan data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExtendedFan'
+      responses:
+        '200':
+          description: Updated ExtendedFan
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedFan'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags:
+        - Chats Service - ExtendedFan
+      summary: Delete an ExtendedFan
+      description: Delete an ExtendedFan
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: the ExtendedFan has been deleted successfully
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
   /cms-service-api/items:
     get:
       tags:
@@ -2104,12 +2187,6 @@ components:
         options:
           type: object
           description: Attribute storing extra data about the event
-          properties:
-            stats:
-              homeTeam: 'id:...'
-              awayTeam: 'id:...'
-              score: null
-              general: null
         score:
           type: object
           deprecated: true
@@ -2164,6 +2241,22 @@ components:
         AccountId:
           type: string
           format: uuid
+    ExtendedFan:
+      title: ExtendedFan
+      required:
+        - FanId
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        FanId:
+          type: string
+          format: uuid
+          description: FanId representing the fan we are extending
+        isBlocked:
+          type: boolean
+          description: value to know if a fan has been blocked from using chats
     Fan:
       title: Fan
       required:
