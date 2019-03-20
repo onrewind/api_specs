@@ -26,7 +26,10 @@
   $ref: ./chats-service-api/chats/chats.{chatId}.messages.{id}.yaml
 /chats-service-api/chats/{chatId}/messages/{id}/flag:
   $ref: ./chats-service-api/chats/chats.{chatId}.messages.{id}.flag.yaml
-
+/chats-service-api/extended-fans:
+  $ref: ./chats-service-api/chats/extended-fans.yaml
+/chats-service-api/extended-fans/{id}:
+  $ref: ./chats-service-api/chats/extended-fans.{id}.yaml
 
 ##########################
 ###### CMS SERVICE #######

@@ -1,0 +1,17 @@
+title: "ExtendedFan"
+required:
+  - FanId
+properties:
+  id:
+    type: string
+    format: uuid
+    readOnly: true
+  FanId:
+    type: string
+    format: uuid
+    description: FanId representing the fan we are extending
+  isBlocked:
+    type: boolean
+    description: value to know if a fan has been blocked from using chats
+
+

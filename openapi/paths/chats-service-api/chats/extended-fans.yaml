@@ -1,0 +1,25 @@
+post:
+  tags:
+    - Chats Service - ExtendedFan
+  summary: Create a new extendedFan
+  description: Create a new extendedFan
+  parameters:
+    - $ref: '#/components/parameters/chatId'
+  requestBody:
+    description: extendedFan data to be sent
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ExtendedFan'
+  responses:
+    '201':
+      description: The extendedFan is created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ExtendedFan'
+    '400':
+      $ref: '#/components/responses/InvalidModel'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'

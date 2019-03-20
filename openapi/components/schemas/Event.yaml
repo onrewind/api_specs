@@ -72,16 +72,6 @@ properties:
   options:
     type: object
     description: Attribute storing extra data about the event
-    properties:
-      stats:
-        homeTeam:
-          id:...
-        awayTeam:
-          id:...
-        score:
-        general:
-
-
   score:
     type: object
     deprecated: true

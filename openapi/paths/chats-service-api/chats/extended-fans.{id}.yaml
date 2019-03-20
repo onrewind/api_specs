@@ -1,0 +1,56 @@
+get:
+  tags:
+    - Chats Service - ExtendedFan
+  summary: Fetch an ExtendedFan
+  description: Fetch an ExtendedFan matching the given id
+  parameters:
+    - $ref: '#/components/parameters/id'
+  responses:
+    '200':
+      description: ExtendedFan data matching the id
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ExtendedFan'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'
+put:
+  tags:
+    - Chats Service - ExtendedFan
+  summary: Update an ExtendedFan matching the given id
+  parameters:
+    - $ref: '#/components/parameters/id'
+  requestBody:
+    description: ExtendedFan data to be sent
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ExtendedFan'
+  responses:
+    '200':
+      description: Updated ExtendedFan
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ExtendedFan'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'
+delete:
+  tags:
+    - Chats Service - ExtendedFan
+  summary: Delete an ExtendedFan
+  description: Delete an ExtendedFan
+  parameters:
+    - $ref: '#/components/parameters/id'
+  responses:
+    '204':
+      description: the ExtendedFan has been deleted successfully
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'
