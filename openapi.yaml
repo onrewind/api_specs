@@ -1760,9 +1760,10 @@ paths:
       summary: Index of fan activities
       description: Get a list of all activities filtered by any of the available parameters
       parameters:
-        - $ref: '#/components/parameters/fanActivityType'
-        - $ref: '#/components/parameters/fanActivityResourceType'
-        - $ref: '#/components/parameters/fanActivityResourceId'
+        - $ref: '#/components/parameters/type'
+        - $ref: '#/components/parameters/resourceType'
+        - $ref: '#/components/parameters/resourceId'
+        - $ref: '#/components/parameters/limit'
       responses:
         '200':
           description: A list of Activities
@@ -1871,11 +1872,10 @@ components:
       schema:
         type: string
         format: uuid
-    fanActivityResourceType:
-      name: fanActivityResourceType
+    resourceType:
+      name: resourceType
       in: path
       description: the type of the resource
-      required: true
       schema:
         type: string
         enum:
@@ -1886,25 +1886,29 @@ components:
           - video
           - team
           - teammate
-    fanActivityResourceId:
-      name: fanActivityResourceId
+    resourceId:
+      name: resourceId
       in: path
       description: the uuid of the resource
-      required: true
       schema:
         type: string
         format: uuid
-    fanActivityType:
-      name: fanActivityType
+    type:
+      name: type
       in: path
       description: the type of the activity
-      required: true
       schema:
         type: string
         enum:
           - like
           - watch
           - bookmark
+    limit:
+      name: limit
+      in: path
+      description: number of expected results
+      schema:
+        type: integer
   responses:
     UserNotAuthorized:
       description: UserNotAuthorized
