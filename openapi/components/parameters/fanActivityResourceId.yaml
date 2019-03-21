@@ -1,0 +1,10 @@
+name: fanActivityResourceId
+in: path
+description: the uuid of the resource
+required: true
+schema:
+  type: string
+  format: uuid
+
+
+

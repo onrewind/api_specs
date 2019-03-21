@@ -1,0 +1,17 @@
+name: fanActivityResourceType
+in: path
+description: the type of the resource
+required: true
+schema:
+  type: string
+  enum:
+    - marker
+    - event
+    - challenger
+    - article
+    - video
+    - team
+    - teammate
+
+
+

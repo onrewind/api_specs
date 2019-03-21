@@ -2,9 +2,11 @@ get:
   tags:
     - Users Service - FanActivity
   summary: Index of fan activities
-  description: Get a list of all activities
+  description: Get a list of all activities filtered by any of the available parameters
   parameters:
-    - $ref: '#/components/parameters/fieldsParam'
+    - $ref: '#/components/parameters/fanActivityType'
+    - $ref: '#/components/parameters/fanActivityResourceType'
+    - $ref: '#/components/parameters/fanActivityResourceId'
   responses:
     '200':
       description: A list of Activities

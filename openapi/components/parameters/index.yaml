@@ -8,4 +8,10 @@ streamableId:
   $ref: ./streamableId.yaml
 chatId:
   $ref: ./chatId.yaml
+fanActivityResourceType:
+  $ref: ./fanActivityResourceType.yaml
+fanActivityResourceId:
+  $ref: ./fanActivityResourceId.yaml
+fanActivityType:
+  $ref: ./fanActivityType.yaml
 
