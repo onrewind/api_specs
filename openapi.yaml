@@ -1753,6 +1753,81 @@ paths:
           $ref: '#/components/responses/UserNotAuthorized'
         '404':
           $ref: '#/components/responses/NotFound'
+  /users-service-api/activities:
+    get:
+      tags:
+        - Users Service - FanActivity
+      summary: Index of fan activities
+      description: Get a list of all activities
+      parameters:
+        - $ref: '#/components/parameters/fieldsParam'
+      responses:
+        '200':
+          description: A list of Activities
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FanActivity'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    post:
+      tags:
+        - Users Service - FanActivity
+      summary: Create a new fan activity
+      description: Create a new fan activity
+      requestBody:
+        description: fan activity data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FanActivity'
+      responses:
+        '201':
+          description: The fan activity is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FanActivity'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/users-service-api/activities/{id}':
+    delete:
+      tags:
+        - Users Service - FanActivity
+      summary: Delete an fan activity
+      description: Delete an fan activity
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: the fan activity has been deleted successfully
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    get:
+      tags:
+        - Users Service - FanActivity
+      summary: Fetch an fan activity
+      description: Fetch an fan activity matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Fetched information of logged fan activity based on access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FanActivity'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
 components:
   parameters:
     acceptVersion:
@@ -2693,6 +2768,47 @@ components:
         AccountId:
           type: string
           format: uuid
+    FanActivity:
+      title: FanActivity
+      required:
+        - id
+        - type
+        - resourceType
+        - resourceId
+        - FanId
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        type:
+          type: string
+          description: type of the activity
+          enum:
+            - watch
+            - like
+            - bookmark
+        meta:
+          type: object
+          description: Attribute storing extra data about the activity
+        resourceType:
+          type: string
+          description: type of the resource
+          enum:
+            - event
+            - video
+            - team
+            - teammate
+            - marker
+            - challenger
+            - article
+        resourceId:
+          type: string
+          description: id of the resource
+          format: uuid
+        FanId:
+          type: string
+          description: id of the fan
   securitySchemes:
     accessToken:
       type: http
