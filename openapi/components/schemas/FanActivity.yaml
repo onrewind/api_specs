@@ -1,0 +1,44 @@
+title: "FanActivity"
+required:
+  - id
+  - type
+  - resourceType
+  - resourceId
+  - FanId
+properties:
+  id:
+    type: string
+    format: uuid
+    readOnly: true
+  type:
+    type: string
+    description: type of the activity
+    enum:
+      - watch
+      - like
+      - bookmark
+  meta:
+    type: object
+    description: Attribute storing extra data about the activity
+  resourceType:
+    type: string
+    description: type of the resource
+    enum:
+      - event
+      - video
+      - team
+      - teammate
+      - marker
+      - challenger
+      - article
+  resourceId:
+    type: string
+    description: id of the resource
+    format: uuid
+  FanId:
+    type: string
+    description: id of the fan
+
+
+
+

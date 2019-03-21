@@ -34,3 +34,5 @@ User:
   $ref: ./User.yaml
 Video:
   $ref: ./Video.yaml
+FanActivity:
+  $ref: ./FanActivity.yaml

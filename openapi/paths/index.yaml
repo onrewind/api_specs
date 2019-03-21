@@ -121,3 +121,8 @@
   $ref: ./users-service-api/users/users.me.yaml
 /users-service-api/users/me/context:
   $ref: ./users-service-api/users/users.me.context.yaml
+# Activities
+/users-service-api/activities:
+  $ref: ./users-service-api/activities/activities.yaml
+/users-service-api/activities/{id}:
+  $ref: ./users-service-api/activities/activities.{id}.yaml

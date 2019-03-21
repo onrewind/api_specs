@@ -1,0 +1,32 @@
+delete:
+  tags:
+    - Users Service - FanActivity
+  summary: Delete an fan activity
+  description: Delete an fan activity
+  parameters:
+    - $ref: '#/components/parameters/id'
+  responses:
+    '204':
+      description: the fan activity has been deleted successfully
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'
+get:
+  tags:
+    - Users Service - FanActivity
+  summary: Fetch an fan activity
+  description: Fetch an fan activity matching the given id
+  parameters:
+    - $ref: '#/components/parameters/id'
+  responses:
+    '200':
+      description: Fetched information of logged fan activity based on access token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/FanActivity'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'
