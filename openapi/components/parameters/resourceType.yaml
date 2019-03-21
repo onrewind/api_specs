@@ -1,7 +1,6 @@
-name: fanActivityResourceType
+name: resourceType
 in: path
 description: the type of the resource
-required: true
 schema:
   type: string
   enum:

@@ -1,0 +1,5 @@
+name: limit
+in: path
+description: number of expected results
+schema:
+  type: integer

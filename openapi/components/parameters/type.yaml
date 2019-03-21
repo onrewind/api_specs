@@ -1,7 +1,6 @@
-name: fanActivityType
+name: type
 in: path
 description: the type of the activity
-required: true
 schema:
   type: string
   enum:

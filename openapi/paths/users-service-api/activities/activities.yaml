@@ -4,9 +4,10 @@ get:
   summary: Index of fan activities
   description: Get a list of all activities filtered by any of the available parameters
   parameters:
-    - $ref: '#/components/parameters/fanActivityType'
-    - $ref: '#/components/parameters/fanActivityResourceType'
-    - $ref: '#/components/parameters/fanActivityResourceId'
+    - $ref: '#/components/parameters/type'
+    - $ref: '#/components/parameters/resourceType'
+    - $ref: '#/components/parameters/resourceId'
+    - $ref: '#/components/parameters/limit'
   responses:
     '200':
       description: A list of Activities
