@@ -1758,9 +1758,11 @@ paths:
       tags:
         - Users Service - FanActivity
       summary: Index of fan activities
-      description: Get a list of all activities
+      description: Get a list of all activities filtered by any of the available parameters
       parameters:
-        - $ref: '#/components/parameters/fieldsParam'
+        - $ref: '#/components/parameters/fanActivityType'
+        - $ref: '#/components/parameters/fanActivityResourceType'
+        - $ref: '#/components/parameters/fanActivityResourceId'
       responses:
         '200':
           description: A list of Activities
@@ -1869,6 +1871,40 @@ components:
       schema:
         type: string
         format: uuid
+    fanActivityResourceType:
+      name: fanActivityResourceType
+      in: path
+      description: the type of the resource
+      required: true
+      schema:
+        type: string
+        enum:
+          - marker
+          - event
+          - challenger
+          - article
+          - video
+          - team
+          - teammate
+    fanActivityResourceId:
+      name: fanActivityResourceId
+      in: path
+      description: the uuid of the resource
+      required: true
+      schema:
+        type: string
+        format: uuid
+    fanActivityType:
+      name: fanActivityType
+      in: path
+      description: the type of the activity
+      required: true
+      schema:
+        type: string
+        enum:
+          - like
+          - watch
+          - bookmark
   responses:
     UserNotAuthorized:
       description: UserNotAuthorized
