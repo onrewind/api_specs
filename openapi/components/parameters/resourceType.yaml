@@ -11,6 +11,7 @@ schema:
     - video
     - team
     - teammate
+    - message
 
 
 
