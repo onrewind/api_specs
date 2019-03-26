@@ -699,6 +699,106 @@ paths:
           $ref: '#/components/responses/UserNotAuthorized'
         '404':
           $ref: '#/components/responses/NotFound'
+  /main-api/competitions:
+    post:
+      tags:
+        - Main API - Competition
+      summary: Create a new competition
+      description: Create a new competition
+      requestBody:
+        description: competition data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Competition'
+      responses:
+        '201':
+          description: The competition is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Competition'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    get:
+      tags:
+        - Main API - Competition
+      summary: Index of competitions
+      description: Get the list of all competitions.
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/SportId'
+      responses:
+        '200':
+          description: A list of Competitions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Competition'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/main-api/competitions/{id}':
+    get:
+      tags:
+        - Main API - Competition
+      summary: Fetch a competition
+      description: Fetch a competition matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Competition data matching the id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Competition'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Main API - Competition
+      summary: Update a competition matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        description: competition data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Competition'
+      responses:
+        '200':
+          description: Updated competition
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Competition'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags:
+        - Main API - Competition
+      summary: Delete a competition
+      description: Delete a competition
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: the competition has been deleted successfully
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
   /main-api/events:
     post:
       tags:
@@ -886,6 +986,234 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Event'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  '/main-api/{seasonId}/competitions/{competitionId}/rounds':
+    post:
+      tags:
+        - Main API - Round
+      summary: Create a new round
+      description: Create a new round
+      parameters:
+        - $ref: '#/components/parameters/seasonId'
+        - $ref: '#/components/parameters/competitionId'
+      requestBody:
+        description: round data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The name of the round
+                competitionOrder:
+                  type: number
+                  description: >-
+                    The position in the list of rounds when listing all the
+                    rounds for a given round.
+      responses:
+        '201':
+          description: The round is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Round'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    get:
+      tags:
+        - Main API - Round
+      summary: Index of rounds
+      description: Get the list of all rounds.
+      parameters:
+        - $ref: '#/components/parameters/seasonId'
+        - $ref: '#/components/parameters/competitionId'
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: A list of Rounds
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Round'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/main-api/{seasonId}/competitions/{competitionId}/rounds/{id}':
+    get:
+      tags:
+        - Main API - Round
+      summary: Fetch a round
+      description: Fetch a round matching the given id
+      parameters:
+        - $ref: '#/components/parameters/seasonId'
+        - $ref: '#/components/parameters/competitionId'
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Round data matching the id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Round'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Main API - Round
+      summary: Update a round matching the given id
+      parameters:
+        - $ref: '#/components/parameters/seasonId'
+        - $ref: '#/components/parameters/competitionId'
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        description: round data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The name of the round
+                competitionOrder:
+                  type: number
+                  description: >-
+                    The position in the list of rounds when listing all the
+                    rounds for a given round.
+      responses:
+        '200':
+          description: Updated round
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Round'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags:
+        - Main API - Round
+      summary: Delete a round
+      description: Delete a round
+      parameters:
+        - $ref: '#/components/parameters/seasonId'
+        - $ref: '#/components/parameters/competitionId'
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: the round has been deleted successfully
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /main-api/seasons:
+    post:
+      tags:
+        - Main API - Season
+      summary: Create a new season
+      description: Create a new season
+      requestBody:
+        description: season data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Season'
+      responses:
+        '201':
+          description: The season is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Season'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    get:
+      tags:
+        - Main API - Season
+      summary: Index of seasons
+      description: Get the list of all seasons.
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/SportId'
+      responses:
+        '200':
+          description: A list of Seasons
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Season'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/main-api/seasons/{id}':
+    get:
+      tags:
+        - Main API - Season
+      summary: Fetch a season
+      description: Fetch a season matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Season data matching the id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Season'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Main API - Season
+      summary: Update a season matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        description: season data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Season'
+      responses:
+        '200':
+          description: Updated season
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Season'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags:
+        - Main API - Season
+      summary: Delete a season
+      description: Delete a season
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: the season has been deleted successfully
         '403':
           $ref: '#/components/responses/UserNotAuthorized'
         '404':
@@ -1336,6 +1664,84 @@ paths:
           $ref: '#/components/responses/UserNotAuthorized'
         '404':
           $ref: '#/components/responses/NotFound'
+  /users-service-api/activities:
+    get:
+      tags:
+        - Users Service - FanActivity
+      summary: Index of fan activities
+      description: Get a list of all activities filtered by any of the available parameters
+      parameters:
+        - $ref: '#/components/parameters/type'
+        - $ref: '#/components/parameters/resourceType'
+        - $ref: '#/components/parameters/resourceId'
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: A list of Activities
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FanActivity'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    post:
+      tags:
+        - Users Service - FanActivity
+      summary: Create a new fan activity
+      description: Create a new fan activity
+      requestBody:
+        description: fan activity data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FanActivity'
+      responses:
+        '201':
+          description: The fan activity is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FanActivity'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/users-service-api/activities/{id}':
+    delete:
+      tags:
+        - Users Service - FanActivity
+      summary: Delete an fan activity
+      description: Delete an fan activity
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: the fan activity has been deleted successfully
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    get:
+      tags:
+        - Users Service - FanActivity
+      summary: Fetch an fan activity
+      description: Fetch an fan activity matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Fetched information of logged fan activity based on access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FanActivity'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
   /users-service-api/groups:
     get:
       tags:
@@ -1753,84 +2159,6 @@ paths:
           $ref: '#/components/responses/UserNotAuthorized'
         '404':
           $ref: '#/components/responses/NotFound'
-  /users-service-api/activities:
-    get:
-      tags:
-        - Users Service - FanActivity
-      summary: Index of fan activities
-      description: Get a list of all activities filtered by any of the available parameters
-      parameters:
-        - $ref: '#/components/parameters/type'
-        - $ref: '#/components/parameters/resourceType'
-        - $ref: '#/components/parameters/resourceId'
-        - $ref: '#/components/parameters/limit'
-      responses:
-        '200':
-          description: A list of Activities
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/FanActivity'
-        '403':
-          $ref: '#/components/responses/UserNotAuthorized'
-    post:
-      tags:
-        - Users Service - FanActivity
-      summary: Create a new fan activity
-      description: Create a new fan activity
-      requestBody:
-        description: fan activity data to be sent
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/FanActivity'
-      responses:
-        '201':
-          description: The fan activity is created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FanActivity'
-        '400':
-          $ref: '#/components/responses/InvalidModel'
-        '403':
-          $ref: '#/components/responses/UserNotAuthorized'
-  '/users-service-api/activities/{id}':
-    delete:
-      tags:
-        - Users Service - FanActivity
-      summary: Delete an fan activity
-      description: Delete an fan activity
-      parameters:
-        - $ref: '#/components/parameters/id'
-      responses:
-        '204':
-          description: the fan activity has been deleted successfully
-        '403':
-          $ref: '#/components/responses/UserNotAuthorized'
-        '404':
-          $ref: '#/components/responses/NotFound'
-    get:
-      tags:
-        - Users Service - FanActivity
-      summary: Fetch an fan activity
-      description: Fetch an fan activity matching the given id
-      parameters:
-        - $ref: '#/components/parameters/id'
-      responses:
-        '200':
-          description: Fetched information of logged fan activity based on access token
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FanActivity'
-        '403':
-          $ref: '#/components/responses/UserNotAuthorized'
-        '404':
-          $ref: '#/components/responses/NotFound'
 components:
   parameters:
     acceptVersion:
@@ -1853,6 +2181,29 @@ components:
       in: path
       description: the uuid of the object
       required: true
+      schema:
+        type: string
+        format: uuid
+    seasonId:
+      name: seasonId
+      in: path
+      description: the uuid of the season
+      required: true
+      schema:
+        type: string
+        format: uuid
+    competitionId:
+      name: competitionId
+      in: path
+      description: the uuid of the competition
+      required: true
+      schema:
+        type: string
+        format: uuid
+    SportId:
+      name: SportId
+      in: path
+      description: the uuid of the sport
       schema:
         type: string
         format: uuid
@@ -2851,6 +3202,87 @@ components:
         FanId:
           type: string
           description: id of the fan
+    Season:
+      title: Season
+      required:
+        - name
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          description: The name of the season
+        startDate:
+          type: string
+          description: The date when the season starts
+          format: date-time
+        endDate:
+          type: string
+          description: The date when the season ends
+          format: date-time
+        SportId:
+          type: string
+          format: uuid
+          description: The id of the associated sport
+    Competition:
+      title: Competition
+      required:
+        - name
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          description: The name of the competition
+        slug:
+          type: string
+          description: The slug of the competition used in the url
+        displayOrder:
+          type: number
+          description: >-
+            The position in the list of competitions when listing all the
+            competitions for a given sport.
+        startDate:
+          type: string
+          description: The date when the competition starts
+          format: date-time
+        endDate:
+          type: string
+          description: The date when the competition ends
+          format: date-time
+        SportId:
+          type: string
+          format: uuid
+          description: The id of the associated sport
+    Round:
+      title: Round
+      required:
+        - name
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          description: The name of the round
+        competitionOrder:
+          type: number
+          description: >-
+            The position in the list of rounds when listing all the rounds for a
+            given round.
+        CompetitionId:
+          type: string
+          format: uuid
+          description: The id of the associated round
+        SeasonId:
+          type: string
+          format: uuid
+          description: The id of the associated season
   securitySchemes:
     accessToken:
       type: http
