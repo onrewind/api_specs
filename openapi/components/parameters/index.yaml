@@ -4,6 +4,12 @@ fieldsParam:
   $ref: ./fieldsParam.yaml
 id:
   $ref: ./id.yaml
+seasonId:
+  $ref: ./seasonId.yaml
+competitionId:
+  $ref: ./competitionId.yaml
+SportId:
+  $ref: ./SportId.yaml
 streamableId:
   $ref: ./streamableId.yaml
 chatId:

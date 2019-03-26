@@ -1,0 +1,56 @@
+get:
+  tags:
+    - Main API - Competition
+  summary: Fetch a competition
+  description: Fetch a competition matching the given id
+  parameters:
+    - $ref: '#/components/parameters/id'
+  responses:
+    '200':
+      description: Competition data matching the id
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Competition'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'
+put:
+  tags:
+    - Main API - Competition
+  summary: Update a competition matching the given id
+  parameters:
+    - $ref: '#/components/parameters/id'
+  requestBody:
+    description: competition data to be sent
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Competition'
+  responses:
+    '200':
+      description: Updated competition
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Competition'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'
+delete:
+  tags:
+    - Main API - Competition
+  summary: Delete a competition
+  description: Delete a competition
+  parameters:
+    - $ref: '#/components/parameters/id'
+  responses:
+    '204':
+      description: the competition has been deleted successfully
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'

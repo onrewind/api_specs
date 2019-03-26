@@ -1,0 +1,42 @@
+post:
+  tags:
+    - Main API - Competition
+  summary: Create a new competition
+  description: Create a new competition
+  requestBody:
+    description: competition data to be sent
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Competition'
+  responses:
+    '201':
+      description: The competition is created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Competition'
+    '400':
+      $ref: '#/components/responses/InvalidModel'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+get:
+  tags:
+    - Main API - Competition
+  summary: Index of competitions
+  description: Get the list of all competitions.
+  parameters:
+    - $ref: '#/components/parameters/limit'
+    - $ref: '#/components/parameters/SportId'
+  responses:
+    '200':
+      description: A list of Competitions
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Competition'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'

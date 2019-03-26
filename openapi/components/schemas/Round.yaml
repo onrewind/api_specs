@@ -1,0 +1,22 @@
+title: "Round"
+required:
+  - name
+properties:
+  id:
+    type: string
+    format: uuid
+    readOnly: true
+  name:
+    type: string
+    description: The name of the round
+  competitionOrder:
+    type: number
+    description: The position in the list of rounds when listing all the rounds for a given round.
+  CompetitionId:
+    type: string
+    format: uuid
+    description: The id of the associated round
+  SeasonId:
+    type: string
+    format: uuid
+    description: The id of the associated season

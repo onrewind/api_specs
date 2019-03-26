@@ -1,0 +1,69 @@
+get:
+  tags:
+    - Main API - Round
+  summary: Fetch a round
+  description: Fetch a round matching the given id
+  parameters:
+    - $ref: '#/components/parameters/seasonId'
+    - $ref: '#/components/parameters/competitionId'
+    - $ref: '#/components/parameters/id'
+  responses:
+    '200':
+      description: Round data matching the id
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Round'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'
+put:
+  tags:
+    - Main API - Round
+  summary: Update a round matching the given id
+  parameters:
+    - $ref: '#/components/parameters/seasonId'
+    - $ref: '#/components/parameters/competitionId'
+    - $ref: '#/components/parameters/id'
+  requestBody:
+    description: round data to be sent
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              description: The name of the round
+            competitionOrder:
+              type: number
+              description: The position in the list of rounds when listing all the rounds for a given round.
+  responses:
+    '200':
+      description: Updated round
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Round'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'
+delete:
+  tags:
+    - Main API - Round
+  summary: Delete a round
+  description: Delete a round
+  parameters:
+    - $ref: '#/components/parameters/seasonId'
+    - $ref: '#/components/parameters/competitionId'
+    - $ref: '#/components/parameters/id'
+  responses:
+    '204':
+      description: the round has been deleted successfully
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'

@@ -1,0 +1,56 @@
+get:
+  tags:
+    - Main API - Season
+  summary: Fetch a season
+  description: Fetch a season matching the given id
+  parameters:
+    - $ref: '#/components/parameters/id'
+  responses:
+    '200':
+      description: Season data matching the id
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Season'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'
+put:
+  tags:
+    - Main API - Season
+  summary: Update a season matching the given id
+  parameters:
+    - $ref: '#/components/parameters/id'
+  requestBody:
+    description: season data to be sent
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Season'
+  responses:
+    '200':
+      description: Updated season
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Season'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'
+delete:
+  tags:
+    - Main API - Season
+  summary: Delete a season
+  description: Delete a season
+  parameters:
+    - $ref: '#/components/parameters/id'
+  responses:
+    '204':
+      description: the season has been deleted successfully
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'
