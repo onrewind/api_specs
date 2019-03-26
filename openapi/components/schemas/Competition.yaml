@@ -1,0 +1,29 @@
+title: "Competition"
+required:
+  - name
+properties:
+  id:
+    type: string
+    format: uuid
+    readOnly: true
+  name:
+    type: string
+    description: The name of the competition
+  slug:
+    type: string
+    description: The slug of the competition used in the url
+  displayOrder:
+    type: number
+    description: The position in the list of competitions when listing all the competitions for a given sport.
+  startDate:
+    type: string
+    description: The date when the competition starts
+    format: date-time
+  endDate:
+    type: string
+    description: The date when the competition ends
+    format: date-time
+  SportId:
+    type: string
+    format: uuid
+    description: The id of the associated sport

@@ -34,3 +34,12 @@ User:
   $ref: ./User.yaml
 Video:
   $ref: ./Video.yaml
+FanActivity:
+  $ref: ./FanActivity.yaml
+
+Season:
+  $ref: ./Season.yaml
+Competition:
+  $ref: ./Competition.yaml
+Round:
+  $ref: ./Round.yaml

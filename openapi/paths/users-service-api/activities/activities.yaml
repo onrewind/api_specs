@@ -1,0 +1,44 @@
+get:
+  tags:
+    - Users Service - FanActivity
+  summary: Index of fan activities
+  description: Get a list of all activities filtered by any of the available parameters
+  parameters:
+    - $ref: '#/components/parameters/type'
+    - $ref: '#/components/parameters/resourceType'
+    - $ref: '#/components/parameters/resourceId'
+    - $ref: '#/components/parameters/limit'
+  responses:
+    '200':
+      description: A list of Activities
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/FanActivity'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+post:
+  tags:
+    - Users Service - FanActivity
+  summary: Create a new fan activity
+  description: Create a new fan activity
+  requestBody:
+    description: fan activity data to be sent
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/FanActivity'
+  responses:
+    '201':
+      description: The fan activity is created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/FanActivity'
+    '400':
+      $ref: '#/components/responses/InvalidModel'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'

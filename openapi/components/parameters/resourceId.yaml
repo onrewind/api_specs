@@ -1,0 +1,9 @@
+name: resourceId
+in: path
+description: the uuid of the resource
+schema:
+  type: string
+  format: uuid
+
+
+

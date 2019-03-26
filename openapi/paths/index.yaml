@@ -62,6 +62,11 @@
   $ref: ./main-api/challengers/challengers.yaml
 /main-api/challengers/{id}:
   $ref: ./main-api/challengers/challengers.{id}.yaml
+#Seasons
+/main-api/competitions:
+  $ref: ./main-api/competitions/competitions.yaml
+/main-api/competitions/{id}:
+  $ref: ./main-api/competitions/competitions.{id}.yaml
 #Events
 /main-api/events:
   $ref: ./main-api/events/events.yaml
@@ -73,6 +78,16 @@
   $ref: ./main-api/events/events.fixtures.yaml
 /main-api/events/rewinds:
   $ref: ./main-api/events/events.rewinds.yaml
+#Rounds
+/main-api/{seasonId}/competitions/{competitionId}/rounds:
+  $ref: ./main-api/rounds/rounds.yaml
+/main-api/{seasonId}/competitions/{competitionId}/rounds/{id}:
+  $ref: ./main-api/rounds/rounds.{id}.yaml
+#Seasons
+/main-api/seasons:
+  $ref: ./main-api/seasons/seasons.yaml
+/main-api/seasons/{id}:
+  $ref: ./main-api/seasons/seasons.{id}.yaml
 /main-api/events/spotlight:
   $ref: ./main-api/events/events.spotlight.yaml
 #Sports
@@ -99,6 +114,11 @@
   $ref: ./users-service-api/accounts/accounts.yaml
 /users-service-api/accounts/{id}:
   $ref: ./users-service-api/accounts/accounts.{id}.yaml
+# Activities
+/users-service-api/activities:
+  $ref: ./users-service-api/activities/activities.yaml
+/users-service-api/activities/{id}:
+  $ref: ./users-service-api/activities/activities.{id}.yaml
 # Groups
 /users-service-api/groups:
   $ref: ./users-service-api/groups/groups.yaml

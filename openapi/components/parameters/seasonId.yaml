@@ -1,0 +1,10 @@
+name: seasonId
+in: path
+description: the uuid of the season
+required: true
+schema:
+  type: string
+  format: uuid
+
+
+

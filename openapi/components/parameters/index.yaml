@@ -4,8 +4,22 @@ fieldsParam:
   $ref: ./fieldsParam.yaml
 id:
   $ref: ./id.yaml
+seasonId:
+  $ref: ./seasonId.yaml
+competitionId:
+  $ref: ./competitionId.yaml
+SportId:
+  $ref: ./SportId.yaml
 streamableId:
   $ref: ./streamableId.yaml
 chatId:
   $ref: ./chatId.yaml
+resourceType:
+  $ref: ./resourceType.yaml
+resourceId:
+  $ref: ./resourceId.yaml
+type:
+  $ref: ./type.yaml
+limit:
+  $ref: ./limit.yaml
 

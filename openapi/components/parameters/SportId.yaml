@@ -1,0 +1,9 @@
+name: SportId
+in: path
+description: the uuid of the sport
+schema:
+  type: string
+  format: uuid
+
+
+

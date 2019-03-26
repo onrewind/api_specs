@@ -1,0 +1,9 @@
+name: type
+in: path
+description: the type of the activity
+schema:
+  type: string
+  enum:
+    - like
+    - watch
+    - bookmark

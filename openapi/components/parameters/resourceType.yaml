@@ -1,0 +1,17 @@
+name: resourceType
+in: path
+description: the type of the resource
+schema:
+  type: string
+  enum:
+    - marker
+    - event
+    - challenger
+    - article
+    - video
+    - team
+    - teammate
+    - message
+
+
+
