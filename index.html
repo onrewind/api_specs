@@ -1816,7 +1816,8 @@ curl -X POST https://api-gateway.onrewind.tv/chats-service-api/chats/<span class
   },
   "flagged": false,
   "hidden": false,
-  "FanId": "string"
+  "FanId": "string",
+  "ParentId": "string"
 }'</span><span class="p">;</span>
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
@@ -1920,7 +1921,8 @@ curl -X POST https://api-gateway.onrewind.tv/chats-service-api/chats/<span class
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"flagged"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="s2">"hidden"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"FanId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="s2">"FanId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ParentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <h3 id="post__chats-service-api_chats_{chatid}_messages-parameters">Parameters</h3>
@@ -1962,7 +1964,8 @@ curl -X POST https://api-gateway.onrewind.tv/chats-service-api/chats/<span class
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"flagged"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="s2">"hidden"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"FanId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="s2">"FanId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ParentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <h3 id="post__chats-service-api_chats_{chatid}_messages-responses">Responses</h3>
@@ -2152,7 +2155,8 @@ curl -X GET https://api-gateway.onrewind.tv/chats-service-api/chats/<span class=
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"flagged"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="s2">"hidden"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"FanId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+    </span><span class="s2">"FanId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ParentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
@@ -2241,6 +2245,13 @@ curl -X GET https://api-gateway.onrewind.tv/chats-service-api/chats/<span class=
 <td>true</td>
 <td>none</td>
 <td>id of the fan that authored the message</td>
+</tr>
+<tr>
+<td>»» ParentId</td>
+<td>string(uuid)</td>
+<td>false</td>
+<td>none</td>
+<td>id of the parent message, can be used to create a thread</td>
 </tr>
 </tbody></table>
 
@@ -2407,7 +2418,8 @@ curl -X GET https://api-gateway.onrewind.tv/chats-service-api/chats/<span class=
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"flagged"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="s2">"hidden"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"FanId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="s2">"FanId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ParentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <h3 id="get__chats-service-api_chats_{chatid}_messages_{id}-responses">Responses</h3>
@@ -2483,7 +2495,8 @@ curl -X PUT https://api-gateway.onrewind.tv/chats-service-api/chats/<span class=
   },
   "flagged": false,
   "hidden": false,
-  "FanId": "string"
+  "FanId": "string",
+  "ParentId": "string"
 }'</span><span class="p">;</span>
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
@@ -2585,7 +2598,8 @@ curl -X PUT https://api-gateway.onrewind.tv/chats-service-api/chats/<span class=
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"flagged"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="s2">"hidden"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"FanId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="s2">"FanId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ParentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <h3 id="put__chats-service-api_chats_{chatid}_messages_{id}-parameters">Parameters</h3>
@@ -2634,7 +2648,8 @@ curl -X PUT https://api-gateway.onrewind.tv/chats-service-api/chats/<span class=
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"flagged"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="s2">"hidden"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"FanId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="s2">"FanId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ParentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <h3 id="put__chats-service-api_chats_{chatid}_messages_{id}-responses">Responses</h3>
@@ -2901,7 +2916,8 @@ curl -X PUT https://api-gateway.onrewind.tv/chats-service-api/chats/<span class=
   },
   "flagged": false,
   "hidden": false,
-  "FanId": "string"
+  "FanId": "string",
+  "ParentId": "string"
 }'</span><span class="p">;</span>
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
@@ -3003,7 +3019,8 @@ curl -X PUT https://api-gateway.onrewind.tv/chats-service-api/chats/<span class=
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"flagged"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="s2">"hidden"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"FanId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="s2">"FanId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ParentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <h3 id="put__chats-service-api_chats_{chatid}_messages_{id}_flag-parameters">Parameters</h3>
@@ -3052,7 +3069,8 @@ curl -X PUT https://api-gateway.onrewind.tv/chats-service-api/chats/<span class=
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"flagged"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="s2">"hidden"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"FanId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="s2">"FanId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ParentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <h3 id="put__chats-service-api_chats_{chatid}_messages_{id}_flag-responses">Responses</h3>
@@ -4558,8 +4576,8 @@ curl -X POST https://api-gateway.onrewind.tv/main-api/business-players <span cla
     "initialStartingTime": 0,
     "showControls": true
   },
-  "startDate": "2019-03-26T08:24:33Z",
-  "endDate": "2019-03-26T08:24:33Z",
+  "startDate": "2019-03-26T14:07:39Z",
+  "endDate": "2019-03-26T14:07:39Z",
   "activatedModules": [
     0
   ],
@@ -4686,8 +4704,8 @@ curl -X POST https://api-gateway.onrewind.tv/main-api/business-players <span cla
     </span><span class="s2">"initialStartingTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"showControls"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"activatedModules"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="mi">0</span><span class="w">
   </span><span class="p">],</span><span class="w">
@@ -4745,8 +4763,8 @@ curl -X POST https://api-gateway.onrewind.tv/main-api/business-players <span cla
     </span><span class="s2">"initialStartingTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"showControls"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"activatedModules"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="mi">0</span><span class="w">
   </span><span class="p">],</span><span class="w">
@@ -4939,8 +4957,8 @@ curl -X GET https://api-gateway.onrewind.tv/main-api/business-players <span clas
       </span><span class="s2">"initialStartingTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
       </span><span class="s2">"showControls"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"activatedModules"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="mi">0</span><span class="w">
     </span><span class="p">],</span><span class="w">
@@ -5352,8 +5370,8 @@ curl -X GET https://api-gateway.onrewind.tv/main-api/business-players/<span clas
     </span><span class="s2">"initialStartingTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"showControls"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"activatedModules"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="mi">0</span><span class="w">
   </span><span class="p">],</span><span class="w">
@@ -5451,8 +5469,8 @@ curl -X PUT https://api-gateway.onrewind.tv/main-api/business-players/<span clas
     "initialStartingTime": 0,
     "showControls": true
   },
-  "startDate": "2019-03-26T08:24:33Z",
-  "endDate": "2019-03-26T08:24:33Z",
+  "startDate": "2019-03-26T14:07:39Z",
+  "endDate": "2019-03-26T14:07:39Z",
   "activatedModules": [
     0
   ],
@@ -5577,8 +5595,8 @@ curl -X PUT https://api-gateway.onrewind.tv/main-api/business-players/<span clas
     </span><span class="s2">"initialStartingTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"showControls"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"activatedModules"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="mi">0</span><span class="w">
   </span><span class="p">],</span><span class="w">
@@ -5643,8 +5661,8 @@ curl -X PUT https://api-gateway.onrewind.tv/main-api/business-players/<span clas
     </span><span class="s2">"initialStartingTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"showControls"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"activatedModules"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="mi">0</span><span class="w">
   </span><span class="p">],</span><span class="w">
@@ -6394,8 +6412,8 @@ curl -X POST https://api-gateway.onrewind.tv/main-api/business-players/<span cla
     "initialStartingTime": 0,
     "showControls": true
   },
-  "startDate": "2019-03-26T08:24:33Z",
-  "endDate": "2019-03-26T08:24:33Z",
+  "startDate": "2019-03-26T14:07:39Z",
+  "endDate": "2019-03-26T14:07:39Z",
   "activatedModules": [
     0
   ],
@@ -6522,8 +6540,8 @@ curl -X POST https://api-gateway.onrewind.tv/main-api/business-players/<span cla
     </span><span class="s2">"initialStartingTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"showControls"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"activatedModules"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="mi">0</span><span class="w">
   </span><span class="p">],</span><span class="w">
@@ -6588,8 +6606,8 @@ curl -X POST https://api-gateway.onrewind.tv/main-api/business-players/<span cla
     </span><span class="s2">"initialStartingTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"showControls"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"activatedModules"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="mi">0</span><span class="w">
   </span><span class="p">],</span><span class="w">
@@ -7857,8 +7875,8 @@ curl -X POST https://api-gateway.onrewind.tv/main-api/competitions <span class="
   "name": "string",
   "slug": "string",
   "displayOrder": 0,
-  "startDate": "2019-03-26T08:24:33Z",
-  "endDate": "2019-03-26T08:24:33Z",
+  "startDate": "2019-03-26T14:07:39Z",
+  "endDate": "2019-03-26T14:07:39Z",
   "SportId": "string"
 }'</span><span class="p">;</span>
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
@@ -7961,8 +7979,8 @@ curl -X POST https://api-gateway.onrewind.tv/main-api/competitions <span class="
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"displayOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"SportId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -7996,8 +8014,8 @@ curl -X POST https://api-gateway.onrewind.tv/main-api/competitions <span class="
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"displayOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"SportId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -8193,8 +8211,8 @@ curl -X GET https://api-gateway.onrewind.tv/main-api/competitions <span class="s
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"displayOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"SportId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
@@ -8455,8 +8473,8 @@ curl -X GET https://api-gateway.onrewind.tv/main-api/competitions/<span class="o
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"displayOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"SportId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -8531,8 +8549,8 @@ curl -X PUT https://api-gateway.onrewind.tv/main-api/competitions/<span class="o
   "name": "string",
   "slug": "string",
   "displayOrder": 0,
-  "startDate": "2019-03-26T08:24:33Z",
-  "endDate": "2019-03-26T08:24:33Z",
+  "startDate": "2019-03-26T14:07:39Z",
+  "endDate": "2019-03-26T14:07:39Z",
   "SportId": "string"
 }'</span><span class="p">;</span>
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
@@ -8633,8 +8651,8 @@ curl -X PUT https://api-gateway.onrewind.tv/main-api/competitions/<span class="o
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"displayOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"SportId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -8675,8 +8693,8 @@ curl -X PUT https://api-gateway.onrewind.tv/main-api/competitions/<span class="o
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"displayOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"SportId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -8938,8 +8956,8 @@ curl -X POST https://api-gateway.onrewind.tv/main-api/events <span class="se">\<
   "organiserName": "string",
   "description": "string",
   "location": "string",
-  "startDate": "2019-03-26T08:24:33Z",
-  "endDate": "2019-03-26T08:24:33Z",
+  "startDate": "2019-03-26T14:07:39Z",
+  "endDate": "2019-03-26T14:07:39Z",
   "state": "replay",
   "placeholder": {
     "poster": "string",
@@ -9075,8 +9093,8 @@ curl -X POST https://api-gateway.onrewind.tv/main-api/events <span class="se">\<
   </span><span class="s2">"organiserName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"replay"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"placeholder"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"poster"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
@@ -9143,8 +9161,8 @@ curl -X POST https://api-gateway.onrewind.tv/main-api/events <span class="se">\<
   </span><span class="s2">"organiserName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"replay"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"placeholder"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"poster"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
@@ -9346,8 +9364,8 @@ curl -X GET https://api-gateway.onrewind.tv/main-api/events <span class="se">\</
     </span><span class="s2">"organiserName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:39Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"replay"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"placeholder"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"poster"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
@@ -9817,8 +9835,8 @@ curl -X GET https://api-gateway.onrewind.tv/main-api/events/<span class="o">{</s
   </span><span class="s2">"organiserName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"replay"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"placeholder"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"poster"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
@@ -9925,8 +9943,8 @@ curl -X PUT https://api-gateway.onrewind.tv/main-api/events/<span class="o">{</s
   "organiserName": "string",
   "description": "string",
   "location": "string",
-  "startDate": "2019-03-26T08:24:33Z",
-  "endDate": "2019-03-26T08:24:33Z",
+  "startDate": "2019-03-26T14:07:40Z",
+  "endDate": "2019-03-26T14:07:40Z",
   "state": "replay",
   "placeholder": {
     "poster": "string",
@@ -10060,8 +10078,8 @@ curl -X PUT https://api-gateway.onrewind.tv/main-api/events/<span class="o">{</s
   </span><span class="s2">"organiserName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"replay"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"placeholder"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"poster"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
@@ -10135,8 +10153,8 @@ curl -X PUT https://api-gateway.onrewind.tv/main-api/events/<span class="o">{</s
   </span><span class="s2">"organiserName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"replay"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"placeholder"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"poster"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
@@ -10535,8 +10553,8 @@ curl -X GET https://api-gateway.onrewind.tv/main-api/events/<span class="o">{</s
   </span><span class="s2">"organiserName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"replay"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"placeholder"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"poster"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
@@ -10758,8 +10776,8 @@ curl -X GET https://api-gateway.onrewind.tv/main-api/events/fixtures <span class
     </span><span class="s2">"organiserName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"replay"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"placeholder"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"poster"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
@@ -11242,8 +11260,8 @@ curl -X GET https://api-gateway.onrewind.tv/main-api/events/rewinds <span class=
     </span><span class="s2">"organiserName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"replay"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"placeholder"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"poster"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
@@ -11725,8 +11743,8 @@ curl -X GET https://api-gateway.onrewind.tv/main-api/events/spotlight <span clas
   </span><span class="s2">"organiserName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"replay"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"placeholder"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"poster"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
@@ -12965,8 +12983,8 @@ curl -X POST https://api-gateway.onrewind.tv/main-api/seasons <span class="se">\
 </code></pre><pre class="highlight javascript tab-javascript--nodejs"><code><span class="kr">const</span> <span class="nx">fetch</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-fetch'</span><span class="p">);</span>
 <span class="kr">const</span> <span class="nx">inputBody</span> <span class="o">=</span> <span class="s1">'{
   "name": "string",
-  "startDate": "2019-03-26T08:24:33Z",
-  "endDate": "2019-03-26T08:24:33Z",
+  "startDate": "2019-03-26T14:07:40Z",
+  "endDate": "2019-03-26T14:07:40Z",
   "SportId": "string"
 }'</span><span class="p">;</span>
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
@@ -13067,8 +13085,8 @@ curl -X POST https://api-gateway.onrewind.tv/main-api/seasons <span class="se">\
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"SportId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -13100,8 +13118,8 @@ curl -X POST https://api-gateway.onrewind.tv/main-api/seasons <span class="se">\
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"SportId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -13295,8 +13313,8 @@ curl -X GET https://api-gateway.onrewind.tv/main-api/seasons <span class="se">\<
   </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"SportId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
@@ -13541,8 +13559,8 @@ curl -X GET https://api-gateway.onrewind.tv/main-api/seasons/<span class="o">{</
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"SportId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -13615,8 +13633,8 @@ curl -X PUT https://api-gateway.onrewind.tv/main-api/seasons/<span class="o">{</
 </code></pre><pre class="highlight javascript tab-javascript--nodejs"><code><span class="kr">const</span> <span class="nx">fetch</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-fetch'</span><span class="p">);</span>
 <span class="kr">const</span> <span class="nx">inputBody</span> <span class="o">=</span> <span class="s1">'{
   "name": "string",
-  "startDate": "2019-03-26T08:24:33Z",
-  "endDate": "2019-03-26T08:24:33Z",
+  "startDate": "2019-03-26T14:07:40Z",
+  "endDate": "2019-03-26T14:07:40Z",
   "SportId": "string"
 }'</span><span class="p">;</span>
 <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
@@ -13715,8 +13733,8 @@ curl -X PUT https://api-gateway.onrewind.tv/main-api/seasons/<span class="o">{</
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"SportId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -13755,8 +13773,8 @@ curl -X PUT https://api-gateway.onrewind.tv/main-api/seasons/<span class="o">{</
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"SportId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -24387,8 +24405,8 @@ accessToken
     </span><span class="s2">"initialStartingTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"showControls"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"activatedModules"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="mi">0</span><span class="w">
   </span><span class="p">],</span><span class="w">
@@ -25051,8 +25069,8 @@ accessToken
   </span><span class="s2">"organiserName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"replay"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"placeholder"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"poster"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
@@ -25688,7 +25706,8 @@ accessToken
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"flagged"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="s2">"hidden"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"FanId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="s2">"FanId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ParentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
@@ -25737,6 +25756,13 @@ accessToken
 <td>true</td>
 <td>none</td>
 <td>id of the fan that authored the message</td>
+</tr>
+<tr>
+<td>ParentId</td>
+<td>string(uuid)</td>
+<td>false</td>
+<td>none</td>
+<td>id of the parent message, can be used to create a thread</td>
 </tr>
 </tbody></table>
 
@@ -26641,8 +26667,8 @@ accessToken
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"SportId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
@@ -26703,8 +26729,8 @@ accessToken
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"displayOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T08:24:33Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-26T14:07:40Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"SportId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 

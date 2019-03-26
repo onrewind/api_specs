@@ -2849,6 +2849,10 @@ components:
           type: string
           format: uuid
           description: id of the fan that authored the message
+        ParentId:
+          type: string
+          format: uuid
+          description: 'id of the parent message, can be used to create a thread'
     Module:
       title: Module
       required:
