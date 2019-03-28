@@ -1,5 +1,7 @@
 acceptVersion:
   $ref: ./acceptVersion.yaml
+accountKey:
+  $ref: ./accountKey.yaml
 fieldsParam:
   $ref: ./fieldsParam.yaml
 id:

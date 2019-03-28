@@ -1,0 +1,59 @@
+post:
+  security: [] #disable security
+  tags:
+    - Auth Service
+  summary: Log in a fan
+  description: >
+    Send credentials to retrieve an accessToken.
+    Credentials may be a set of email/password or a google token id or a facebook access token.
+  parameters:
+    - $ref: '#/components/parameters/acceptVersion'
+    - $ref: '#/components/parameters/accountKey'
+  requestBody:
+    description: Credentials data ; must be either a set of email/password or a googleTokenId or a facebookAccessToken.
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            email:
+              type: string
+              description: email of the fan
+            password:
+              type: string
+              description: password of the fan
+            googleTokenId:
+              type: string
+              description: google api token id returned by the google api when the user after logged in using its google account.
+            facebookAccessToken:
+              type: string
+              description: facebook access token returned by the facebook api when the user logged in using its facebook account.
+  responses:
+    '200':
+      description: The fan is logged in
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+                description: fan id
+              accessToken:
+                type: string
+                format: JWT
+                description: accessToken to be used in every subsequent requests
+              tokenType:
+                type: string
+                default: 'Bearer'
+                description: type of the token being returned, at the moment only bearer token can be returned
+              expiresIn:
+                type: integer
+                default: 86400
+                description: expiry time of the token, defaults to 24h
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'

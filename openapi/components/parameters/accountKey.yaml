@@ -1,0 +1,6 @@
+in: header
+name: x-account-key
+description: Identifies the customer's account
+required: true
+schema:
+  type: string

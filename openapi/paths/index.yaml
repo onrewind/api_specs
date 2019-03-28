@@ -8,9 +8,12 @@
 #Auth
 /auth/login:
   $ref: ./root/auth/auth.login.yaml
+/auth/fan/login:
+  $ref: ./root/auth/auth.fan.login.yaml
 /auth/logout:
   $ref: ./root/auth/auth.logout.yaml
-
+/auth/fan/logout:
+  $ref: ./root/auth/auth.fan.logout.yaml
 
 ##########################
 ###### CHATS SERVICE #######

@@ -1,11 +1,11 @@
 post:
   tags:
     - Auth Service
-  summary: Log out a fan
-  description: Logout a fan by invalidating his accessToken
+  summary: Log out an user
+  description: Logout an user by invalidating his accessToken
   responses:
     '200':
-      description: The fan is logged out and his token is now invalid
+      description: The user is logged out and his token is now invalid
       content:
         application/json:
           schema:
