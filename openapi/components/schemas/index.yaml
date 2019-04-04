@@ -36,9 +36,10 @@ Video:
   $ref: ./Video.yaml
 FanActivity:
   $ref: ./FanActivity.yaml
-
 Season:
   $ref: ./Season.yaml
+Squad:
+  $ref: ./Squad.yaml
 Competition:
   $ref: ./Competition.yaml
 Round:

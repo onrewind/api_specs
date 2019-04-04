@@ -10,6 +10,8 @@ seasonId:
   $ref: ./seasonId.yaml
 competitionId:
   $ref: ./competitionId.yaml
+challengerId:
+  $ref: ./challengerId.yaml
 SportId:
   $ref: ./SportId.yaml
 streamableId:

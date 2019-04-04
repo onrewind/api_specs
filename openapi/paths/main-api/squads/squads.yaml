@@ -1,0 +1,23 @@
+post:
+  tags:
+  - Main API - Squad
+  summary: Create a new squad for a team
+  description: Create a new squad for a team
+  requestBody:
+    description: squad data to be sent
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Squad'
+  responses:
+    '201':
+      description: The squad created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Squad'
+    '400':
+      $ref: '#/components/responses/InvalidModel'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'

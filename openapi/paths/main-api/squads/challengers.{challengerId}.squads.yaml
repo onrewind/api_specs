@@ -1,0 +1,18 @@
+get:
+  tags:
+  - Main API - Squad
+  summary: Index of squads
+  description: Index of squads, if  is for a challenger of type 'team', it will return a list of TeamSquads, otherwise a list of TeammateSquads.
+  parameters:
+    - $ref: '#/components/parameters/challengerId'
+  responses:
+    '200':
+      description: A list of squads
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Squad'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'

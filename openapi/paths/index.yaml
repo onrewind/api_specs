@@ -4,7 +4,6 @@
 ##########################
 ### ROOT (API GATEWAY) ###
 ##########################
-
 #Auth
 /auth/login:
   $ref: ./root/auth/auth.login.yaml
@@ -45,7 +44,6 @@
 ##########################
 ####### MAIN API #########
 ##########################
-
 #Auth
 /main-api/auth/ping:
   $ref: ./main-api/auth/auth.ping.yaml
@@ -82,9 +80,9 @@
 /main-api/events/rewinds:
   $ref: ./main-api/events/events.rewinds.yaml
 #Rounds
-/main-api/{seasonId}/competitions/{competitionId}/rounds:
+/main-api/seasons/{seasonId}/competitions/{competitionId}/rounds:
   $ref: ./main-api/rounds/rounds.yaml
-/main-api/{seasonId}/competitions/{competitionId}/rounds/{id}:
+/main-api/seasons/{seasonId}/competitions/{competitionId}/rounds/{id}:
   $ref: ./main-api/rounds/rounds.{id}.yaml
 #Seasons
 /main-api/seasons:
@@ -93,6 +91,17 @@
   $ref: ./main-api/seasons/seasons.{id}.yaml
 /main-api/events/spotlight:
   $ref: ./main-api/events/events.spotlight.yaml
+#Squads
+/main-api/challengers:{challengerId}/squads:
+  $ref: ./main-api/squads/challengers.{challengerId}.squads.yaml
+/main-api/challengers:{challengerId}/squads/{id}:
+  $ref: ./main-api/squads/challengers.{challengerId}.squads.{id}.yaml
+/main-api/squads:
+  $ref: ./main-api/squads/squads.yaml
+/main-api/squads/${id}:
+  $ref: ./main-api/squads/squads.{id}.yaml
+/main-api/squads/{id}/teammates:
+  $ref: ./main-api/squads/squads.{id}.teammates.yaml
 #Sports
 /main-api/sports:
   $ref: ./main-api/sports/sports.yaml
@@ -108,10 +117,10 @@
   $ref: ./main-api/videos/videos.yaml
 /main-api/videos/{id}:
   $ref: ./main-api/videos/videos.{id}.yaml
+
 ##########################
 ##### USERS SERVICE ######
 ##########################
-
 # Accounts
 /users-service-api/accounts:
   $ref: ./users-service-api/accounts/accounts.yaml

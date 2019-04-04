@@ -1,0 +1,7 @@
+name: challengerId
+in: path
+description: the uuid of the challenger
+required: true
+schema:
+  type: string
+  format: uuid

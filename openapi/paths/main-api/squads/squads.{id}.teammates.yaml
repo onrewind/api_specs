@@ -1,0 +1,25 @@
+post:
+  tags:
+  - Main API - Squad
+  summary: Associate a teammate to the given teams's squad.
+  description: Associate a teammate to the given team's squad.
+  parameters:
+    - $ref: '#/components/parameters/id'
+  requestBody:
+    description: squad data to be sent
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Squad'
+  responses:
+    '201':
+      description: The squad created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Squad'
+    '400':
+      $ref: '#/components/responses/InvalidModel'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'

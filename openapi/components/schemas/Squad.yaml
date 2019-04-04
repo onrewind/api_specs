@@ -1,0 +1,29 @@
+title: "Squad"
+properties:
+  id:
+    type: string
+    format: uuid
+    readOnly: true
+  name:
+    type: string
+    description: Squad's name. Only for TeamSquad
+  meta:
+    type: object
+    description: Squad's meta data, available for both TeamSquad and TeammateSquad
+  TeamId:
+    type: string
+    format: uuid
+    description: team's id when creating a TeamSquad. Only for TeamSquad
+  TeammateId:
+    type: string
+    format: uuid
+    description: teammate's id when creating a TeammateSquad. Only for TeammateSquad
+  SeasonId:
+    type: string
+    format: uuid
+    description: season's id when creating a TeamSquad. Only for TeamSquad
+  Squad:
+    type: string
+    format: uuid
+    description: squad's id when creating a TeammateSquad (reference a specific TeamSquad). Only for TeammateSquad
+

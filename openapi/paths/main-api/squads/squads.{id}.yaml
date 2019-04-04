@@ -1,0 +1,18 @@
+delete:
+  tags:
+    - Main API - Squad
+  summary: Delete a squad
+  description: Delete the squad matching the given id
+  parameters:
+    - $ref: '#/components/parameters/id'
+  responses:
+    '200':
+      description: The deleted squad
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Squad'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'
