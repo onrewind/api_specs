@@ -23,3 +23,23 @@ post:
       $ref: '#/components/responses/InvalidModel'
     '403':
       $ref: '#/components/responses/UserNotAuthorized'
+get:
+  tags:
+    - Main API - Squad
+  summary: Fetch the teammates associated to a squad.
+  description: Fetch the teammates associated to a squad.
+  parameters:
+    - $ref: '#/components/parameters/id'
+  responses:
+    '200':
+      description: A list of teammates
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Challenger'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'

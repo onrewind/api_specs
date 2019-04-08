@@ -41,12 +41,6 @@ properties:
   role:
     type: string
     description: the role of the challenger
-  Teammates:
-    type: array
-    description: Array of teammate belonging to a team.
-    items:
-      type: object
-      description: teammate (challenger) data
   TeamId:
     type: string
     format: uuid

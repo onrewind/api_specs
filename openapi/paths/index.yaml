@@ -94,8 +94,6 @@
 #Squads
 /main-api/challengers:{challengerId}/squads:
   $ref: ./main-api/squads/challengers.{challengerId}.squads.yaml
-/main-api/challengers:{challengerId}/squads/{id}:
-  $ref: ./main-api/squads/challengers.{challengerId}.squads.{id}.yaml
 /main-api/squads:
   $ref: ./main-api/squads/squads.yaml
 /main-api/squads/${id}:

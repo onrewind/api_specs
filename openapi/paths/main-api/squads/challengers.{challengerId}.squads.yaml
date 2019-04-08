@@ -2,7 +2,7 @@ get:
   tags:
   - Main API - Squad
   summary: Index of squads
-  description: Index of squads, if  is for a challenger of type 'team', it will return a list of TeamSquads, otherwise a list of TeammateSquads.
+  description: Index of squads, returns the TeamSquads associated to the challenger.
   parameters:
     - $ref: '#/components/parameters/challengerId'
   responses:
