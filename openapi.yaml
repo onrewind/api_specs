@@ -15,7 +15,2369 @@ servers:
   - url: 'https://staging-api-gateway.onrewind.tv'
   - url: 'https://dev-api-gateway.onrewind.tv'
 paths:
-  $ref: ./paths/index.yaml
+  /auth/login:
+    post:
+      security: []
+      tags:
+        - Auth Service
+      summary: Log in an user
+      description: >
+        Send credentials to retrieve an accessToken. If the 'Accept-Version'
+        header is specified to value "v5", user data will be returned, but this
+        version is deprecated and not recommended as data might not be in sync.
+      parameters:
+        - $ref: '#/components/parameters/acceptVersion'
+      requestBody:
+        description: credentials data
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: username of the user
+                password:
+                  type: string
+                  description: password of the user
+      responses:
+        '200':
+          description: The user is logged in
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    description: user id
+                  accessToken:
+                    type: string
+                    format: JWT
+                    description: accessToken to be used in every subsequent requests
+                  tokenType:
+                    type: string
+                    default: Bearer
+                    description: >-
+                      type of the token being returned, at the moment only
+                      bearer token can be returned
+                  expiresIn:
+                    type: integer
+                    default: 86400
+                    description: 'expiry time of the token, defaults to 24h'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /auth/fan/login:
+    post:
+      security: []
+      tags:
+        - Auth Service
+      summary: Log in a fan
+      description: >
+        Send credentials to retrieve an accessToken. Credentials may be a set of
+        email/password or a google token id or a facebook access token.
+      parameters:
+        - $ref: '#/components/parameters/acceptVersion'
+        - $ref: '#/components/parameters/accountKey'
+      requestBody:
+        description: >-
+          Credentials data ; must be either a set of email/password or a
+          googleTokenId or a facebookAccessToken.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: email of the fan
+                password:
+                  type: string
+                  description: password of the fan
+                googleTokenId:
+                  type: string
+                  description: >-
+                    google api token id returned by the google api when the user
+                    after logged in using its google account.
+                facebookAccessToken:
+                  type: string
+                  description: >-
+                    facebook access token returned by the facebook api when the
+                    user logged in using its facebook account.
+      responses:
+        '200':
+          description: The fan is logged in
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    description: fan id
+                  accessToken:
+                    type: string
+                    format: JWT
+                    description: accessToken to be used in every subsequent requests
+                  tokenType:
+                    type: string
+                    default: Bearer
+                    description: >-
+                      type of the token being returned, at the moment only
+                      bearer token can be returned
+                  expiresIn:
+                    type: integer
+                    default: 86400
+                    description: 'expiry time of the token, defaults to 24h'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /auth/logout:
+    post:
+      tags:
+        - Auth Service
+      summary: Log out a fan
+      description: Logout a fan by invalidating his accessToken
+      responses:
+        '200':
+          description: The fan is logged out and his token is now invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: >-
+                      message describing if the token is already expired or if
+                      it's been successfully logged out
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  /auth/fan/logout:
+    post:
+      tags:
+        - Auth Service
+      summary: Log out an fan
+      description: Logout an fan by invalidating his accessToken
+      responses:
+        '200':
+          description: The fan is logged out and his token is now invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: >-
+                      message describing if the token is already expired or if
+                      it's been successfully logged out
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  /chats-service-api/chats:
+    post:
+      tags:
+        - Chats Service - Chat
+      summary: Create a new chat
+      description: Create a new chat
+      requestBody:
+        description: chat data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Chat'
+      responses:
+        '201':
+          description: The chat is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chat'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/chats-service-api/chats/{id}':
+    get:
+      tags:
+        - Chats Service - Chat
+      summary: Fetch a chat
+      description: Fetch a chat matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Chat data matching the id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chat'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags:
+        - Chats Service - Chat
+      summary: Delete a chat
+      description: Delete a chat
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: the chat has been deleted successfully
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  '/chats-service-api/chats/{chatId}/messages':
+    post:
+      tags:
+        - Chats Service - Message
+      summary: Create a new message
+      description: Create a new message
+      parameters:
+        - $ref: '#/components/parameters/chatId'
+      requestBody:
+        description: message data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Message'
+      responses:
+        '201':
+          description: The message is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    get:
+      tags:
+        - Chats Service - Message
+      summary: Index of messages
+      description: Get the list of all messages.
+      parameters:
+        - $ref: '#/components/parameters/chatId'
+      responses:
+        '200':
+          description: A list of Messages
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Message'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/chats-service-api/chats/{chatId}/messages/{id}':
+    get:
+      tags:
+        - Chats Service - Message
+      summary: Fetch a message
+      description: Fetch a message matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/chatId'
+      responses:
+        '200':
+          description: Message data matching the id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Chats Service - Message
+      summary: Update a message matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/chatId'
+      requestBody:
+        description: message data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Message'
+      responses:
+        '200':
+          description: Updated message
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags:
+        - Chats Service - Message
+      summary: Delete a message
+      description: Delete a message
+      parameters:
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/chatId'
+      responses:
+        '204':
+          description: the message has been deleted successfully
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  '/chats-service-api/chats/{chatId}/messages/{id}/flag':
+    put:
+      tags:
+        - Chats Service - Message
+      summary: >-
+        Flag a message matching the given id. Can be used by users to report
+        inappropriate content.
+      parameters:
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/chatId'
+      requestBody:
+        description: WARNING - The body of this request will be ignored.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Message'
+      responses:
+        '200':
+          description: Message updated with attribute "flagged" set to True
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /chats-service-api/extended-fans:
+    post:
+      tags:
+        - Chats Service - ExtendedFan
+      summary: Create a new extendedFan
+      description: Create a new extendedFan
+      parameters:
+        - $ref: '#/components/parameters/chatId'
+      requestBody:
+        description: extendedFan data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExtendedFan'
+      responses:
+        '201':
+          description: The extendedFan is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedFan'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/chats-service-api/extended-fans/{id}':
+    get:
+      tags:
+        - Chats Service - ExtendedFan
+      summary: Fetch an ExtendedFan
+      description: Fetch an ExtendedFan matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: ExtendedFan data matching the id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedFan'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Chats Service - ExtendedFan
+      summary: Update an ExtendedFan matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        description: ExtendedFan data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExtendedFan'
+      responses:
+        '200':
+          description: Updated ExtendedFan
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedFan'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags:
+        - Chats Service - ExtendedFan
+      summary: Delete an ExtendedFan
+      description: Delete an ExtendedFan
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: the ExtendedFan has been deleted successfully
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /cms-service-api/items:
+    get:
+      tags:
+        - CMS Service - Item
+      summary: Index of items stored in the CMS
+      description: Get the list of all items.
+      parameters:
+        - in: header
+          name: x-account-key
+          schema:
+            type: string
+          description: >-
+            The key assigned to the On Rewind customer account - used for
+            authentication.
+          required: true
+        - in: query
+          name: type
+          schema:
+            type: string
+          description: The type of the items that should be returned by the CMS.
+          required: true
+        - in: query
+          name: language
+          schema:
+            type: string
+          description: The language of the items that should be returned by the CMS.
+        - in: query
+          name: order
+          schema:
+            type: string
+          description: >-
+            The name of the criteria used to sort items (one of id, name, type,
+            lastModified).
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          description: Number of content items to retrieve in a single request
+        - in: query
+          name: skip
+          schema:
+            type: integer
+          description: Number of content items to skip
+      responses:
+        '200':
+          description: A list of items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CMSItem'
+  /main-api/auth/ping:
+    get:
+      security: []
+      tags:
+        - Main API - Auth
+      summary: Test API is up and running
+      description: Test API is up and running
+      responses:
+        '200':
+          description: The API returns 'ok'
+          content:
+            text/plain:
+              schema:
+                type: string
+                default: ok
+  /main-api/business-players:
+    post:
+      tags:
+        - Main API - Business player
+      summary: Create a new business player
+      description: >-
+        Create a new business player. These data are used by our business
+        (conference) player
+      requestBody:
+        description: business player data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BusinessPlayer'
+      responses:
+        '201':
+          description: The business player created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessPlayer'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    get:
+      tags:
+        - Main API - Business player
+      summary: Index of business players
+      description: Index of business players
+      responses:
+        '200':
+          description: A list of business players
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BusinessPlayer'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/main-api/business-players/{id}':
+    get:
+      security: []
+      tags:
+        - Main API - Business player
+      summary: Fetch a business player
+      description: >-
+        Fetch a business player matching the given id. Used by our business
+        player, therefore this route is public.
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Business player data matching the id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessPlayer'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Main API - Business player
+      summary: Update a business player matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        description: business player data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BusinessPlayer'
+      responses:
+        '200':
+          description: Updated business player
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessPlayer'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags:
+        - Main API - Business player
+      summary: Delete a business player
+      description: Delete a business player
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: the business player has been deleted successfully
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  '/main-api/business-players/{id}/clips':
+    get:
+      tags:
+        - Main API - Business player
+      summary: Fetch the list of a business player's clips
+      description: Fetch the list of a business player's clips
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: List of clips
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Clip'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  '/main-api/business-players/{id}/embed':
+    get:
+      tags:
+        - Main API - Business player
+      summary: Fetch a business player's embed code
+      description: Fetch a business player's embed code
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: HTML embed code for the business player
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  '/main-api/business-players/{id}/process-end-live':
+    post:
+      tags:
+        - Main API - Business player
+      summary: Process a live business player's switch to 'replay' state
+      description: >-
+        Process a live business's switch to 'replay' state. It will create a new
+        video and associate to the business player once it's encoded.
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        description: id of the business player
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BusinessPlayer'
+      responses:
+        '200':
+          description: The business player created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessPlayer'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  /main-api/challengers:
+    post:
+      tags:
+        - Main API - Challenger
+      summary: Create a new challenger
+      description: Create a new challenger
+      requestBody:
+        description: challenger data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Challenger'
+      responses:
+        '201':
+          description: The user is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Challenger'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    get:
+      tags:
+        - Main API - Challenger
+      summary: Index of challengers
+      description: Get the list of all challengers.
+      responses:
+        '200':
+          description: A list of Challengers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Challenger'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/main-api/challengers/{id}':
+    get:
+      tags:
+        - Main API - Challenger
+      summary: Fetch a challenger
+      description: Fetch a challenger matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Challenger data matching the id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Challenger'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Main API - Challenger
+      summary: Update a challenger matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        description: challenger data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Challenger'
+      responses:
+        '200':
+          description: Updated challenger
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Challenger'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags:
+        - Main API - Challenger
+      summary: Delete a challenger
+      description: Delete a challenger
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: The challenger has been deleted successfully
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /main-api/competitions:
+    post:
+      tags:
+        - Main API - Competition
+      summary: Create a new competition
+      description: Create a new competition
+      requestBody:
+        description: competition data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Competition'
+      responses:
+        '201':
+          description: The competition is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Competition'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    get:
+      tags:
+        - Main API - Competition
+      summary: Index of competitions
+      description: Get the list of all competitions.
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/SportId'
+      responses:
+        '200':
+          description: A list of Competitions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Competition'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/main-api/competitions/{id}':
+    get:
+      tags:
+        - Main API - Competition
+      summary: Fetch a competition
+      description: Fetch a competition matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Competition data matching the id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Competition'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Main API - Competition
+      summary: Update a competition matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        description: competition data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Competition'
+      responses:
+        '200':
+          description: Updated competition
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Competition'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags:
+        - Main API - Competition
+      summary: Delete a competition
+      description: Delete a competition
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: the competition has been deleted successfully
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /main-api/events:
+    post:
+      tags:
+        - Main API - Event
+      summary: Create a new event
+      description: Create a new event. Events are used by our sports player.
+      requestBody:
+        description: event data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+      responses:
+        '201':
+          description: The event created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    get:
+      tags:
+        - Main API - Event
+      summary: Index of events
+      description: Index of events
+      responses:
+        '200':
+          description: A list of events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/main-api/events/{id}':
+    get:
+      security: []
+      tags:
+        - Main API - Event
+      summary: Fetch an event
+      description: Fetch an event matching the given id.
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Event data matching the id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Main API - Event
+      summary: Update an event matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        description: event data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+      responses:
+        '200':
+          description: Updated event
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags:
+        - Main API - Event
+      summary: Delete an event
+      description: Delete an event
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: the event has been deleted successfully
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  '/main-api/events/{id}/player':
+    get:
+      security: []
+      tags:
+        - Main API - Event
+      summary: Fetch an event with extra data needed for the player.
+      description: >-
+        Fetch an event matching the given id. Similar to /events/:id but with
+        extra data populated needed for the player. This route is using caching
+        and therefore is recommended to get good performance.
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Event data matching the id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /main-api/events/fixtures:
+    get:
+      security: []
+      tags:
+        - Main API - Event
+      summary: Fetch upcoming events.
+      description: >-
+        Select upcoming events, compared to the server time. You can specify a
+        limit of results as well as filtering by account id. Events must be in
+        [liveOff, LiveDailymotion, LiveOn] state.
+      parameters:
+        - in: query
+          name: accountId
+          schema:
+            type: string
+          description: The customer account id
+        - in: query
+          name: limit
+          schema:
+            type: number
+            default: 9
+          description: The number of events to return
+      responses:
+        '200':
+          description: A list of upcoming events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /main-api/events/rewinds:
+    get:
+      security: []
+      tags:
+        - Main API - Event
+      summary: Fetch past events.
+      description: >-
+        Select past events, compared to the server time. You can specify a limit
+        of results as well as filtering by account id. Events must be in
+        [replay] state and have a video associated.
+      parameters:
+        - in: query
+          name: accountId
+          schema:
+            type: string
+          description: The customer account id
+        - in: query
+          name: limit
+          schema:
+            type: number
+            default: 9
+          description: The number of events to return
+      responses:
+        '200':
+          description: A list of past events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  '/main-api/seasons/{seasonId}/competitions/{competitionId}/rounds':
+    post:
+      tags:
+        - Main API - Round
+      summary: Create a new round
+      description: Create a new round
+      parameters:
+        - $ref: '#/components/parameters/seasonId'
+        - $ref: '#/components/parameters/competitionId'
+      requestBody:
+        description: round data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The name of the round
+                competitionOrder:
+                  type: number
+                  description: >-
+                    The position in the list of rounds when listing all the
+                    rounds for a given round.
+      responses:
+        '201':
+          description: The round is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Round'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    get:
+      tags:
+        - Main API - Round
+      summary: Index of rounds
+      description: Get the list of all rounds.
+      parameters:
+        - $ref: '#/components/parameters/seasonId'
+        - $ref: '#/components/parameters/competitionId'
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: A list of Rounds
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Round'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/main-api/seasons/{seasonId}/competitions/{competitionId}/rounds/{id}':
+    get:
+      tags:
+        - Main API - Round
+      summary: Fetch a round
+      description: Fetch a round matching the given id
+      parameters:
+        - $ref: '#/components/parameters/seasonId'
+        - $ref: '#/components/parameters/competitionId'
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Round data matching the id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Round'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Main API - Round
+      summary: Update a round matching the given id
+      parameters:
+        - $ref: '#/components/parameters/seasonId'
+        - $ref: '#/components/parameters/competitionId'
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        description: round data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The name of the round
+                competitionOrder:
+                  type: number
+                  description: >-
+                    The position in the list of rounds when listing all the
+                    rounds for a given round.
+      responses:
+        '200':
+          description: Updated round
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Round'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags:
+        - Main API - Round
+      summary: Delete a round
+      description: Delete a round
+      parameters:
+        - $ref: '#/components/parameters/seasonId'
+        - $ref: '#/components/parameters/competitionId'
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: the round has been deleted successfully
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /main-api/seasons:
+    post:
+      tags:
+        - Main API - Season
+      summary: Create a new season
+      description: Create a new season
+      requestBody:
+        description: season data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Season'
+      responses:
+        '201':
+          description: The season is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Season'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    get:
+      tags:
+        - Main API - Season
+      summary: Index of seasons
+      description: Get the list of all seasons.
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/SportId'
+      responses:
+        '200':
+          description: A list of Seasons
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Season'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/main-api/seasons/{id}':
+    get:
+      tags:
+        - Main API - Season
+      summary: Fetch a season
+      description: Fetch a season matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Season data matching the id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Season'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Main API - Season
+      summary: Update a season matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        description: season data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Season'
+      responses:
+        '200':
+          description: Updated season
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Season'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags:
+        - Main API - Season
+      summary: Delete a season
+      description: Delete a season
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: the season has been deleted successfully
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /main-api/events/spotlight:
+    get:
+      security: []
+      tags:
+        - Main API - Event
+      summary: Fetch a random event out of latest events.
+      description: Fetch a random event belonging to given account id.
+      parameters:
+        - in: query
+          name: accountId
+          schema:
+            type: string
+          description: The customer account id
+        - in: query
+          name: limit
+          schema:
+            type: number
+          description: The number of events to choose from
+      responses:
+        '200':
+          description: Event randomly chosen
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  '/main-api/challengers:{challengerId}/squads':
+    get:
+      tags:
+        - Main API - Squad
+      summary: Index of squads
+      description: 'Index of squads, returns the TeamSquads associated to the challenger.'
+      parameters:
+        - $ref: '#/components/parameters/challengerId'
+      responses:
+        '200':
+          description: A list of squads
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Squad'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  /main-api/squads:
+    post:
+      tags:
+        - Main API - Squad
+      summary: Create a new squad for a team
+      description: Create a new squad for a team
+      requestBody:
+        description: squad data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Squad'
+      responses:
+        '201':
+          description: The squad created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Squad'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/main-api/squads/{id}':
+    get:
+      tags:
+        - Main API - Squad
+      summary: Fetch a squad
+      description: >-
+        Fetch the TeamSquad matching the given id ; if is for a challenger of
+        type 'team', it will return a TeamSquad, otherwise a TeammateSquad.
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Fetched squad
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Squad'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags:
+        - Main API - Squad
+      summary: Delete a squad
+      description: Delete the squad matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: The deleted squad
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Squad'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  '/main-api/squads/{id}/teammates':
+    post:
+      tags:
+        - Main API - Squad
+      summary: Associate a teammate to the given teams's squad.
+      description: Associate a teammate to the given team's squad.
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        description: squad data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Squad'
+      responses:
+        '201':
+          description: The squad created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Squad'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    get:
+      tags:
+        - Main API - Squad
+      summary: Fetch the teammates associated to a squad.
+      description: Fetch the teammates associated to a squad.
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: A list of teammates
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Challenger'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /main-api/sports:
+    post:
+      tags:
+        - Main API - Sport
+      summary: Create a new sport
+      description: Create a new sport
+      requestBody:
+        description: sport data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Sport'
+      responses:
+        '201':
+          description: The sport is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sport'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    get:
+      tags:
+        - Main API - Sport
+      summary: Index of sports
+      description: Get the list of all sports.
+      responses:
+        '200':
+          description: A list of Sports
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Sport'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/main-api/sports/{id}':
+    get:
+      tags:
+        - Main API - Sport
+      summary: Fetch a sport
+      description: Fetch a sport matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Sport data matching the id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sport'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Main API - Sport
+      summary: Update a sport matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        description: sport data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Sport'
+      responses:
+        '200':
+          description: Updated sport
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sport'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags:
+        - Main API - Sport
+      summary: Delete a sport
+      description: Delete a sport
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: the sport has been deleted successfully
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  '/main-api/streamable/{streamableId}/streams':
+    get:
+      tags:
+        - Main API - Stream
+      summary: Index of streams
+      description: Get a list of all streams
+      parameters:
+        - $ref: '#/components/parameters/streamableId'
+        - $ref: '#/components/parameters/fieldsParam'
+      responses:
+        '200':
+          description: A list of streams
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Stream'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    post:
+      tags:
+        - Main API - Stream
+      summary: Create a new stream
+      description: Create a new stream
+      parameters:
+        - $ref: '#/components/parameters/streamableId'
+      requestBody:
+        description: stream data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Stream'
+      responses:
+        '201':
+          description: The stream is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stream'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '409':
+          $ref: '#/components/responses/ConflictInModel'
+  '/main-api/streamable/{streamableId}/streams/{id}':
+    delete:
+      tags:
+        - Main API - Stream
+      summary: Delete a stream
+      description: Delete the stream matching the given id
+      parameters:
+        - $ref: '#/components/parameters/streamableId'
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: The deleted stream
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stream'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Main API - Stream
+      summary: Update the stream data
+      description: Update the stream data matching given id
+      parameters:
+        - $ref: '#/components/parameters/streamableId'
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        description: stream data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Stream'
+      responses:
+        '200':
+          description: Updated stream
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stream'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/ConflictInModel'
+    get:
+      tags:
+        - Main API - Stream
+      summary: Fetch a stream
+      description: Fetch the stream matching the given id
+      parameters:
+        - $ref: '#/components/parameters/streamableId'
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Fetched stream
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stream'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /main-api/videos:
+    post:
+      tags:
+        - Main API - Video
+      summary: Create a new video
+      description: Create a new video.
+      requestBody:
+        description: video data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Video'
+      responses:
+        '201':
+          description: The video created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Video'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    get:
+      tags:
+        - Main API - Video
+      summary: Index of videos
+      description: Index of videos
+      responses:
+        '200':
+          description: A list of videos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Video'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/main-api/videos/{id}':
+    delete:
+      tags:
+        - Main API - Video
+      summary: Delete a video
+      description: Delete the video matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: The deleted video
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Video'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Main API - Video
+      summary: Update the video data
+      description: Update the video data matching given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        description: video data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Video'
+      responses:
+        '200':
+          description: Updated video
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Video'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    get:
+      tags:
+        - Main API - Video
+      summary: Fetch a video
+      description: Fetch the video matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Fetched video
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Video'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /users-service-api/accounts:
+    get:
+      tags:
+        - Users Service - Account
+      summary: Index of accounts
+      description: Get a list of all accounts
+      parameters:
+        - $ref: '#/components/parameters/fieldsParam'
+      responses:
+        '200':
+          description: A list of Accounts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Account'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    post:
+      tags:
+        - Users Service - Account
+      summary: Create a new account
+      description: Create a new account
+      requestBody:
+        description: account data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Account'
+      responses:
+        '201':
+          description: The account is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/users-service-api/accounts/{id}':
+    delete:
+      tags:
+        - Users Service - Account
+      summary: Delete an account
+      description: Delete an account
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: the account has been deleted successfully
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Users Service - Account
+      summary: Update the account data
+      description: it will update the account data matching given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        description: account data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Account'
+      responses:
+        '200':
+          description: Updated information of logged account based on access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    get:
+      tags:
+        - Users Service - Account
+      summary: Fetch an account
+      description: Fetch an account matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Fetched information of logged account based on access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /users-service-api/activities:
+    get:
+      tags:
+        - Users Service - FanActivity
+      summary: Index of fan activities
+      description: Get a list of all activities filtered by any of the available parameters
+      parameters:
+        - $ref: '#/components/parameters/type'
+        - $ref: '#/components/parameters/resourceType'
+        - $ref: '#/components/parameters/resourceId'
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: A list of Activities
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FanActivity'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    post:
+      tags:
+        - Users Service - FanActivity
+      summary: Create a new fan activity
+      description: Create a new fan activity
+      requestBody:
+        description: fan activity data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FanActivity'
+      responses:
+        '201':
+          description: The fan activity is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FanActivity'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/users-service-api/activities/{id}':
+    delete:
+      tags:
+        - Users Service - FanActivity
+      summary: Delete an fan activity
+      description: Delete an fan activity
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: the fan activity has been deleted successfully
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    get:
+      tags:
+        - Users Service - FanActivity
+      summary: Fetch an fan activity
+      description: Fetch an fan activity matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Fetched information of logged fan activity based on access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FanActivity'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /users-service-api/groups:
+    get:
+      tags:
+        - Users Service - Group
+      summary: Index of groups
+      description: Get a list of all groups
+      parameters:
+        - $ref: '#/components/parameters/fieldsParam'
+      responses:
+        '200':
+          description: A list of Groups
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Group'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    post:
+      tags:
+        - Users Service - Group
+      summary: Create a new group
+      description: Create a new group
+      requestBody:
+        description: group data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Group'
+      responses:
+        '201':
+          description: The group is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/users-service-api/groups/{id}':
+    delete:
+      tags:
+        - Users Service - Group
+      summary: Delete an group
+      description: Delete an group
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: the group has been deleted successfully
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Users Service - Group
+      summary: Update the group data
+      description: it will update the group data matching given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        description: group data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Group'
+      responses:
+        '200':
+          description: Updated information of logged group based on access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    get:
+      tags:
+        - Users Service - Group
+      summary: Fetch an group
+      description: Fetch an group matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Fetched information of logged group based on access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /users-service-api/modules:
+    get:
+      tags:
+        - Users Service - Module
+      summary: Index of modules
+      description: Get a list of all modules
+      parameters:
+        - $ref: '#/components/parameters/fieldsParam'
+      responses:
+        '200':
+          description: A list of Modules
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Module'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    post:
+      tags:
+        - Users Service - Module
+      summary: Create a new module
+      description: Create a new module
+      requestBody:
+        description: module data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Module'
+      responses:
+        '201':
+          description: The module is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Module'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/users-service-api/modules/{id}':
+    delete:
+      tags:
+        - Users Service - Module
+      summary: Delete an module
+      description: Delete an module
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: the module has been deleted successfully
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Users Service - Module
+      summary: Update the module data
+      description: it will update the module data matching given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        description: module data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Module'
+      responses:
+        '200':
+          description: Updated information of logged module based on access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Module'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    get:
+      tags:
+        - Users Service - Module
+      summary: Fetch an module
+      description: Fetch an module matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Fetched information of logged module based on access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Module'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /users-service-api/roles:
+    get:
+      tags:
+        - Users Service - Role
+      summary: Index of roles
+      description: Get a list of all roles
+      parameters:
+        - $ref: '#/components/parameters/fieldsParam'
+      responses:
+        '200':
+          description: A list of Roles
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Role'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    post:
+      tags:
+        - Users Service - Role
+      summary: Create a new role
+      description: Create a new role
+      requestBody:
+        description: role data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Role'
+      responses:
+        '201':
+          description: The role is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/users-service-api/roles/{id}':
+    delete:
+      tags:
+        - Users Service - Role
+      summary: Delete an role
+      description: Delete an role
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: the role has been deleted successfully
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Users Service - Role
+      summary: Update the role data
+      description: it will update the role data matching given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        description: role data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Role'
+      responses:
+        '200':
+          description: Updated information of logged role based on access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    get:
+      tags:
+        - Users Service - Role
+      summary: Fetch an role
+      description: Fetch an role matching the given id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Fetched information of logged role based on access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /users-service-api/users:
+    get:
+      tags:
+        - Users Service - User
+      summary: Index of users
+      description: Get a list of all users
+      parameters:
+        - $ref: '#/components/parameters/fieldsParam'
+      responses:
+        '200':
+          description: A list of Users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    post:
+      tags:
+        - Users Service - User
+      summary: Create a new user
+      description: Create a new user
+      requestBody:
+        description: user data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: The user is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  /users-service-api/users/me:
+    get:
+      tags:
+        - Users Service - User
+      summary: Fetch my own data
+      description: 'Based on current access token, it will fetch the user data'
+      responses:
+        '200':
+          description: Retrieve information of logged user based on access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Users Service - User
+      summary: Update my own data
+      description: 'Based on current access token, it will update the user data'
+      requestBody:
+        description: user data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Update information of logged user based on access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /users-service-api/users/me/context:
+    get:
+      tags:
+        - Users Service - User
+      summary: Fetch resources making up the context of a user
+      description: >
+        Based on current access token, it will fetch the user's Groups, Roles,
+        AccountId, Modules
+      responses:
+        '200':
+          description: User's "context"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Groups:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Group'
+                  Roles:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Role'
+                  AccountId:
+                    type: string
+                    format: uuid
+                  Modules:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Module'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
 components:
   parameters:
     acceptVersion:
