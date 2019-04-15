@@ -2,9 +2,8 @@ get:
   tags:
     - Main API - Squad
   summary: Fetch a squad
-  description: Fetch the TeamSquad matching the given id ; if  is for a challenger of type 'team', it will return a TeamSquad, otherwise a TeammateSquad.
+  description: Fetch the TeamSquad matching the given id ; if is for a challenger of type 'team', it will return a TeamSquad, otherwise a TeammateSquad.
   parameters:
-    - $ref: '#/components/parameters/challengerId'
     - $ref: '#/components/parameters/id'
   responses:
     '200':
