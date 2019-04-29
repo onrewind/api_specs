@@ -26,4 +26,5 @@ type:
   $ref: ./type.yaml
 limit:
   $ref: ./limit.yaml
-
+providerName:
+  $ref: ./providerName.yaml

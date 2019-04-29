@@ -1,0 +1,5 @@
+name: providerName
+in: path
+description: the name of the data provider service
+schema:
+  type: string

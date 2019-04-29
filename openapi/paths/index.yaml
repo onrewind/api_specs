@@ -63,6 +63,9 @@
   $ref: ./main-api/challengers/challengers.yaml
 /main-api/challengers/{id}:
   $ref: ./main-api/challengers/challengers.{id}.yaml
+#DataProviderMapping
+/main-api/data-provider-mapping/{providerName}/subscriptions:
+  $ref: ./main-api/data-provider-mapping/data-provider-mapping.{providerName}.subscriptions.yaml
 #Seasons
 /main-api/competitions:
   $ref: ./main-api/competitions/competitions.yaml
