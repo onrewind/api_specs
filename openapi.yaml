@@ -837,6 +837,60 @@ paths:
           $ref: '#/components/responses/InvalidModel'
         '403':
           $ref: '#/components/responses/UserNotAuthorized'
+    get:
+      tags:
+        - Main API - DataProviderMapping
+      summary: Get the list of subscriptions
+      description: This service list the subscriptions to a given provider's notifications.
+      parameters:
+        - $ref: '#/components/parameters/providerName'
+        - in: query
+          name: username
+          schema:
+            type: string
+          required: true
+          description: The username needed to access the provider's API
+        - in: query
+          name: password
+          schema:
+            type: string
+          required: true
+          description: The password needed to access the provider's API
+      responses:
+        '200':
+          description: The list of subscriptions
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    delete:
+      tags:
+        - Main API - DataProviderMapping
+      summary: Delete all the subscriptions
+      description: >-
+        This service remove all the subscriptions to a given provider's
+        notifications.
+      parameters:
+        - $ref: '#/components/parameters/providerName'
+        - in: query
+          name: username
+          schema:
+            type: string
+          required: true
+          description: The username needed to access the provider's API
+        - in: query
+          name: password
+          schema:
+            type: string
+          required: true
+          description: The password needed to access the provider's API
+      responses:
+        '204':
+          description: The list of subscriptions
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
   /main-api/competitions:
     post:
       tags:
@@ -2548,6 +2602,7 @@ components:
       description: the name of the data provider service
       schema:
         type: string
+      required: true
   responses:
     UserNotAuthorized:
       description: UserNotAuthorized
