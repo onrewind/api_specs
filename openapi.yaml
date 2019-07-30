@@ -790,6 +790,61 @@ paths:
           $ref: '#/components/responses/UserNotAuthorized'
         '404':
           $ref: '#/components/responses/NotFound'
+  /main-api/clips:
+    post:
+      tags:
+        - Main API - Clip
+      summary: Create a new clip
+      description: Create a new clip
+      requestBody:
+        description: clip data to be sent
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Clip'
+      responses:
+        '201':
+          description: The clip is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Clip'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+    get:
+      tags:
+        - Main API - Clip
+      summary: Index of clips
+      description: Get the list of all clips.
+      responses:
+        '200':
+          description: A list of Clips
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Clip'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  '/main-api/clips/{id}':
+    delete:
+      tags:
+        - Main API - Clip
+      summary: Delete a clip
+      description: Delete a clip
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: The clip has been deleted successfully
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
   '/main-api/data-provider-mapping/{providerName}/subscriptions':
     post:
       tags:
@@ -2865,6 +2920,17 @@ components:
             duration:
               type: integer
               description: The duration of the clip in seconds
+        url:
+          type: string
+          description: The url of the clip (from external providers)
+        AccountId:
+          type: string
+          format: uuid
+          description: The account id
+        UserId:
+          type: string
+          format: uuid
+          description: The user id
     CMSItem:
       title: CMSItem
       required:
