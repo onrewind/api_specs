@@ -1,0 +1,39 @@
+post:
+  tags:
+    - Main API - Clip
+  summary: Create a new clip
+  description: Create a new clip
+  requestBody:
+    description: clip data to be sent
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Clip'
+  responses:
+    '201':
+      description: The clip is created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Clip'
+    '400':
+      $ref: '#/components/responses/InvalidModel'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+get:
+  tags:
+    - Main API - Clip
+  summary: Index of clips
+  description: Get the list of all clips.
+  responses:
+    '200':
+      description: A list of Clips
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Clip'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'

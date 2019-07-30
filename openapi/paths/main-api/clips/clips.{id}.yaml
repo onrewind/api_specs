@@ -1,0 +1,14 @@
+delete:
+  tags:
+    - Main API - Clip
+  summary: Delete a clip
+  description: Delete a clip
+  parameters:
+    - $ref: '#/components/parameters/id'
+  responses:
+    '204':
+      description: The clip has been deleted successfully
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'

@@ -63,6 +63,11 @@
   $ref: ./main-api/challengers/challengers.yaml
 /main-api/challengers/{id}:
   $ref: ./main-api/challengers/challengers.{id}.yaml
+#Clips
+/main-api/clips:
+  $ref: ./main-api/clips/clips.yaml
+/main-api/clips/{id}:
+  $ref: ./main-api/clips/clips.{id}.yaml
 #DataProviderMapping
 /main-api/data-provider-mapping/{providerName}/subscriptions:
   $ref: ./main-api/data-provider-mapping/data-provider-mapping.{providerName}.subscriptions.yaml
