@@ -62,5 +62,8 @@ properties:
     type: string
     format: uuid
     description: Stream's polymorphic association to a streamable model. It references the id of the associated Event, BusinessPlayer or Simulcast.
-  
+  url:
+    type: string
+    description: The url of the clip (from external providers)
+
 
