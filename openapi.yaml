@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 5.17.4
+  version: 8.1.0
   title: On Rewind API
   description: >
     On Rewind API documentation based on OpenAPI 3.0.
@@ -1939,6 +1939,74 @@ paths:
           $ref: '#/components/responses/UserNotAuthorized'
         '404':
           $ref: '#/components/responses/NotFound'
+  '/main-api/videos/{id}/encoding-job':
+    post:
+      tags:
+        - Main API - Video
+      summary: Trigger the encoding of an original file
+      description: >-
+        After a video has been uploaded or created with original status, the
+        encoding can be triggered by calling this route
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        description: id of the video
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Video'
+      responses:
+        '200':
+          description: The video is being transcoded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Video'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
+  /main-api/videos/import-url:
+    post:
+      tags:
+        - Main API - Video
+      summary: Import an url and create a transcoded video
+      description: Import an existing video
+      requestBody:
+        description: null
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                originUrl:
+                  type: string
+                  description: url of the existing video
+                name:
+                  type: string
+                  description: name of the video
+                description:
+                  type: string
+                  description: description of the video
+                poster:
+                  type: string
+                  description: url of an image to be used as the video poster
+                duration:
+                  type: number
+                  description: duration of the video
+      responses:
+        '200':
+          description: The video is being imported.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Video'
+        '400':
+          $ref: '#/components/responses/InvalidModel'
+        '403':
+          $ref: '#/components/responses/UserNotAuthorized'
   /users-service-api/accounts:
     get:
       tags:
@@ -3510,6 +3578,10 @@ components:
           type: string
           format: uri
           description: The URL of the video poster
+        url:
+          type: string
+          format: uri
+          description: The URL of the video file
         visibility:
           type: string
           description: The visibility of the video
