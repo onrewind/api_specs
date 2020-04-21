@@ -1,4 +1,4 @@
-FROM ruby:2.5-alpine
+FROM ruby:alpine
 EXPOSE 4567
 
 RUN apk update \
