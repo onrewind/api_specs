@@ -19,6 +19,10 @@ properties:
     type: string
     format: uri
     description: The URL of the video poster
+  url:
+    type: string
+    format: uri
+    description: The URL of the video file
   visibility:
     type: string
     description: The visibility of the video

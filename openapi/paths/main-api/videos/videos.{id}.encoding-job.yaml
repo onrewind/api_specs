@@ -1,0 +1,25 @@
+post:
+  tags:
+    - Main API - Video
+  summary: Trigger the encoding of an original file
+  description: After a video has been uploaded or created with original status, the encoding can be triggered by calling this route
+  parameters:
+    - $ref: '#/components/parameters/id'
+  requestBody:
+    description: id of the video
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Video'
+  responses:
+    '200':
+      description: The video is being transcoded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Video'
+    '400':
+      $ref: '#/components/responses/InvalidModel'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'

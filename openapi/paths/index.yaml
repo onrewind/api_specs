@@ -123,6 +123,10 @@
   $ref: ./main-api/videos/videos.yaml
 /main-api/videos/{id}:
   $ref: ./main-api/videos/videos.{id}.yaml
+/main-api/videos/{id}/encoding-job:
+  $ref: ./main-api/videos/videos.{id}.encoding-job.yaml
+/main-api/videos/import-url:
+  $ref: ./main-api/videos/videos.import-url.yaml
 
 ##########################
 ##### USERS SERVICE ######

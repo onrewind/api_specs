@@ -1,0 +1,39 @@
+post:
+  tags:
+    - Main API - Video
+  summary: Import an url and create a transcoded video
+  description: Import an existing video
+  requestBody:
+    description:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            originUrl:
+              type: string
+              description: url of the existing video
+            name:
+              type: string
+              description: name of the video
+            description:
+              type: string
+              description: description of the video
+            poster:
+              type: string
+              description: url of an image to be used as the video poster
+            duration:
+              type: number
+              description: duration of the video
+  responses:
+    '200':
+      description: The video is being imported.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Video'
+    '400':
+      $ref: '#/components/responses/InvalidModel'
+    '403':
+      $ref: '#/components/responses/UserNotAuthorized'
